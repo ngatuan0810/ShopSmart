@@ -39,7 +39,6 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.image_thumbnail.setImageResource(mData.get(position).getThumbnail());
 
 
-
     }
 
     @Override
@@ -52,11 +51,9 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         ImageView image_thumbnail;
 
 
-
         public MyViewHolder(View itemView) {
             super(itemView);
             image_thumbnail = (ImageView) itemView.findViewById(R.id.item_img_id);
-
         }
     }
 }
