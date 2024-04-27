@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "424656365119",
+    "project_id": "shopsmart-29cfe",
+    "storage_bucket": "shopsmart-29cfe.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:424656365119:android:f8b5cb23d03bbef5c1ba8a",
+        "android_client_info": {
+          "package_name": "com.example.shopsmart"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "424656365119-1lp136qauojg4jdmsidb5lr0qva2ae4n.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.shopsmart",
+            "certificate_hash": "0799897405d47c9da73a24dcddc5220d456389b9"
+          }
+        },
+        {
+          "client_id": "424656365119-ii89mpta0ks1gq65c5ochgp7i2geng03.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBS1hmE9yp2G7uSm_yzK58oOccAJ3bXGP4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "424656365119-ii89mpta0ks1gq65c5ochgp7i2geng03.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

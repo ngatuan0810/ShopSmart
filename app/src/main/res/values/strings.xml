@@ -57,6 +57,11 @@
     <string name="category">CATEGORY</string>
     <string name="input1" />
     <string name="todo13">TODO</string>
+<!-- String credentials for FaceBook login -->
+    <string name="facebook_app_id">1083518752721455</string>
+    <string name="fb_login_protocol_scheme">fb1083518752721455</string>
+    <string name="facebook_client_token">4832feb734ffd7f8089d98c7987afa07</string>
+    <string name="web_client_id">424656365119-ii89mpta0ks1gq65c5ochgp7i2geng03.apps.googleusercontent.com</string>
 
 
 </resources>
