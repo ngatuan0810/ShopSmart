@@ -1,9 +1,12 @@
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -32,6 +35,14 @@ public class ScreenActivity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen1);
+
+        LinearLayout linearLayout = findViewById(R.id.linear);
+        linearLayout.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(ScreenActivity1.this, SearchActivity.class));
+            }
+        });
         lstItem = new ArrayList<>();
         lstItem.add(new Item(R.drawable.image_4));
         lstItem.add(new Item(R.drawable.image_5));
