@@ -84,6 +84,15 @@ public class LogInActivity extends AppCompatActivity {
                         Color.parseColor("#8BA9DC"),
                 }, null, Shader.TileMode.CLAMP);
         text.getPaint().setShader(textShader);
+        TextView signUpOption = findViewById(R.id.textView10);
+        // If the user has not registered
+        signUpOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     void handleGoogleLogin() {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)

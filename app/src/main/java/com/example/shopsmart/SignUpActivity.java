@@ -44,6 +44,15 @@ public class SignUpActivity extends AppCompatActivity {
                 handleSignUp();
             }
         });
+        TextView signInOption = findViewById(R.id.textView17);
+        // If the user has registered
+        signInOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(SignUpActivity.this, LogInActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     void handleSignUp() {
         TextInputEditText username = findViewById(R.id.editTextText2);
