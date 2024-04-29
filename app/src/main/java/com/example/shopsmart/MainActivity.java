@@ -14,22 +14,16 @@ public class MainActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
 
-        // Start the LogInActivity
-//        Intent intent = new Intent(this, LogInActivity.class);
-//        startActivity(intent);
-
 //
 //        Intent intent = new Intent(this, IntroActivity.class);
 //        startActivity(intent);
 
 //        Intent intent = new Intent(this, SignUpActivity.class);
 //        startActivity(intent);
-//
-//        Intent intent = new Intent(this, ScreenActivity1.class);
-//        startActivity(intent);
-
-        Intent intent = new Intent(this, IPhonePinkActivity.class);
+        /*
+        Intent intent = new Intent(this, ScreenActivity1.class);
         startActivity(intent);
+         */
     }
 }
 

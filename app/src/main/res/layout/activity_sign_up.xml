@@ -208,6 +208,7 @@
                             android:inputType="textEmailAddress"
                             android:padding="0dp"
                             android:paddingStart="20dp"
+                            android:paddingEnd="60dp"
                             android:paddingTop="0dp"
                             android:textColor="#808B96"
                             android:textSize="22sp"
@@ -308,6 +309,7 @@
                             android:inputType="textPersonName"
                             android:padding="5dp"
                             android:paddingStart="20dp"
+                            android:paddingEnd="60dp"
                             android:paddingTop="10dp"
                             android:textColor="#808B96"
                             android:textSize="22sp"
@@ -408,7 +410,7 @@
                             android:hint="@string/password2"
                             android:inputType="textPassword"
                             android:paddingStart="20dp"
-
+                            android:paddingEnd="60dp"
                             android:textColor="#808B96"
                             android:textSize="22sp"
                             app:layout_constraintBottom_toBottomOf="parent"
@@ -500,4 +502,3 @@
         </LinearLayout>
     </ScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
-

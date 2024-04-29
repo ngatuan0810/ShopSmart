@@ -45,18 +45,23 @@
     <string name="enter_username">Enter username</string>
     <string name="shop_smart1">SHOP SMART</string>
     <!-- Strings related to login -->
-    <!--    <string name="prompt_email">Email</string>-->
-    <!--    <string name="prompt_password">Password</string>-->
-    <!--    <string name="action_sign_in">Sign in or register</string>-->
-    <!--    <string name="action_sign_in_short">Sign in</string>-->
-    <!--    <string name="welcome">"Welcome!"</string>-->
-    <!--    <string name="invalid_username">Not a valid username</string>-->
-    <!--    <string name="invalid_password">Password must be >5 characters</string>-->
-    <!--    <string name="login_failed">"Login failed"</string>-->
+<!--    <string name="prompt_email">Email</string>-->
+<!--    <string name="prompt_password">Password</string>-->
+<!--    <string name="action_sign_in">Sign in or register</string>-->
+<!--    <string name="action_sign_in_short">Sign in</string>-->
+<!--    <string name="welcome">"Welcome!"</string>-->
+<!--    <string name="invalid_username">Not a valid username</string>-->
+<!--    <string name="invalid_password">Password must be >5 characters</string>-->
+<!--    <string name="login_failed">"Login failed"</string>-->
     <string name="todo12">TODO</string>
     <string name="category">CATEGORY</string>
     <string name="input1" />
     <string name="todo13">TODO</string>
+<!-- String credentials for FaceBook login -->
+    <string name="facebook_app_id">1083518752721455</string>
+    <string name="fb_login_protocol_scheme">fb1083518752721455</string>
+    <string name="facebook_client_token">4832feb734ffd7f8089d98c7987afa07</string>
+    <string name="web_client_id">424656365119-ii89mpta0ks1gq65c5ochgp7i2geng03.apps.googleusercontent.com</string>
     <string name="recommend_for_you">RECOMMEND FOR YOU</string>
     <string name="home">Home</string>
     <string name="products">Products</string>

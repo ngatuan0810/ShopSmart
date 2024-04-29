@@ -18,9 +18,10 @@
         app:layout_constraintTop_toTopOf="parent">
 
         <LinearLayout
+            android:id="@+id/parent"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <TextView
                 android:id="@+id/textView"
@@ -63,8 +64,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/user_regular"
-                        android:contentDescription="@string/todo3" />
+                        android:contentDescription="@string/todo3"
+                        app:srcCompat="@drawable/user_regular" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -83,8 +84,7 @@
                         style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
                         android:layout_width="match_parent"
                         android:layout_height="70dp"
-                        app:boxBackgroundMode="none"
-                        >
+                        app:boxBackgroundMode="none">
 
                         <com.google.android.material.textfield.TextInputEditText
                             android:id="@+id/editTextText2"
@@ -98,6 +98,7 @@
                             android:padding="5dp"
                             android:paddingStart="20dp"
                             android:paddingTop="10dp"
+                            android:paddingEnd="60dp"
                             android:textColor="#808B96"
                             android:textSize="22sp"
                             tools:ignore="RtlSymmetry" />
@@ -129,8 +130,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="10dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/unlock_keyhole_solid"
-                        android:contentDescription="@string/todo2" />
+                        android:contentDescription="@string/todo2"
+                        app:srcCompat="@drawable/unlock_keyhole_solid" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -163,6 +164,7 @@
                             android:hint="@string/password2"
                             android:inputType="textPassword"
                             android:paddingStart="20dp"
+                            android:paddingEnd="60dp"
                             android:textColor="#808B96"
                             android:textSize="22sp"
                             tools:ignore="RtlSymmetry" />
@@ -252,13 +254,13 @@
                 <LinearLayout
                     android:layout_width="180dp"
                     android:layout_height="50dp"
+                    android:layout_marginTop="15dp"
                     android:layout_marginBottom="12dp"
                     android:orientation="horizontal"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toEndOf="@+id/linearLayout4"
-                    app:layout_constraintTop_toTopOf="parent"
-                    android:layout_marginTop="15dp">
+                    app:layout_constraintTop_toTopOf="parent">
 
                     <ImageView
                         android:id="@+id/imageView4"
@@ -297,8 +299,8 @@
                         android:layout_height="wrap_content"
                         android:layout_marginTop="15dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/google_symbol"
-                        android:contentDescription="@string/todo1" />
+                        android:contentDescription="@string/todo1"
+                        app:srcCompat="@drawable/google_symbol" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -323,6 +325,7 @@
                         android:textSize="20sp" />
                 </LinearLayout>
             </androidx.constraintlayout.widget.ConstraintLayout>
+
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="360dp"
