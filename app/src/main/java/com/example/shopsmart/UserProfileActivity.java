@@ -6,21 +6,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class UserProfileActivity extends AppCompatActivity {
     ViewGroup mainScreen;
     View gridLayout;
 
     View middleBar;
+    FirebaseAuth firebaseAuth;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
+        firebaseAuth = FirebaseAuth.getInstance();
+        FirebaseUser user = firebaseAuth.getCurrentUser();
+        TextView userName = findViewById(R.id.textView21);
+        if (user != null) {
+            userName.setText(user.getDisplayName());
+        }
         LinearLayout likedButton = findViewById(R.id.likedButton);
         LinearLayout watchedButton = findViewById(R.id.watchedButton);
         LinearLayout reviewedButton = findViewById(R.id.reviewedButton);

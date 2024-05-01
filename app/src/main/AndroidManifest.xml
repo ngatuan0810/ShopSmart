@@ -27,7 +27,7 @@
             android:name=".Item"
             android:exported="false" />
         <activity
-            android:name=".LogInActivity"
+            android:name=".UserProfileActivity"
             android:exported="false" />
         <activity
             android:name=".SignUpActivity"
@@ -42,7 +42,7 @@
             android:name=".ScreenActivity1"
             android:exported="false" />
         <activity
-            android:name=".UserProfileActivity"
+            android:name=".LogInActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
