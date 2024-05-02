@@ -42,7 +42,7 @@
     <string name="todo9">TODO</string>
     <string name="todo10">TODO</string>
     <string name="todo11">TODO</string>
-    <string name="enter_username">Enter username</string>
+    <string name="enter_email">Enter email</string>
     <string name="shop_smart1">SHOP SMART</string>
     <!-- Strings related to login -->
 <!--    <string name="prompt_email">Email</string>-->

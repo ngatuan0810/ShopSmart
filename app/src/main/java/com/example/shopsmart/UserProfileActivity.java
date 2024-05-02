@@ -7,6 +7,7 @@ import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.ViewFlipper;
 
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.Nullable;
@@ -16,11 +17,9 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
 public class UserProfileActivity extends AppCompatActivity {
-    ViewGroup mainScreen;
-    View gridLayout;
-
-    View middleBar;
+    ViewFlipper flipper;
     FirebaseAuth firebaseAuth;
+    int[] layouts = new int[] {R.layout.my_interest, R.layout.my_watched, R.layout.my_review, R.layout.my_coupon};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,8 +28,13 @@ public class UserProfileActivity extends AppCompatActivity {
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
         TextView userName = findViewById(R.id.textView21);
+        flipper = findViewById(R.id.flipper);
         if (user != null) {
             userName.setText(user.getDisplayName());
+        }
+        for (int layout : layouts) {
+            View childView = getLayoutInflater().inflate(layout, null);
+            flipper.addView(childView);
         }
         LinearLayout likedButton = findViewById(R.id.likedButton);
         LinearLayout watchedButton = findViewById(R.id.watchedButton);
@@ -39,47 +43,45 @@ public class UserProfileActivity extends AppCompatActivity {
         likedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleItemNav(R.layout.my_interest);
+                handleItemNav(1, R.id.imageView1);
             }
         });
         watchedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleItemNav(R.layout.my_watched);
+                handleItemNav(2, R.id.imageView2);
             }
         });
         reviewedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleItemNav(R.layout.my_review);
+                handleItemNav(3, R.id.imageView3);
             }
         });
         couponButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleItemNav(R.layout.my_coupon);
+                handleItemNav(4, R.id.imageView4);
+            }
+        });
+        ImageView logOut = findViewById(R.id.imageView36);
+        logOut.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                firebaseAuth.signOut();
+                Intent intent = new Intent(UserProfileActivity.this, LogInActivity.class);
+                startActivity(intent);
             }
         });
     }
-    void handleItemNav(int id) {
-        mainScreen = findViewById(R.id.screenMain);
-        gridLayout = findViewById(R.id.gridLayout);
-        middleBar = findViewById(R.id.middleBar);
-        mainScreen.removeView(middleBar);
-        mainScreen.removeView(gridLayout);
-        middleBar = getLayoutInflater().inflate(id, mainScreen, false);
-        mainScreen.addView(middleBar, 1);
-
-        ImageView backIcon = findViewById(R.id.imageView59);
+    void handleItemNav(int id, int back) {
+        flipper.setDisplayedChild(id);
+        ImageView backIcon = findViewById(back);
         backIcon.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleBackNav();
+                flipper.setDisplayedChild(0);
             }
         });
-    }
-    void handleBackNav() {
-        Intent intent = new Intent(this, UserProfileActivity.class);
-        startActivity(intent);
     }
 }

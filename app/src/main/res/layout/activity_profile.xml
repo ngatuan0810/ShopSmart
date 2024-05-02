@@ -127,12 +127,12 @@
 
                     <ImageView
                         android:id="@+id/imageView36"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
+                        android:layout_width="55dp"
+                        android:layout_height="55dp"
                         android:layout_marginHorizontal="25dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="1"
-                        app:srcCompat="@drawable/setting_icon" />
+                        app:srcCompat="@drawable/logoutb" />
 
                     <ImageView
                         android:id="@+id/imageView37"
@@ -155,310 +155,323 @@
 
             </LinearLayout>
 
-            <LinearLayout
-                android:id="@+id/middleBar"
+            <ViewFlipper
+                android:id="@+id/flipper"
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp"
-                android:orientation="vertical"
-                app:layout_constraintBottom_toTopOf="@+id/gridLayout"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent">
+                android:layout_height="match_parent">
 
                 <LinearLayout
-                    android:id="@+id/likedButton"
+                    android:id="@+id/navView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="@drawable/item_border"
-                    android:orientation="horizontal"
-                    android:paddingVertical="16dp">
-
-                    <ImageView
-                        android:id="@+id/imageView43"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0.2"
-                        app:srcCompat="@drawable/like" />
-
-                    <TextView
-                        android:id="@+id/textView28"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="Liked"
-                        android:textColor="#9747FF"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/watchedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/item_border"
-                    android:orientation="horizontal"
-                    android:paddingVertical="16dp">
-
-                    <ImageView
-                        android:id="@+id/imageView44"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0.2"
-                        app:srcCompat="@drawable/clock" />
-
-                    <TextView
-                        android:id="@+id/textView27"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="Watched"
-                        android:textColor="#9747FF"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/reviewedButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/item_border"
-                    android:orientation="horizontal"
-                    android:paddingVertical="16dp">
-
-                    <ImageView
-                        android:id="@+id/imageView40"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0.2"
-                        app:srcCompat="@drawable/like_star" />
-
-                    <TextView
-                        android:id="@+id/textView29"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="Reviewed"
-                        android:textColor="#9747FF"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:id="@+id/couponButton"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/item_border"
-                    android:orientation="horizontal"
-                    android:paddingVertical="16dp">
-
-                    <ImageView
-                        android:id="@+id/imageView42"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0.2"
-                        app:srcCompat="@drawable/coupon" />
-
-                    <TextView
-                        android:id="@+id/textView32"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="Coupon"
-                        android:textColor="#9747FF"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:background="@drawable/item_border"
-                    android:orientation="horizontal"
-                    android:paddingVertical="16dp">
-
-                    <ImageView
-                        android:id="@+id/imageView45"
-                        android:layout_width="40dp"
-                        android:layout_height="40dp"
-                        android:layout_weight="0.2"
-                        android:paddingLeft="15dp"
-                        app:srcCompat="@drawable/sale" />
-
-                    <TextView
-                        android:id="@+id/textView35"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_weight="0.8"
-                        android:fontFamily="@font/inter_semibold"
-                        android:paddingLeft="20dp"
-                        android:text="FLASH SALE TODAY"
-                        android:textColor="#FF0000"
-                        android:textSize="18sp" />
-
-                </LinearLayout>
-
-            </LinearLayout>
-
-            <GridLayout
-                android:id="@+id/gridLayout"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="130dp"
-                android:background="@drawable/image_background"
-                android:columnCount="2"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintTop_toTopOf="parent">
-
-                <LinearLayout
-                    android:layout_width="190dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/search_background"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="10dp">
+                    android:orientation="vertical">
 
                     <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
-
-                        <ImageView
-                            android:id="@+id/imageView47"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/hot_deal" />
-
-                        <ImageView
-                            android:id="@+id/imageView48"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_weight="2"
-                            app:srcCompat="@drawable/sale_percent" />
-                    </LinearLayout>
-
-                    <ImageView
-                        android:id="@+id/imageView49"
-                        android:layout_width="150dp"
-                        android:layout_height="150dp"
-                        app:srcCompat="@drawable/laptop" />
-
-                    <ImageView
-                        android:id="@+id/imageView50"
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="14dp"
-                        app:srcCompat="@drawable/jb_h" />
-
-                    <TextView
-                        android:id="@+id/textView30"
+                        android:id="@+id/middleBar"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text='HP 50R74PA 14" HD Laptop (128GB) [Intel Cele..'
-                        android:textSize="12sp" />
+                        android:layout_marginBottom="10dp"
+                        android:orientation="vertical"
+                        app:layout_constraintBottom_toTopOf="@+id/gridLayout"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent">
 
-                    <TextView
-                        android:id="@+id/textView31"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:paddingLeft="15dp"
-                        android:text="$448"
-                        android:textSize="14sp" />
+                        <LinearLayout
+                            android:id="@+id/likedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/item_border"
+                            android:orientation="horizontal"
+                            android:paddingVertical="16dp">
 
-                    <TextView
-                        android:id="@+id/textView33"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:paddingLeft="70dp"
-                        android:text="$388"
-                        android:textColor="#F35D08"
-                        android:textSize="28sp" />
+                            <ImageView
+                                android:id="@+id/imageView43"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="0.2"
+                                app:srcCompat="@drawable/like" />
 
-                </LinearLayout>
+                            <TextView
+                                android:id="@+id/textView28"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="Liked"
+                                android:textColor="#9747FF"
+                                android:textSize="18sp" />
 
-                <LinearLayout
-                    android:layout_width="190dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:background="@drawable/search_background"
-                    android:orientation="vertical"
-                    android:paddingHorizontal="10dp">
+                        </LinearLayout>
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:orientation="horizontal">
+                        <LinearLayout
+                            android:id="@+id/watchedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/item_border"
+                            android:orientation="horizontal"
+                            android:paddingVertical="16dp">
 
-                        <ImageView
-                            android:id="@+id/imageView52"
-                            android:layout_width="40dp"
-                            android:layout_height="40dp"
-                            android:layout_weight="1"
-                            app:srcCompat="@drawable/hot_deal" />
+                            <ImageView
+                                android:id="@+id/imageView44"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="0.2"
+                                app:srcCompat="@drawable/clock" />
 
-                        <ImageView
-                            android:id="@+id/imageView53"
-                            android:layout_width="20dp"
-                            android:layout_height="20dp"
-                            android:layout_weight="2"
-                            app:srcCompat="@drawable/sale_percent" />
+                            <TextView
+                                android:id="@+id/textView27"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="Watched"
+                                android:textColor="#9747FF"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/reviewedButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/item_border"
+                            android:orientation="horizontal"
+                            android:paddingVertical="16dp">
+
+                            <ImageView
+                                android:id="@+id/imageView40"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="0.2"
+                                app:srcCompat="@drawable/like_star" />
+
+                            <TextView
+                                android:id="@+id/textView29"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="Reviewed"
+                                android:textColor="#9747FF"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/couponButton"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/item_border"
+                            android:orientation="horizontal"
+                            android:paddingVertical="16dp">
+
+                            <ImageView
+                                android:id="@+id/imageView42"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="0.2"
+                                app:srcCompat="@drawable/coupon" />
+
+                            <TextView
+                                android:id="@+id/textView32"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="Coupon"
+                                android:textColor="#9747FF"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/item_border"
+                            android:orientation="horizontal"
+                            android:paddingVertical="16dp">
+
+                            <ImageView
+                                android:id="@+id/imageView45"
+                                android:layout_width="40dp"
+                                android:layout_height="40dp"
+                                android:layout_weight="0.2"
+                                android:paddingLeft="15dp"
+                                app:srcCompat="@drawable/sale" />
+
+                            <TextView
+                                android:id="@+id/textView35"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_weight="0.8"
+                                android:fontFamily="@font/inter_semibold"
+                                android:paddingLeft="20dp"
+                                android:text="FLASH SALE TODAY"
+                                android:textColor="#FF0000"
+                                android:textSize="18sp" />
+
+                        </LinearLayout>
 
                     </LinearLayout>
 
-                    <ImageView
-                        android:id="@+id/imageView54"
-                        android:layout_width="150dp"
-                        android:layout_height="140dp"
-                        android:layout_marginTop="10dp"
-                        app:srcCompat="@drawable/mobile_phone" />
-
-                    <ImageView
-                        android:id="@+id/imageView51"
-                        android:layout_width="120dp"
-                        android:layout_height="60dp"
-                        android:layout_marginLeft="20dp"
-                        app:srcCompat="@drawable/good_guys" />
-
-                    <TextView
-                        android:id="@+id/textView34"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:text="Google Pixel 8 Plus Pro 5G 128GB (Bay)"
-                        android:textSize="12sp" />
-
-                    <TextView
-                        android:id="@+id/textView36"
+                    <GridLayout
+                        android:id="@+id/gridLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:paddingLeft="15dp"
-                        android:text="$1.699"
-                        android:textSize="14sp" />
+                        android:layout_marginBottom="130dp"
+                        android:background="@drawable/image_background"
+                        android:columnCount="2"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent">
 
-                    <TextView
-                        android:id="@+id/textView37"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/inter_semibold"
-                        android:paddingLeft="70dp"
-                        android:text="$1.299"
-                        android:textColor="#F35D08"
-                        android:textSize="28sp" />
+                        <LinearLayout
+                            android:layout_width="190dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/search_background"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp">
 
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imageView47"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_weight="1"
+                                    app:srcCompat="@drawable/hot_deal" />
+
+                                <ImageView
+                                    android:id="@+id/imageView48"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_weight="2"
+                                    app:srcCompat="@drawable/sale_percent" />
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imageView49"
+                                android:layout_width="150dp"
+                                android:layout_height="150dp"
+                                app:srcCompat="@drawable/laptop" />
+
+                            <ImageView
+                                android:id="@+id/imageView50"
+                                android:layout_width="120dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="14dp"
+                                app:srcCompat="@drawable/jb_h" />
+
+                            <TextView
+                                android:id="@+id/textView30"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text='HP 50R74PA 14" HD Laptop (128GB) [Intel Cele..'
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/textView31"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_semibold"
+                                android:paddingLeft="15dp"
+                                android:text="$448"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/textView33"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_semibold"
+                                android:paddingLeft="70dp"
+                                android:text="$388"
+                                android:textColor="#F35D08"
+                                android:textSize="28sp" />
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="190dp"
+                            android:layout_height="match_parent"
+                            android:layout_marginLeft="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:background="@drawable/search_background"
+                            android:orientation="vertical"
+                            android:paddingHorizontal="10dp">
+
+                            <LinearLayout
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:orientation="horizontal">
+
+                                <ImageView
+                                    android:id="@+id/imageView52"
+                                    android:layout_width="40dp"
+                                    android:layout_height="40dp"
+                                    android:layout_weight="1"
+                                    app:srcCompat="@drawable/hot_deal" />
+
+                                <ImageView
+                                    android:id="@+id/imageView53"
+                                    android:layout_width="20dp"
+                                    android:layout_height="20dp"
+                                    android:layout_weight="2"
+                                    app:srcCompat="@drawable/sale_percent" />
+
+                            </LinearLayout>
+
+                            <ImageView
+                                android:id="@+id/imageView54"
+                                android:layout_width="150dp"
+                                android:layout_height="140dp"
+                                android:layout_marginTop="10dp"
+                                app:srcCompat="@drawable/mobile_phone" />
+
+                            <ImageView
+                                android:id="@+id/imageView51"
+                                android:layout_width="120dp"
+                                android:layout_height="60dp"
+                                android:layout_marginLeft="20dp"
+                                app:srcCompat="@drawable/good_guys" />
+
+                            <TextView
+                                android:id="@+id/textView34"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_semibold"
+                                android:text="Google Pixel 8 Plus Pro 5G 128GB (Bay)"
+                                android:textSize="12sp" />
+
+                            <TextView
+                                android:id="@+id/textView36"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_semibold"
+                                android:paddingLeft="15dp"
+                                android:text="$1.699"
+                                android:textSize="14sp" />
+
+                            <TextView
+                                android:id="@+id/textView37"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/inter_semibold"
+                                android:paddingLeft="70dp"
+                                android:text="$1.299"
+                                android:textColor="#F35D08"
+                                android:textSize="28sp" />
+
+                        </LinearLayout>
+                    </GridLayout>
                 </LinearLayout>
-            </GridLayout>
+            </ViewFlipper>
         </LinearLayout>
     </ScrollView>
 

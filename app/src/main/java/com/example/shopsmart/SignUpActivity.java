@@ -10,7 +10,6 @@ import android.text.TextPaint;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
-import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -55,7 +54,7 @@ public class SignUpActivity extends AppCompatActivity {
         });
     }
     void handleSignUp() {
-        TextInputEditText username = findViewById(R.id.editTextText2);
+        TextInputEditText username = findViewById(R.id.email);
         TextInputEditText email = findViewById(R.id.editTextText3);
         TextInputEditText password = findViewById(R.id.editTextText5);
         String inputEmail = email.getText().toString();
