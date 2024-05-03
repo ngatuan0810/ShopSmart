@@ -22,6 +22,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/todo15"
                 app:srcCompat="@drawable/arrow" />
 
             <ImageView
@@ -29,6 +30,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
+                android:contentDescription="@string/todo16"
                 app:srcCompat="@drawable/coupon" />
 
             <TextView
@@ -37,7 +39,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:fontFamily="@font/inter"
-                android:text="Coupon"
+                android:text="@string/nav_coupon"
                 android:textColor="#9747FF"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -46,6 +48,7 @@
             android:id="@+id/imageView61"
             android:layout_width="match_parent"
             android:layout_height="300dp"
+            android:contentDescription="@string/todo17"
             app:srcCompat="@drawable/no_coupon" />
 
         <TextView
@@ -53,7 +56,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter"
-            android:text="Sorry, You have no Coupon!"
+            android:text="@string/no_coupon"
             android:textAlignment="center"
             android:textColor="#717171"
             android:textSize="20sp" />

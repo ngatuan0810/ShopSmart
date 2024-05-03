@@ -19,7 +19,7 @@
             android:id="@+id/screenMain"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="15dp"
+            android:layout_marginTop="19dp"
             android:orientation="vertical">
 
 
@@ -27,6 +27,7 @@
                 android:id="@+id/AccountPane"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
                 android:background="@drawable/screen1_background"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -45,6 +46,7 @@
                         android:id="@+id/imageView25"
                         android:layout_width="80dp"
                         android:layout_height="80dp"
+                        android:contentDescription="@string/todo2"
                         app:srcCompat="@drawable/pic_frame" />
 
                     <LinearLayout
@@ -60,7 +62,7 @@
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="6dp"
                             android:fontFamily="@font/inter_semibold"
-                            android:text="Lucy_2024"
+                            android:text="@string/profile_name"
                             android:textAllCaps="false"
                             android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                             android:textColor="#FFFFFF"
@@ -80,7 +82,7 @@
                                 android:fontFamily="@font/inter"
                                 android:paddingLeft="7dp"
                                 android:paddingTop="9dp"
-                                android:text="Member"
+                                android:text="@string/mem_rank"
                                 android:textColor="#1A5ED4" />
 
                             <ImageView
@@ -88,6 +90,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:contentDescription="@string/todo3"
                                 app:srcCompat="@drawable/diamond" />
 
                         </LinearLayout>
@@ -104,6 +107,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_weight="1"
+                                android:contentDescription="@string/todo4"
                                 app:srcCompat="@drawable/online" />
 
                             <TextView
@@ -112,7 +116,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="2"
                                 android:fontFamily="@font/inter_semibold"
-                                android:text="Online"
+                                android:text="@string/online"
                                 android:textColor="#FFFFFF" />
                         </LinearLayout>
                     </LinearLayout>
@@ -132,6 +136,7 @@
                         android:layout_marginHorizontal="25dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo5"
                         app:srcCompat="@drawable/logoutb" />
 
                     <ImageView
@@ -140,6 +145,7 @@
                         android:layout_height="40dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo6"
                         app:srcCompat="@drawable/message_icon" />
 
                     <ImageView
@@ -147,6 +153,7 @@
                         android:layout_width="20dp"
                         android:layout_height="20dp"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo7"
                         android:translationX="-25dp"
                         android:translationY="5dp"
                         app:srcCompat="@drawable/inbox" />
@@ -163,7 +170,7 @@
                 <LinearLayout
                     android:id="@+id/navView"
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
+                    android:layout_height="1200dp"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -189,6 +196,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_weight="0.2"
+                                android:contentDescription="@string/todo8"
                                 app:srcCompat="@drawable/like" />
 
                             <TextView
@@ -197,7 +205,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
                                 android:fontFamily="@font/inter_semibold"
-                                android:text="Liked"
+                                android:text="@string/nav_like"
                                 android:textColor="#9747FF"
                                 android:textSize="18sp" />
 
@@ -216,6 +224,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_weight="0.2"
+                                android:contentDescription="@string/todo9"
                                 app:srcCompat="@drawable/clock" />
 
                             <TextView
@@ -224,7 +233,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
                                 android:fontFamily="@font/inter_semibold"
-                                android:text="Watched"
+                                android:text="@string/nav_watched"
                                 android:textColor="#9747FF"
                                 android:textSize="18sp" />
 
@@ -243,6 +252,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_weight="0.2"
+                                android:contentDescription="@string/todo10"
                                 app:srcCompat="@drawable/like_star" />
 
                             <TextView
@@ -251,7 +261,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
                                 android:fontFamily="@font/inter_semibold"
-                                android:text="Reviewed"
+                                android:text="@string/nav_reviewed"
                                 android:textColor="#9747FF"
                                 android:textSize="18sp" />
 
@@ -270,6 +280,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_weight="0.2"
+                                android:contentDescription="@string/todo13"
                                 app:srcCompat="@drawable/coupon" />
 
                             <TextView
@@ -278,7 +289,7 @@
                                 android:layout_height="wrap_content"
                                 android:layout_weight="0.8"
                                 android:fontFamily="@font/inter_semibold"
-                                android:text="Coupon"
+                                android:text="@string/nav_coupon"
                                 android:textColor="#9747FF"
                                 android:textSize="18sp" />
 
@@ -296,6 +307,7 @@
                                 android:layout_width="40dp"
                                 android:layout_height="40dp"
                                 android:layout_weight="0.2"
+                                android:contentDescription="@string/todo18"
                                 android:paddingLeft="15dp"
                                 app:srcCompat="@drawable/sale" />
 
@@ -306,7 +318,7 @@
                                 android:layout_weight="0.8"
                                 android:fontFamily="@font/inter_semibold"
                                 android:paddingLeft="20dp"
-                                android:text="FLASH SALE TODAY"
+                                android:text="@string/flash_sale"
                                 android:textColor="#FF0000"
                                 android:textSize="18sp" />
 
@@ -344,6 +356,7 @@
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_weight="1"
+                                    android:contentDescription="@string/todo15"
                                     app:srcCompat="@drawable/hot_deal" />
 
                                 <ImageView
@@ -351,6 +364,7 @@
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_weight="2"
+                                    android:contentDescription="@string/todo16"
                                     app:srcCompat="@drawable/sale_percent" />
                             </LinearLayout>
 
@@ -358,6 +372,7 @@
                                 android:id="@+id/imageView49"
                                 android:layout_width="150dp"
                                 android:layout_height="150dp"
+                                android:contentDescription="@string/todo17"
                                 app:srcCompat="@drawable/laptop" />
 
                             <ImageView
@@ -365,6 +380,7 @@
                                 android:layout_width="120dp"
                                 android:layout_height="60dp"
                                 android:layout_marginLeft="14dp"
+                                android:contentDescription="@string/todo18"
                                 app:srcCompat="@drawable/jb_h" />
 
                             <TextView
@@ -372,7 +388,7 @@
                                 android:layout_width="match_parent"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
-                                android:text='HP 50R74PA 14" HD Laptop (128GB) [Intel Cele..'
+                                android:text='@string/laptop_name'
                                 android:textSize="12sp" />
 
                             <TextView
@@ -381,7 +397,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:paddingLeft="15dp"
-                                android:text="$448"
+                                android:text="@string/laptop_price"
                                 android:textSize="14sp" />
 
                             <TextView
@@ -390,7 +406,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:paddingLeft="70dp"
-                                android:text="$388"
+                                android:text="@string/laptop_sales"
                                 android:textColor="#F35D08"
                                 android:textSize="28sp" />
 
@@ -416,6 +432,7 @@
                                     android:layout_width="40dp"
                                     android:layout_height="40dp"
                                     android:layout_weight="1"
+                                    android:contentDescription="@string/todo19"
                                     app:srcCompat="@drawable/hot_deal" />
 
                                 <ImageView
@@ -423,6 +440,7 @@
                                     android:layout_width="20dp"
                                     android:layout_height="20dp"
                                     android:layout_weight="2"
+                                    android:contentDescription="@string/todo21"
                                     app:srcCompat="@drawable/sale_percent" />
 
                             </LinearLayout>
@@ -432,6 +450,7 @@
                                 android:layout_width="150dp"
                                 android:layout_height="140dp"
                                 android:layout_marginTop="10dp"
+                                android:contentDescription="@string/todo22"
                                 app:srcCompat="@drawable/mobile_phone" />
 
                             <ImageView
@@ -439,6 +458,7 @@
                                 android:layout_width="120dp"
                                 android:layout_height="60dp"
                                 android:layout_marginLeft="20dp"
+                                android:contentDescription="@string/todo24"
                                 app:srcCompat="@drawable/good_guys" />
 
                             <TextView
@@ -446,7 +466,7 @@
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
-                                android:text="Google Pixel 8 Plus Pro 5G 128GB (Bay)"
+                                android:text="@string/phone_name"
                                 android:textSize="12sp" />
 
                             <TextView
@@ -455,7 +475,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:paddingLeft="15dp"
-                                android:text="$1.699"
+                                android:text="@string/phone_price"
                                 android:textSize="14sp" />
 
                             <TextView
@@ -464,7 +484,7 @@
                                 android:layout_height="wrap_content"
                                 android:fontFamily="@font/inter_semibold"
                                 android:paddingLeft="70dp"
-                                android:text="$1.299"
+                                android:text="@string/phone_sales"
                                 android:textColor="#F35D08"
                                 android:textSize="28sp" />
 
@@ -483,6 +503,7 @@
         app:layout_constraintStart_toStartOf="parent">
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

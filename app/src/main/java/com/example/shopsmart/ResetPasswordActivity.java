@@ -47,6 +47,9 @@ public class ResetPasswordActivity extends AppCompatActivity {
                             if (task.isSuccessful()) {
                                 Toast.makeText(getApplicationContext(), "Reset email sent", Toast.LENGTH_SHORT).show();
                             }
+                            else {
+                                Toast.makeText(getApplicationContext(), "Fail to send email: " + task.getException(), Toast.LENGTH_SHORT).show();
+                            }
                         }
                     });
                 }

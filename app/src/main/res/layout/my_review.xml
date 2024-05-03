@@ -24,6 +24,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
+                android:contentDescription="@string/todo3"
                 app:srcCompat="@drawable/arrow" />
 
             <ImageView
@@ -31,6 +32,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="0.2"
+                android:contentDescription="@string/todo4"
                 app:srcCompat="@drawable/like_star" />
 
             <TextView
@@ -39,7 +41,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="3"
                 android:fontFamily="@font/inter"
-                android:text="Reviewed"
+                android:text="@string/nav_reviewed"
                 android:textColor="#9747FF"
                 android:textSize="24sp" />
         </LinearLayout>
@@ -48,6 +50,7 @@
             android:id="@+id/imageView61"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:contentDescription="@string/todo10"
             app:srcCompat="@drawable/comment1" />
     </LinearLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

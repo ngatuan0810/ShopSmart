@@ -25,6 +25,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="1.5"
+                android:contentDescription="@string/todo1"
                 app:srcCompat="@drawable/arrow" />
 
             <TextView
@@ -33,7 +34,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="2"
                 android:fontFamily="@font/inter_semibold"
-                android:text="Watched"
+                android:text="@string/nav_watched"
                 android:textColor="#9747FF"
                 android:textSize="31sp" />
 
@@ -42,6 +43,7 @@
                 android:layout_width="40dp"
                 android:layout_height="40dp"
                 android:layout_weight="1"
+                android:contentDescription="@string/todo2"
                 app:srcCompat="@drawable/clock" />
 
         </LinearLayout>
@@ -53,7 +55,7 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="1400dp"
+                android:layout_height="match_parent"
                 android:orientation="vertical">
 
                 <LinearLayout
@@ -66,6 +68,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo3"
                         app:srcCompat="@drawable/frame_1" />
 
                     <ImageView
@@ -73,6 +76,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo4"
                         app:srcCompat="@drawable/frame_2" />
                 </LinearLayout>
 
@@ -86,6 +90,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo5"
                         app:srcCompat="@drawable/frame_5" />
 
                     <ImageView
@@ -93,6 +98,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo7"
                         app:srcCompat="@drawable/frame_6" />
                 </LinearLayout>
 
@@ -106,6 +112,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo6"
                         app:srcCompat="@drawable/frame_3" />
 
                     <ImageView
@@ -113,6 +120,7 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_weight="1"
+                        android:contentDescription="@string/todo7"
                         app:srcCompat="@drawable/frame_4" />
                 </LinearLayout>
 

@@ -2,17 +2,19 @@ package com.example.shopsmart;
 
 import android.content.Intent;
 import android.os.Bundle;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
-import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
 
 import androidx.activity.EdgeToEdge;
-import androidx.annotation.Nullable;
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
@@ -25,13 +27,29 @@ public class UserProfileActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_profile);
+
+        // Get the current user's profile
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        BottomNavigationView navView = findViewById(R.id.nav);
+        Menu menu = navView.getMenu();
+        MenuItem homeIcon = menu.findItem(R.id.home);
+        homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(UserProfileActivity.this, ScreenActivity1.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+        // Display username in profile
         TextView userName = findViewById(R.id.textView21);
         flipper = findViewById(R.id.flipper);
         if (user != null) {
             userName.setText(user.getDisplayName());
         }
+
         for (int layout : layouts) {
             View childView = getLayoutInflater().inflate(layout, null);
             flipper.addView(childView);
