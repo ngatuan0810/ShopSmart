@@ -5,16 +5,20 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
-import android.view.LayoutInflater;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -35,6 +39,27 @@ public class ScreenActivity1 extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen1);
+
+        BottomNavigationView navView = findViewById(R.id.nav);
+        Menu menu = navView.getMenu();
+        MenuItem profileItem = menu.findItem(R.id.me);
+        profileItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(ScreenActivity1.this, UserProfileActivity.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+
+        ImageView profileIcon = findViewById(R.id.imageView15);
+        profileIcon.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScreenActivity1.this, UserProfileActivity.class);
+                startActivity(intent);
+            }
+        });
 
         LinearLayout linearLayout = findViewById(R.id.linear);
         linearLayout.setOnClickListener(new View.OnClickListener() {

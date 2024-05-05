@@ -87,14 +87,14 @@
                         app:boxBackgroundMode="none">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextText2"
+                            android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="50dp"
                             android:autofillHints=" "
                             android:background="@drawable/login_btn_background"
                             android:ems="10"
-                            android:hint="@string/enter_username"
-                            android:inputType="textPersonName"
+                            android:hint="@string/enter_email"
+                            android:inputType="text|textWebEmailAddress"
                             android:padding="5dp"
                             android:paddingStart="20dp"
                             android:paddingTop="10dp"

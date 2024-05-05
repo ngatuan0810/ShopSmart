@@ -20,7 +20,6 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
 
-import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -32,7 +31,6 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
-import com.google.android.gms.common.api.GoogleApiClient;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputEditText;
@@ -43,9 +41,7 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 
-import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.List;
 
 public class LogInActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
@@ -84,6 +80,23 @@ public class LogInActivity extends AppCompatActivity {
                         Color.parseColor("#8BA9DC"),
                 }, null, Shader.TileMode.CLAMP);
         text.getPaint().setShader(textShader);
+        TextView signUpOption = findViewById(R.id.textView10);
+        // If the user has not registered
+        signUpOption.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+                startActivity(intent);
+            }
+        });
+        TextView resetPass = findViewById(R.id.textView4);
+        resetPass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(LogInActivity.this, ResetPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
     }
     void handleGoogleLogin() {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -206,7 +219,7 @@ public class LogInActivity extends AppCompatActivity {
         });
     }
     void handleAppLogin() {
-        TextInputEditText email = findViewById(R.id.editTextText2);
+        TextInputEditText email = findViewById(R.id.email);
         TextInputEditText password = findViewById(R.id.editTextText5);
         Button signInButton = findViewById(R.id.button2);
         signInButton.setOnClickListener(new View.OnClickListener() {

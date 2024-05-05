@@ -299,7 +299,7 @@
                         app:layout_constraintVertical_bias="0.69">
 
                         <com.google.android.material.textfield.TextInputEditText
-                            android:id="@+id/editTextText2"
+                            android:id="@+id/email"
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:autofillHints=" "
