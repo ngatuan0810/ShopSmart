@@ -42,7 +42,7 @@
     <string name="todo9">TODO</string>
     <string name="todo10">TODO</string>
     <string name="todo11">TODO</string>
-    <string name="enter_username">Enter username</string>
+    <string name="enter_email">Enter email</string>
     <string name="shop_smart1">SHOP SMART</string>
     <!-- Strings related to login -->
 <!--    <string name="prompt_email">Email</string>-->
@@ -85,6 +85,24 @@
     <string name="laptop_vivo_book">Laptop Vivo book</string>
     <string name="oppo_reno6_5g_128gb">Oppo Reno6 5G 128Gb</string>
     <string name="delete_search_history">Delete Search History</string>
+    <string name="profile_name">Lucy_2024</string>
+    <string name="mem_rank">Member</string>
+    <string name="online">Online</string>
+    <string name="nav_like">Liked</string>
+    <string name="nav_watched">Watched</string>
+    <string name="nav_reviewed">Reviewed</string>
+    <string name="nav_coupon">Coupon</string>
+    <string name="flash_sale">FLASH SALE TODAY</string>
+    <string name="laptop_name">HP 50R74PA 14" HD Laptop (128GB) [Intel Cele..</string>
+    <string name="laptop_price">$448</string>
+    <string name="laptop_sales">$388</string>
+    <string name="phone_name">Google Pixel 8 Plus Pro 5G 128GB (Bay)</string>
+    <string name="phone_price">$1.699</string>
+    <string name="phone_sales">$1.299</string>
+    <string name="no_coupon">Sorry, You have no Coupon!</string>
+    <string name="my_interest">Interest</string>
+    <string name="password_reset">Reset your password</string>
+    <string name="send_email">Send reset email</string>
 
 
 </resources>
