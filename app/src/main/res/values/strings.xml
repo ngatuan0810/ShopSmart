@@ -89,6 +89,7 @@
     <string name="mem_rank">Member</string>
     <string name="online">Online</string>
     <string name="nav_like">Liked</string>
+    <string name="nav_notice">Notice</string>
     <string name="nav_watched">Watched</string>
     <string name="nav_reviewed">Reviewed</string>
     <string name="nav_coupon">Coupon</string>

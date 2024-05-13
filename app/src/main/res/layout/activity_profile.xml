@@ -131,32 +131,23 @@
 
                     <ImageView
                         android:id="@+id/imageView36"
-                        android:layout_width="55dp"
-                        android:layout_height="55dp"
+                        android:layout_width="45dp"
+                        android:layout_height="40dp"
                         android:layout_marginHorizontal="25dp"
                         android:layout_marginTop="15dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/todo5"
-                        app:srcCompat="@drawable/logoutb" />
+                        app:srcCompat="@drawable/logout" />
 
                     <ImageView
                         android:id="@+id/imageView37"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
                         android:layout_marginTop="15dp"
+                        android:layout_marginRight="8dp"
                         android:layout_weight="1"
                         android:contentDescription="@string/todo6"
-                        app:srcCompat="@drawable/message_icon" />
-
-                    <ImageView
-                        android:id="@+id/imageView39"
-                        android:layout_width="20dp"
-                        android:layout_height="20dp"
-                        android:layout_weight="1"
-                        android:contentDescription="@string/todo7"
-                        android:translationX="-25dp"
-                        android:translationY="5dp"
-                        app:srcCompat="@drawable/inbox" />
+                        app:srcCompat="@drawable/notification" />
 
                 </LinearLayout>
 
@@ -337,6 +328,7 @@
                         app:layout_constraintTop_toTopOf="parent">
 
                         <LinearLayout
+                            android:id="@+id/JBHifi"
                             android:layout_width="190dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
@@ -413,6 +405,7 @@
                         </LinearLayout>
 
                         <LinearLayout
+                            android:id="@+id/GoodGuys"
                             android:layout_width="190dp"
                             android:layout_height="match_parent"
                             android:layout_marginLeft="10dp"
