@@ -4,22 +4,18 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
-
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
-
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
-
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -28,6 +24,7 @@ import java.util.TimerTask;
 
 public class ScreenActivity1 extends AppCompatActivity {
     ViewPager viewPager;
+    private BottomNavigationView navView;
 
     int images[] = {R.drawable.image_3, R.drawable.image_2, R.drawable.image_1};
     int currentPage = 0;
@@ -40,7 +37,7 @@ public class ScreenActivity1 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_screen1);
 
-        BottomNavigationView navView = findViewById(R.id.nav);
+        navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
         MenuItem profileItem = menu.findItem(R.id.me);
         profileItem.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
@@ -48,7 +45,7 @@ public class ScreenActivity1 extends AppCompatActivity {
             public boolean onMenuItemClick(@NonNull MenuItem item) {
                 Intent intent = new Intent(ScreenActivity1.this, UserProfileActivity.class);
                 startActivity(intent);
-                return false;
+                return true;
             }
         });
 
