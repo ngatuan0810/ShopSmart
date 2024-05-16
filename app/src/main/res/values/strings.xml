@@ -45,19 +45,19 @@
     <string name="enter_email">Enter email</string>
     <string name="shop_smart1">SHOP SMART</string>
     <!-- Strings related to login -->
-<!--    <string name="prompt_email">Email</string>-->
-<!--    <string name="prompt_password">Password</string>-->
-<!--    <string name="action_sign_in">Sign in or register</string>-->
-<!--    <string name="action_sign_in_short">Sign in</string>-->
-<!--    <string name="welcome">"Welcome!"</string>-->
-<!--    <string name="invalid_username">Not a valid username</string>-->
-<!--    <string name="invalid_password">Password must be >5 characters</string>-->
-<!--    <string name="login_failed">"Login failed"</string>-->
+    <!--    <string name="prompt_email">Email</string>-->
+    <!--    <string name="prompt_password">Password</string>-->
+    <!--    <string name="action_sign_in">Sign in or register</string>-->
+    <!--    <string name="action_sign_in_short">Sign in</string>-->
+    <!--    <string name="welcome">"Welcome!"</string>-->
+    <!--    <string name="invalid_username">Not a valid username</string>-->
+    <!--    <string name="invalid_password">Password must be >5 characters</string>-->
+    <!--    <string name="login_failed">"Login failed"</string>-->
     <string name="todo12">TODO</string>
     <string name="category">CATEGORY</string>
     <string name="input1" />
     <string name="todo13">TODO</string>
-<!-- String credentials for FaceBook login -->
+    <!-- String credentials for FaceBook login -->
     <string name="facebook_app_id">1083518752721455</string>
     <string name="fb_login_protocol_scheme">fb1083518752721455</string>
     <string name="facebook_client_token">4832feb734ffd7f8089d98c7987afa07</string>
@@ -104,6 +104,138 @@
     <string name="my_interest">Interest</string>
     <string name="password_reset">Reset your password</string>
     <string name="send_email">Send reset email</string>
+    <string name="todo29">TODO</string>
+    <string name="todo30">TODO</string>
+    <string name="todo31">TODO</string>
+    <string name="compare">Compare</string>
+    <string name="description">Description</string>
+    <string name="review">Review</string>
+    <string name="specifications">Specifications</string>
+    <string name="text">iPhone 15 brings you Dynamic Island, a 48MP Main camera and USB-C — all in a durable colour-infused glass and aluminium design.\n\n
+        <b>Key Features</b>\n
+        <b>Dynamic Island Comes to iPhone 15</b>\n
+Dynamic Island bubbles up alerts and Live Activities — so you don’t miss them while you’re doing something else. You can see who’s calling, track your next ride, check your flight status and so much more.\n
 
+<b>Innovative Design</b>\n
+iPhone 15 features a durable colour-infused glass and aluminium design. It’s splash, water- and dust-resistant.1 The Ceramic Shield front is tougher than any smartphone glass. And the 6.1″ Super Retina XDR display2 is up to 2x brighter in the sun compared to iPhone 14.\n
+
+<b>48MP Main Camera With 2x Telephoto</b>\n
+The 48MP Main camera shoots in super-high resolution. So, it’s easier than ever to take stand-out photos with amazing detail. The 2x optical-quality Telephoto lets you frame the perfect close-up.\n
+
+<b>Next-Generation Portraits</b>\n
+Capture portraits with dramatically more detail and colour. Just tap to shift the focus between subjects — even after you take the shot.\n
+
+<b>Powerhouse A16 Bionic Chip</b>\n
+The superfast chip powers advanced features like computational photography, fluid Dynamic Island transitions and Voice Isolation for phone calls. And A16 Bionic is incredibly efficient to help deliver great all-day battery life.3\n
+
+<b>USB-C Connectivity</b>\n
+The USB-C connector lets you charge your Mac or iPad with the same cable you use to charge iPhone 15. You can even use iPhone 15 to charge Apple Watch or AirPods.\n
+
+<b>Vital Safety Features</b>\n
+If you need emergency services and you don’t have mobile network connection or Wi-Fi, you can use Emergency SOS via satellite.4 With Crash Detection, iPhone can detect a severe car crash and call for help if you can’t.5\n
+
+<b>Designed To Make a Difference</b>\n
+iPhone comes with privacy protections that help keep you in control of your data. It’s made from more recycled materials to minimise environmental impact. And it has built-in features that make iPhone more accessible to all.\n\n
+
+<b>Legal</b>\n
+1 iPhone 15, iPhone 15 Plus, iPhone 15 Pro and iPhone 15 Pro Max are splash-, water- and dust-resistant, and were tested under controlled laboratory conditions with a rating of IP68 under IEC standard 60529 (maximum depth of 6 metres for up to 30 minutes). Splash, water and dust resistance are not permanent conditions, and resistance might decrease as a result of normal wear. Do not attempt to charge a wet iPhone; refer to the user guide for cleaning and drying instructions. Liquid damage is not covered under warranty but you might have rights under consumer law.\n
+2 The display has rounded corners. When measured as a standard rectangle, the screen is 6.12 inches (iPhone 15 Pro, iPhone 15) or 6.69 inches (iPhone 15 Pro Max, iPhone 15 Plus) diagonally. Actual viewable area is less.\n
+3 Battery life varies by use and configuration; see apple.com/au/batteries for more information.\n
+4 Service is included for free for two years with the activation of any iPhone 15 model. Connection and response times vary based on location, site conditions and other factors. See support.apple.com/en-au/HT213885 for more information.\n
+5 iPhone 15 and iPhone 15 Pro can detect a severe car crash and call for help. Requires a mobile network connection or Wi-Fi calling.\n
+<b>Technical specifications</b>\n
+Go to apple.com/au/iphone/compare for a complete set.</string>
+    <string name="more_details">More Details</string>
+    <string name="less_details">Less Details</string>
+
+    <string name="overall_rating">Overall Rating</string>
+    <string name="todo33">TODO</string>
+    <string name="todo34">TODO</string>
+    <string name="todo35">TODO</string>
+    <string name="todo36">TODO</string>
+    <string name="todo37">TODO</string>
+    <string name="todo38">TODO</string>
+    <string name="todo39">TODO</string>
+    <string name="todo40">TODO</string>
+    <string name="todo41">TODO</string>
+    <string name="todo42">TODO</string>
+    <string name="todo43">TODO</string>
+    <string name="todo44">TODO</string>
+    <string name="todo45">TODO</string>
+    <string name="todo46">TODO</string>
+    <string name="todo47">TODO</string>
+    <string name="todo48">TODO</string>
+    <string name="todo49">TODO</string>
+    <string name="todo50">TODO</string>
+    <string name="todo51">TODO</string>
+    <string name="todo52">TODO</string>
+    <string name="todo53">TODO</string>
+    <string name="todo54">TODO</string>
+    <string name="todo55">TODO</string>
+    <string name="todo56">TODO</string>
+    <string name="phone_operating_system">Phone Operating System</string>
+    <string name="ios">iOS</string>
+    <string name="phone_type">Phone Type</string>
+    <string name="iphone_15">iPhone 15</string>
+    <string name="network_compatibility">Network compatibility</string>
+    <string name="_5g">5G</string>
+    <string name="sim_type">SIM type</string>
+    <string name="sim_nano_sim_esim">SIM (nano-SIM + eSIM)</string>
+    <string name="colour">Colour</string>
+    <string name="pink">Pink</string>
+    <string name="device_screen_size_inches">Device screen size (inches)</string>
+    <string name="_6_7">6.7</string>
+    <string name="resolution_pixels">Resolution (Pixels)</string>
+    <string name="_2796_x_1290">2796 x 1290</string>
+    <string name="display_type">Display type</string>
+    <string name="super_retina_xdr_display">Super Retina XDR display</string>
+    <string name="touchscreen">Touchscreen</string>
+    <string name="yes">Yes</string>
+    <string name="internal_storage">Internal storage</string>
+    <string name="_128gb">128GB</string>
+    <string name="battery_life">Battery life</string>
+    <string name="up_to_20_hours_video_playback">Up to 20 hours video playback</string>
+    <string name="wireless_charging_type">Wireless Charging Type</string>
+    <string name="magsafe">MagSafe</string>
+    <string name="face_unlock">Face unlock</string>
+    <string name="yes1">Yes</string>
+    <string name="processor">Processor</string>
+    <string name="a16_bionic_chip">A16 Bionic chip</string>
+    <string name="rear_cameras_mp">Rear Cameras (MP)</string>
+    <string name="_48mp_12mp">48MP + 12MP</string>
+    <string name="front_camera_mp">Front camera (MP)</string>
+    <string name="_12mp">12MP</string>
+    <string name="built_in_flash">Built-in flash</string>
+    <string name="yes2">Yes</string>
+    <string name="digital_zoom">Digital zoom</string>
+    <string name="up_to_10x">up to 10x</string>
+    <string name="video_recording">Video recording</string>
+    <string name="ultra_hd">Ultra HD</string>
+    <string name="video_frames_per_second">Video Frames Per Second</string>
+    <string name="_4k_60fps">4K@60fps</string>
+    <string name="environmental_protection">Environmental protection</string>
+    <string name="water_resistant">Water resistant</string>
+    <string name="ip_rating">IP rating</string>
+    <string name="ip68">IP68</string>
+    <string name="gps">GPS</string>
+    <string name="yes3">Yes</string>
+    <string name="video_calling">Video Calling</string>
+    <string name="yes4">Yes</string>
+    <string name="usb_type_c_port">USB (Type-C) Port</string>
+    <string name="_2_0">2.0</string>
+    <string name="usb_c_ports">USB-C Ports</string>
+    <string name="_1">1</string>
+    <string name="nfc">NFC</string>
+    <string name="yes5">Yes</string>
+    <string name="wi_fi">Wi-Fi</string>
+    <string name="wi_fi_6_802_11_ax">Wi-Fi 6 (802.11 ax)</string>
+    <string name="bluetooth">Bluetooth</string>
+    <string name="v5_3">v5.3</string>
+    <string name="imei_required">IMEI required</string>
+    <string name="yes6">Yes</string>
+    <string name="manufacturer_s_warranty">Manufacturer\'s warranty</string>
+    <string name="_1_year">1 Year</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 
 </resources>

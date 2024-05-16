@@ -3,12 +3,15 @@
 
     <item android:title="@string/home"
         android:icon="@drawable/home_nav"
-        android:id="@+id/home"/>
+        android:id="@+id/home"
+        android:enabled="true"/>
     <item android:title="@string/products"
         android:icon="@drawable/product_icon"
-        android:id="@+id/product"/>
+        android:id="@+id/product"
+        android:enabled="true"/>
     <item android:title="@string/me"
         android:icon="@drawable/me_icon"
         android:id="@+id/me"
+        android:enabled="true"
         />
 </menu>

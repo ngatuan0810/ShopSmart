@@ -10,11 +10,9 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.ViewFlipper;
-
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
-
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
@@ -36,6 +34,9 @@ public class UserProfileActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);
+
+        MenuItem meIcon = menu.findItem(R.id.me);
+        meIcon.setChecked(true);
         homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
