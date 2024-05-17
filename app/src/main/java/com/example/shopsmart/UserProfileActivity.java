@@ -34,13 +34,22 @@ public class UserProfileActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);
+        MenuItem productIcon = menu.findItem(R.id.product);
 
         MenuItem meIcon = menu.findItem(R.id.me);
         meIcon.setChecked(true);
         homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-                Intent intent = new Intent(UserProfileActivity.this, ScreenActivity1.class);
+                Intent intent = new Intent(UserProfileActivity.this, ScreenActivity2.class);
+                startActivity(intent);
+                return false;
+            }
+        });
+        productIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(UserProfileActivity.this, ProductActivity1.class);
                 startActivity(intent);
                 return false;
             }

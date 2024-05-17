@@ -15,7 +15,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="40dp"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="50dp"
             android:orientation="horizontal">
 
             <ImageView
@@ -76,7 +76,8 @@
                     android:layout_height="300dp"
                     android:layout_marginHorizontal="30dp"
                     android:contentDescription="@string/todo10"
-                    app:srcCompat="@drawable/samsung" />
+                    app:srcCompat="@drawable/samsung"
+                    android:paddingBottom="30dp"/>
             </LinearLayout>
         </ScrollView>
 

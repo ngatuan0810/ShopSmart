@@ -172,7 +172,7 @@ public class LogInActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "signInWithCredential:Success");
                     FirebaseUser user = firebaseAuth.getCurrentUser();
-                    Intent intent = new Intent(LogInActivity.this, ScreenActivity1.class);
+                    Intent intent = new Intent(LogInActivity.this, ScreenActivity2.class);
                     startActivity(intent);
                 }
                 else {
@@ -198,7 +198,7 @@ public class LogInActivity extends AppCompatActivity {
                 if (task.isSuccessful()) {
                     Log.d(TAG, "signInWithEmail:success");
                     FirebaseUser user = firebaseAuth.getCurrentUser();
-                    Intent intent = new Intent(LogInActivity.this, ScreenActivity1.class);
+                    Intent intent = new Intent(LogInActivity.this, ScreenActivity2.class);
                     startActivity(intent);
                 }
                 else {

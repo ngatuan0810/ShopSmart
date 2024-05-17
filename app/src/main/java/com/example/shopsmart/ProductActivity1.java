@@ -1,16 +1,21 @@
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -19,6 +24,8 @@ import com.example.shopsmart.Adapter.BrandsAdapter;
 import com.example.shopsmart.Adapter.ProductAdapter;
 import com.example.shopsmart.Domain.Brand;
 import com.example.shopsmart.Domain.Product;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -111,6 +118,31 @@ public class ProductActivity1 extends AppCompatActivity {
                 updateBrandsAdapter();
             }
         });
+
+        BottomNavigationView navView = findViewById(R.id.nav);
+        Menu menu = navView.getMenu();
+        MenuItem homeIcon = menu.findItem(R.id.home);
+        MenuItem meIcon = menu.findItem(R.id.me);
+        MenuItem productIcon = menu.findItem(R.id.product);
+        productIcon.setChecked(true);
+        homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(ProductActivity1.this, ScreenActivity2.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        meIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(ProductActivity1.this, UserProfileActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+
 
         // Các sự kiện click cho các nút lọc
         Button latestFilterBtn = findViewById(R.id.latest_filter_btn);

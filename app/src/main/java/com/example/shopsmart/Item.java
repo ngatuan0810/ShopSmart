@@ -1,24 +1,27 @@
 package com.example.shopsmart;
 
 public class Item {
+    private int thumbnail;
+    private Class<?> targetActivity; // Activity to start when the item is clicked
 
-    private int Thumbnail;
-
-    public Item() {
+    public Item(int thumbnail, Class<?> targetActivity) {
+        this.thumbnail = thumbnail;
+        this.targetActivity = targetActivity;
     }
-
-    public Item(int thumbnail) {
-
-        Thumbnail = thumbnail;
-    }
-
 
     public int getThumbnail() {
-        return Thumbnail;
+        return thumbnail;
     }
 
-
     public void setThumbnail(int thumbnail) {
-        Thumbnail = thumbnail;
+        this.thumbnail = thumbnail;
+    }
+
+    public Class<?> getTargetActivity() {
+        return targetActivity;
+    }
+
+    public void setTargetActivity(Class<?> targetActivity) {
+        this.targetActivity = targetActivity;
     }
 }
