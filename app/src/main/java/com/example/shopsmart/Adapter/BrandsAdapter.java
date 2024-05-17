@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.Domain.Brand;
 import com.example.shopsmart.R;
-import com.example.shopsmart.ScreenActivity1;
+import com.example.shopsmart.ProductActivity1;
 
 import java.util.List;
 
@@ -61,7 +61,7 @@ public class BrandsAdapter extends RecyclerView.Adapter<BrandsAdapter.BrandViewH
                 @Override
                 public void onClick(View v) {
                     String brandName = brand.getBrandName();
-                    ((ScreenActivity1) itemView.getContext()).filterProductsByBrand(brandName);
+                    ((ProductActivity1) itemView.getContext()).filterProductsByBrand(brandName);
 
                 }
             });

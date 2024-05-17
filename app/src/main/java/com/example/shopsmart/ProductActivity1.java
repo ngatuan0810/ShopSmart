@@ -14,7 +14,6 @@ import android.widget.TextView;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import com.example.shopsmart.Adapter.BrandsAdapter;
 import com.example.shopsmart.Adapter.ProductAdapter;
@@ -27,7 +26,7 @@ import java.util.List;
 import java.util.Objects;
 import android.widget.SeekBar;
 
-public class ScreenActivity1 extends AppCompatActivity {
+public class ProductActivity1 extends AppCompatActivity {
 
     enum FilterType {
         RELEVANT,
@@ -127,7 +126,7 @@ public class ScreenActivity1 extends AppCompatActivity {
             public void onClick(View v) {
                 performFiltering();
                 updateBrandsAdapter();
-                Transition slideOutTransition = TransitionInflater.from(ScreenActivity1.this)
+                Transition slideOutTransition = TransitionInflater.from(ProductActivity1.this)
                         .inflateTransition(R.transition.slide_out_right);
                 TransitionManager.beginDelayedTransition(filterSlideBar, slideOutTransition);
                 filterSlideBar.setVisibility(View.GONE);
@@ -155,7 +154,7 @@ public class ScreenActivity1 extends AppCompatActivity {
         filterButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Transition slideInTransition = TransitionInflater.from(ScreenActivity1.this)
+                Transition slideInTransition = TransitionInflater.from(ProductActivity1.this)
                         .inflateTransition(R.transition.slide_in_right);
                 TransitionManager.beginDelayedTransition(filterSlideBar, slideInTransition);
                 filterSlideBar.setVisibility(View.VISIBLE);
@@ -165,7 +164,7 @@ public class ScreenActivity1 extends AppCompatActivity {
         backButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Transition slideOutTransition = TransitionInflater.from(ScreenActivity1.this)
+                Transition slideOutTransition = TransitionInflater.from(ProductActivity1.this)
                         .inflateTransition(R.transition.slide_out_right);
                 TransitionManager.beginDelayedTransition(filterSlideBar, slideOutTransition);
                 filterSlideBar.setVisibility(View.GONE);
@@ -228,7 +227,7 @@ public class ScreenActivity1 extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 clearFilters();
-                Transition slideOutTransition = TransitionInflater.from(ScreenActivity1.this)
+                Transition slideOutTransition = TransitionInflater.from(ProductActivity1.this)
                         .inflateTransition(R.transition.slide_out_right);
                 TransitionManager.beginDelayedTransition(filterSlideBar, slideOutTransition);
                 filterSlideBar.setVisibility(View.GONE);

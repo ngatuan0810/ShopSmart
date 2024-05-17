@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
 //        Intent intent = new Intent(this, SignUpActivity.class);
 //        startActivity(intent);
 
-        Intent intent = new Intent(this, ScreenActivity1.class);
+        Intent intent = new Intent(this, ProductActivity1.class);
         startActivity(intent);
 
 
