@@ -13,6 +13,10 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_main);
+//
+        // Start the LogInActivity
+//        Intent intent = new Intent(this, LogInActivity.class);
+//        startActivity(intent);
 
 //
 //        Intent intent = new Intent(this, IntroActivity.class);
@@ -20,10 +24,11 @@ public class MainActivity extends AppCompatActivity {
 
 //        Intent intent = new Intent(this, SignUpActivity.class);
 //        startActivity(intent);
-        /*
-        Intent intent = new Intent(this, ScreenActivity1.class);
+
+        Intent intent = new Intent(this, ProductActivity1.class);
         startActivity(intent);
-         */
+
+
     }
 }
 

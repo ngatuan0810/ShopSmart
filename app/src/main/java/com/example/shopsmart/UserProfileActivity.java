@@ -1,6 +1,7 @@
 package com.example.shopsmart;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -19,7 +20,7 @@ import com.google.firebase.auth.FirebaseUser;
 public class UserProfileActivity extends AppCompatActivity {
     ViewFlipper flipper;
     FirebaseAuth firebaseAuth;
-    int[] layouts = new int[] {R.layout.my_interest, R.layout.my_watched, R.layout.my_review, R.layout.my_coupon};
+    int[] layouts = new int[] {R.layout.my_interest, R.layout.my_watched, R.layout.my_review, R.layout.my_coupon, R.layout.my_notification};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -59,6 +60,24 @@ public class UserProfileActivity extends AppCompatActivity {
         LinearLayout watchedButton = findViewById(R.id.watchedButton);
         LinearLayout reviewedButton = findViewById(R.id.reviewedButton);
         LinearLayout couponButton = findViewById(R.id.couponButton);
+        LinearLayout seller1 = findViewById(R.id.JBHifi);
+        LinearLayout seller2 = findViewById(R.id.GoodGuys);
+        ImageView noticeButton = findViewById(R.id.imageView37);
+        // URL redirection for sellers
+        seller1.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.jbhifi.com.au"));
+                startActivity(intent);
+            }
+        });
+        seller2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Intent.ACTION_VIEW).setData(Uri.parse("https://www.thegoodguys.com.au"));
+                startActivity(intent);
+            }
+        });
         likedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -81,6 +100,12 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 handleItemNav(4, R.id.imageView4);
+            }
+        });
+        noticeButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                handleItemNav(5, R.id.imageView5);
             }
         });
         ImageView logOut = findViewById(R.id.imageView36);
