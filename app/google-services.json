@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "216037143036",
+    "project_id": "mad-project-f5cc4",
+    "storage_bucket": "mad-project-f5cc4.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216037143036:android:dc15f9d565b6df845f0279",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP9iyF8V463VdRJVPX1aUvObeWbTXNmm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:216037143036:android:fb55cc2b81612f795f0279",
+        "android_client_info": {
+          "package_name": "com.example.shopsmart"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAP9iyF8V463VdRJVPX1aUvObeWbTXNmm0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
