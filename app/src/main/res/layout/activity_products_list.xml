@@ -1,0 +1,197 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <ScrollView
+        android:id="@+id/scrollView3"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:translationY="20dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/imageView17"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    android:padding="10dp"
+                    app:srcCompat="@drawable/arrow_icon" />
+
+                <EditText
+                    android:id="@+id/search_item_input"
+                    android:layout_width="235dp"
+                    android:layout_height="56dp"
+                    android:layout_weight="1"
+                    android:background="@drawable/group_16"
+                    android:ems="10"
+                    android:inputType="text"
+                    android:paddingLeft="10dp"
+                    android:text="Search" />
+
+                <ImageButton
+                    android:id="@+id/search_btn"
+                    android:layout_width="60dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:translationY="10dp"
+                    app:srcCompat="@drawable/group_30" />
+
+                <ImageButton
+                    android:id="@+id/filter_button"
+                    android:layout_width="70dp"
+                    android:layout_height="60dp"
+                    android:layout_weight="1"
+                    android:background="#FFFFFF"
+                    android:contentDescription="Tìm kiếm"
+                    android:paddingHorizontal="10dp"
+                    app:srcCompat="@drawable/group_32" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:orientation="horizontal">
+
+                <Button
+                    android:id="@+id/relevant_filter_btn"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    android:outlineProvider="none"
+                    android:text="Relevant"
+                    android:textColor="#000000"
+                    android:textStyle="bold"
+                    android:translationX="2.5dp" />
+
+                <ImageView
+                    android:id="@+id/imageView24"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:translationY="10dp"
+                    app:srcCompat="@drawable/line_13" />
+
+                <Button
+                    android:id="@+id/latest_filter_btn"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    android:outlineProvider="none"
+                    android:text="Latest"
+                    android:textColor="@android:color/black"
+                    android:textStyle="bold" />
+
+                <ImageView
+                    android:id="@+id/imageView25"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_weight="1"
+                    android:translationY="10dp"
+                    app:srcCompat="@drawable/line_13" />
+
+                <Button
+                    android:id="@+id/price_filter_btn"
+                    android:layout_width="130dp"
+                    android:layout_height="50dp"
+                    android:layout_weight="1"
+                    android:backgroundTint="@color/white"
+                    android:outlineProvider="none"
+                    android:text="Price"
+                    android:textColor="@color/black"
+                    android:textStyle="bold" />
+
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:id="@+id/underline1"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:translationX="5dp"
+                    app:srcCompat="@drawable/line_12" />
+
+                <ImageView
+                    android:id="@+id/underline2"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:translationX="5dp"
+                    app:srcCompat="@drawable/line_12" />
+
+                <ImageView
+                    android:id="@+id/underline3"
+                    android:layout_width="130dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:translationX="5dp"
+                    app:srcCompat="@drawable/line_12" />
+
+            </LinearLayout>
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="885dp"
+                android:background="#CDE7E7E7">
+
+                <TextView
+                    android:id="@+id/results_found"
+                    android:layout_width="494dp"
+                    android:layout_height="47dp"
+                    android:background="@color/white"
+                    android:gravity="center_vertical"
+                    android:paddingLeft="20dp"
+                    android:text="Highlighted Items"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintHorizontal_bias="0.0"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintVertical_bias="0.01" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/recyclerView"
+                    android:layout_width="389dp"
+                    android:layout_height="750dp"
+                    android:layout_marginBottom="68dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <include
+        layout="@layout/filter_slide_bar"
+        android:layout_width="412dp"
+        android:layout_height="1000dp" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

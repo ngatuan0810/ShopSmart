@@ -22,7 +22,7 @@ import java.util.Timer;
 import java.util.TimerTask;
 
 
-public class ScreenActivity1 extends AppCompatActivity {
+public class ScreenActivity2 extends AppCompatActivity {
     ViewPager viewPager;
     private BottomNavigationView navView;
 
@@ -81,7 +81,7 @@ public class ScreenActivity1 extends AppCompatActivity {
         myrv.setAdapter(myAdapter); // Add this line to set the adapter
 
         viewPager = findViewById(R.id.viewPaper);
-        viewPager.setAdapter(new SliderAdapter(images, ScreenActivity1.this));
+        viewPager.setAdapter(new SliderAdapter(images, ScreenActivity2.this));
 
         indicatorContainer = findViewById(R.id.indicatorContainer);
         createIndicators();
