@@ -23,7 +23,7 @@ public class SearchActivity extends AppCompatActivity {
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                startActivity(new Intent(SearchActivity.this, ScreenActivity1.class));
+                startActivity(new Intent(SearchActivity.this, ScreenActivity2.class));
             }
         });
         ViewCompat.setOnApplyWindowInsetsListener(findViewById(R.id.ConstraintLayout), (v, insets) -> {

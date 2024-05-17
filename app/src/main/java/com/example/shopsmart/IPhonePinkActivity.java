@@ -173,7 +173,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
-                Intent intent = new Intent(IPhonePinkActivity.this, ScreenActivity1.class);
+                Intent intent = new Intent(IPhonePinkActivity.this, ScreenActivity2.class);
                 startActivity(intent);
                 return true;
             }
@@ -188,7 +188,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
         });
 
     }
-
 
     private void gotoUrl(String s) {
         Uri uri = Uri.parse(s);
