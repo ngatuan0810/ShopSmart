@@ -36,11 +36,11 @@ public class Product {
 
 
 
-    public Product(Context context, String id, String title, int number_retailers, float score_rating, String brand, String type, double jbhifi_fee, double officework_fee, double goodguys_fee, double bigw_fee, double brand_fee, String releaseDate) {
-        this.context = context;
+    public Product( String id, String title, float score_rating, String brand, String type, double jbhifi_fee, double officework_fee, double goodguys_fee, double bigw_fee, double brand_fee, String releaseDate) {
+
         this.id = id;
         this.title = title;
-        this.number_retailers = number_retailers;
+
         this.score_rating = score_rating;
         this.brand = brand;
         this.type = type;

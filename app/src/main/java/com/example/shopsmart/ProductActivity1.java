@@ -1,3 +1,4 @@
+//ProductActivity1.java
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
@@ -25,6 +26,13 @@ import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import android.widget.SeekBar;
+
+import com.example.shopsmart.utils.ProductUtils;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import java.util.List;
+import com.example.shopsmart.Domain.Product;
+
 
 public class ProductActivity1 extends AppCompatActivity {
 
@@ -67,14 +75,21 @@ public class ProductActivity1 extends AppCompatActivity {
         // Initialize clear filter button
         Button clearFilterBtn = findViewById(R.id.clear_filter_btn);
 
-        productList = new ArrayList<>();
-        productList.add(new Product(this, "p01", "Apple iPhone 15 128GB (Pink)", 5, 4.8F, "Apple", "Smart Phone", 1299, 0, 1299, 1299, 1599, "23/09/2023"));
-        productList.add(new Product(this, "p02", "Samsung Galaxy S22 Ultra 256GB (Black)", 5, 4.9F, "Samsung", "Smart Phone", 1499, 1599, 1599, 1499, 1599, "14/02/2024"));
-        productList.add(new Product(this, "p03", "Google Pixel 8 5G 128GB (ROSE)", 5, 4.5F, "Google", "Smart Phone", 899, 899, 899, 899, 899, "20/11/2023"));
-        productList.add(new Product(this, "p04", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 499, 489, 589, 0, 499, "18/04/2023"));
-        productList.add(new Product(this, "p05", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 499, 499, 0, 499, 499, "08/06/2023"));
-        productList.add(new Product(this, "p06", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 445, 499, 499, 499, 499, "29/12/2023"));
-        productList.add(new Product(this, "p06", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 1299, 1399, 1299, 1299, 1299, "29/12/2023"));
+//        productList = new ArrayList<>();
+//        productList.add(new Product( "p01", "Apple iPhone 15 128GB (Pink)",  4.8F, "Apple", "Smart Phone", 1299, 0, 1299, 1299, 1599, "23/09/2023"));
+//        productList.add(new Product( "p02", "Samsung Galaxy S22 Ultra 256GB (Black)", 4.9F, "Samsung", "Smart Phone", 1499, 1599, 1599, 1499, 1599, "14/02/2024"));
+//        productList.add(new Product("p03", "Google Pixel 8 5G 128GB (ROSE)", 4.5F, "Google", "Smart Phone", 899, 899, 899, 899, 899, "20/11/2023"));
+//        productList.add(new Product("p04", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 499, 489, 589, 0, 499, "18/04/2023"));
+//        productList.add(new Product("p05", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 499, 499, 0, 499, 499, "08/06/2023"));
+//        productList.add(new Product("p06", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 445, 499, 499, 499, 499, "29/12/2023"));
+//        productList.add(new Product("p06", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 1299, 1399, 1299, 1299, 1299, "29/12/2023"));
+//
+//        // Đọc dữ liệu từ file JSON
+        productList = ProductUtils.loadProductsFromJson(this);
+//
+//        // Push dữ liệu lên Firebase
+//        pushDataToFirebase(productList);
+
         for (Product product : productList) {
             int count = 0;
             if (product.getJbhifi_fee() > 0) count++;
@@ -395,6 +410,14 @@ public class ProductActivity1 extends AppCompatActivity {
         String searchResultText = filteredList.size() + " Results";
         results_found.setText(searchResultText);
         updateBrandsAdapter();
+    }
+    private void pushDataToFirebase(List<Product> productList) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("products");
+
+        for (Product product : productList) {
+            myRef.child(product.getId()).setValue(product);
+        }
     }
 }
 
