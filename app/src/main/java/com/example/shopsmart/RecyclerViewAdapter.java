@@ -1,7 +1,6 @@
 package com.example.shopsmart;
 
 import android.content.Context;
-
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -15,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import java.util.List;
 
 public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapter.MyViewHolder> {
-
 
     private final Context mContext;
     private final List<Item> mData;
@@ -41,12 +39,16 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         holder.cardView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent = new Intent(mContext, ProductActivity1.class);
+                Intent intent = new Intent(mContext, mData.get(position).getActivityClass());
+                if (position == 2) { // Checking if the clicked item is the second one
+                    intent.putExtra("filterType", "Tivi");
+                }
+                else if (position == 4) { // Checking if the clicked item is the second one
+                    intent.putExtra("filterType", "Smart Phone");
+                }
                 mContext.startActivity(intent);
             }
         });
-
-
 
     }
 
@@ -55,11 +57,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
         return mData.size();
     }
 
-    public static class MyViewHolder extends RecyclerView.ViewHolder{
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         ImageView image_thumbnail;
         CardView cardView;
-
 
         public MyViewHolder(View itemView) {
             super(itemView);

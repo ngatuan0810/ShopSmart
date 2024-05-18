@@ -114,6 +114,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     intent.putExtra("goodguysFee", product.getGoodguys_fee());
                     intent.putExtra("bigwFee", product.getBigw_fee());
                     intent.putExtra("brandFee", product.getBrand_fee());
+                    intent.putExtra("jbhifiLink", product.getJbhifi_link());
+                    intent.putExtra("officeworkLink", product.getOfficework_link());
+                    intent.putExtra("goodguysLink", product.getGoodguys_link());
+                    intent.putExtra("bigwLink", product.getBigw_link());
+                    intent.putExtra("brandLink", product.getBrand_link());
+                    intent.putExtra("description", product.getDescription());
+                    intent.putExtra("specs", product.getSpecs());
                     context.startActivity(intent);
                 }
             });
