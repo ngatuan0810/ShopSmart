@@ -16,7 +16,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
+
+import com.example.shopsmart.Adapter.ProductAdapter;
+import com.example.shopsmart.Domain.Product;
+import com.example.shopsmart.utils.ProductUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
@@ -26,7 +31,10 @@ public class ScreenActivity2 extends AppCompatActivity {
     ViewPager viewPager;
     ImageView imageView;
     private BottomNavigationView navView;
-
+    private RecyclerView recyclerView;
+    private ProductAdapter adapter;
+    private List<Product> filteredList;
+    private List<Product> productList;
     int images[] = {R.drawable.image_3, R.drawable.image_2, R.drawable.image_1};
     int currentPage = 0;
     Timer timer;
@@ -124,7 +132,7 @@ public class ScreenActivity2 extends AppCompatActivity {
         RecyclerView myrv = findViewById(R.id.recycler_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, lstItem);
         myrv.setLayoutManager(new GridLayoutManager(this, 4));
-        myrv.setAdapter(myAdapter); // Add this line to set the adapter
+        myrv.setAdapter(myAdapter);
 
         viewPager = findViewById(R.id.viewPaper);
         viewPager.setAdapter(new SliderAdapter(images, ScreenActivity2.this));
@@ -142,7 +150,6 @@ public class ScreenActivity2 extends AppCompatActivity {
             viewPager.setCurrentItem(currentPage, true);
         };
 
-        // Schedule timer task to switch images every 2500 milliseconds (2.5 seconds)
         timer = new Timer();
         timer.schedule(new TimerTask() {
             @Override
@@ -151,7 +158,6 @@ public class ScreenActivity2 extends AppCompatActivity {
             }
         }, 2500, 2500);
 
-        // Add a ViewPager listener to update indicators when page changes
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
             public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
@@ -164,6 +170,14 @@ public class ScreenActivity2 extends AppCompatActivity {
             @Override
             public void onPageScrollStateChanged(int state) {}
         });
+
+        recyclerView = findViewById(R.id.recommend_products);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        productList = ProductUtils.loadProductsFromJson(this);
+        filteredList = new ArrayList<>(productList);
+        adapter = new ProductAdapter(filteredList);
+        recyclerView.setAdapter(adapter);
     }
 
     private void gotoUrl(String s) {
@@ -174,30 +188,27 @@ public class ScreenActivity2 extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // Cancel the timer when the activity is destroyed to avoid memory leaks
         if (timer != null) {
             timer.cancel();
         }
     }
 
-    // Method to create indicators dynamically
     @SuppressLint("UseCompatLoadingForDrawables")
     private void createIndicators() {
         for (int i = 0; i < images.length; i++) {
             ImageView indicator = new ImageView(this);
-            indicator.setImageDrawable(getResources().getDrawable(R.drawable.indicator_inactive)); // Set inactive indicator drawable
+            indicator.setImageDrawable(getResources().getDrawable(R.drawable.indicator_inactive));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
                     ViewGroup.LayoutParams.WRAP_CONTENT,
                     ViewGroup.LayoutParams.WRAP_CONTENT
             );
-            params.setMargins(8, 0, 8, 0); // Adjust margins as needed
+            params.setMargins(8, 0, 8, 0);
             indicator.setLayoutParams(params);
             indicatorContainer.addView(indicator);
         }
-        updateIndicators(0); // Set the initial indicator to active
+        updateIndicators(0);
     }
 
-    // Method to update indicators based on current page
     @SuppressLint("UseCompatLoadingForDrawables")
     private void updateIndicators(int position) {
         for (int i = 0; i < indicatorContainer.getChildCount(); i++) {
