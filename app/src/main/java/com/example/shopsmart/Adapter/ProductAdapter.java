@@ -1,7 +1,7 @@
-// Apdapter/ProductAdapter.java
 package com.example.shopsmart.Adapter;
 
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -14,6 +14,12 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.Domain.Product;
 import com.example.shopsmart.R;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
@@ -70,8 +76,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             feeTxt.setText(formatPrice(product.getMinFee()));
             int brandImageId = getBrandImageId(itemView.getContext(), product.getBrand());
             brandImg.setImageResource(brandImageId);
-            pic.setImageResource(product.getImageId());
-
 
             if (product.isFavourite()) {
                 favouriteButton.setImageResource(R.drawable.vector); // Change to filled vector drawable
@@ -79,46 +83,63 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                 favouriteButton.setImageResource(R.drawable.vector_3); // Change to outline vector drawable
             }
 
-            // Set onClickListener for the favourite button
             favouriteButton.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    // Toggle the favourite status
                     product.setFavourite(!product.isFavourite());
-
-                    // Change the image of the button based on the favourite status
                     if (product.isFavourite()) {
-                        favouriteButton.setImageResource(R.drawable.vector); // Change to filled vector drawable
+                        favouriteButton.setImageResource(R.drawable.vector);
                     } else {
-                        favouriteButton.setImageResource(R.drawable.vector_3); // Change to outline vector drawable
+                        favouriteButton.setImageResource(R.drawable.vector_3);
                     }
+                }
+            });
 
+            loadFirstImageFromFirebase(product.getImageFolder(), pic);
+        }
+
+        private void loadFirstImageFromFirebase(String folderPath, ImageView imageView) {
+            FirebaseStorage storage = FirebaseStorage.getInstance();
+            StorageReference storageRef = storage.getReferenceFromUrl(folderPath);
+
+            storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+                @Override
+                public void onSuccess(ListResult listResult) {
+                    if (!listResult.getItems().isEmpty()) {
+                        StorageReference firstImageRef = listResult.getItems().get(0);
+                        firstImageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                            @Override
+                            public void onSuccess(Uri uri) {
+                                Picasso.get().load(uri).into(imageView);
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception exception) {
+                                // Handle any errors
+                            }
+                        });
+                    }
+                }
+            }).addOnFailureListener(new OnFailureListener() {
+                @Override
+                public void onFailure(@NonNull Exception exception) {
+                    // Handle any errors
                 }
             });
         }
+
         private String formatPrice(double price) {
-            // Nếu giá có phần thập phân
             if (price % 1 == 0) {
-                return String.format("%,.0f", price); // Sử dụng định dạng không có phần thập phân
+                return String.format("%,.0f", price);
             } else {
-                return String.format("%,.2f", price); // Sử dụng định dạng có phần thập phân
+                return String.format("%,.2f", price);
             }
         }
+
         private int getBrandImageId(Context context, String brand) {
             String brandLowercase = brand.toLowerCase();
             String resourceName = "drawable/" + brandLowercase;
             return context.getResources().getIdentifier(resourceName, null, context.getPackageName());
-        }
-        private double getLowestPrice(Product product) {
-            double jbhifiFee = product.getJbhifi_fee();
-            double officeworkFee = product.getOfficework_fee();
-            double goodguysFee = product.getGoodguys_fee();
-            double bigwFee = product.getBigw_fee();
-            double brandFee = product.getBrand_fee();
-
-            double lowestPrice = Math.min(Math.min(jbhifiFee, officeworkFee),
-                    Math.min(Math.min(goodguysFee, bigwFee), brandFee));
-            return lowestPrice;
         }
     }
 }
