@@ -242,7 +242,7 @@ public class Product {
     }
 
     public String getImageFolder() {
-        return "gs://mad-project-f5cc4.appspot.com/" + id;
+        return "gs://shopsmart-29cfe.appspot.com/" + id;
     }
 
     public static String getImageResourceName(String id) {
