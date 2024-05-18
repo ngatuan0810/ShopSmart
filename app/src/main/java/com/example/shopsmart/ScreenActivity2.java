@@ -22,7 +22,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
 public class ScreenActivity2 extends AppCompatActivity {
     ViewPager viewPager;
     ImageView imageView;
@@ -111,6 +110,7 @@ public class ScreenActivity2 extends AppCompatActivity {
                 startActivity(new Intent(ScreenActivity2.this, SearchActivity.class));
             }
         });
+
         lstItem = new ArrayList<>();
         lstItem.add(new Item(R.drawable.image_4, ProductActivity1.class));
         lstItem.add(new Item(R.drawable.image_5, ProductActivity1.class));
@@ -120,7 +120,6 @@ public class ScreenActivity2 extends AppCompatActivity {
         lstItem.add(new Item(R.drawable.image_9, ProductActivity1.class));
         lstItem.add(new Item(R.drawable.image_10, ProductActivity1.class));
         lstItem.add(new Item(R.drawable.image_11, ProductActivity1.class));
-
 
         RecyclerView myrv = findViewById(R.id.recycler_id);
         RecyclerViewAdapter myAdapter = new RecyclerViewAdapter(this, lstItem);
@@ -209,4 +208,3 @@ public class ScreenActivity2 extends AppCompatActivity {
         }
     }
 }
-

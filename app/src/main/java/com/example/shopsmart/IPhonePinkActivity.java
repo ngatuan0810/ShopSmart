@@ -1,8 +1,8 @@
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
-import android.content.Context;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -15,6 +15,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
@@ -27,14 +28,14 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
-import com.squareup.picasso.Picasso;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import at.blogc.android.views.ExpandableTextView;
-
+import com.example.shopsmart.Domain.Product;
 public class IPhonePinkActivity extends AppCompatActivity {
     private boolean isExpanded = false;
     private ViewPager viewPager;
@@ -44,6 +45,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
     private int currentPage = 0;
     private Timer timer;
     private LinearLayout indicatorContainer1;
+    private Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -54,6 +56,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         // Nhận dữ liệu sản phẩm từ Intent
         Intent intent = getIntent();
         String productId = intent.getStringExtra("productId");
+
         String productTitle = intent.getStringExtra("productTitle");
         String productBrand = intent.getStringExtra("productBrand");
         String productType = intent.getStringExtra("productType");
@@ -65,9 +68,23 @@ public class IPhonePinkActivity extends AppCompatActivity {
         double goodguysFee = intent.getDoubleExtra("goodguysFee", 0.0);
         double bigwFee = intent.getDoubleExtra("bigwFee", 0.0);
         double brandFee = intent.getDoubleExtra("brandFee", 0.0);
+        String description = intent.getStringExtra("description");
+        String specs = intent.getStringExtra("specs");
+
+
+        product = (Product) intent.getSerializableExtra("product"); // Assuming Product implements Serializable
+
 
         // Hiển thị dữ liệu sản phẩm
         TextView titleTextView = findViewById(R.id.productTitle);
+        TextView titleTextView1 = findViewById(R.id.subproductTitle1);
+        TextView titleTextView2 = findViewById(R.id.subproductTitle2);
+        TextView titleTextView3 = findViewById(R.id.subproductTitle3);
+        TextView titleTextView4 = findViewById(R.id.subproductTitle4);
+        TextView titleTextView5 = findViewById(R.id.subproductTitle5);
+        ExpandableTextView  descriptionView = findViewById(R.id.expandableTextView);
+
+
         TextView scoreTextView = findViewById(R.id.productScore);
         TextView retailersTextView = findViewById(R.id.number_retailer);
         TextView jbhifiFeeTextView = findViewById(R.id.jbhifi_fee);
@@ -76,7 +93,13 @@ public class IPhonePinkActivity extends AppCompatActivity {
         TextView bigwFeeTextView = findViewById(R.id.bigw_fee);
         TextView brandFeeTextView = findViewById(R.id.brand_fee);
 
+        descriptionView.setText(description);
         titleTextView.setText(productTitle);
+        titleTextView1.setText(productTitle);
+        titleTextView2.setText(productTitle);
+        titleTextView3.setText(productTitle);
+        titleTextView4.setText(productTitle);
+        titleTextView5.setText(productTitle);
         scoreTextView.setText(String.valueOf(productScore));
         retailersTextView.setText(String.valueOf(numberRetailers));
         jbhifiFeeTextView.setText(String.format("$%,.2f", jbhifiFee));
@@ -84,6 +107,9 @@ public class IPhonePinkActivity extends AppCompatActivity {
         goodguysFeeTextView.setText(String.format("$%,.2f", goodguysFee));
         bigwFeeTextView.setText(String.format("$%,.2f", bigwFee));
         brandFeeTextView.setText(String.format("$%,.2f", brandFee));
+
+        TableLayout tableLayout = findViewById(R.id.table_layout);
+        fillTableLayoutWithSpecs(tableLayout, specs);
 
         setupTextClickListener(findViewById(R.id.textView43), findViewById(R.id.imageView66), findViewById(R.id.underline43));
         setupTextClickListener(findViewById(R.id.textView45), findViewById(R.id.imageView72), findViewById(R.id.underline45));
@@ -132,7 +158,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         });
 
         // Set click listener for "Read More" button
-        TableLayout tableLayout = findViewById(R.id.table_layout);
+
         for (int i = 0; i < tableLayout.getChildCount(); i++) {
             View child = tableLayout.getChildAt(i);
             if (i >= 4) {
@@ -159,54 +185,58 @@ public class IPhonePinkActivity extends AppCompatActivity {
                 toggleTextExpansion();
             }
         });
-
+        String jbhifiLink = intent.getStringExtra("jbhifiLink");
+        String officeworkLink = intent.getStringExtra("officeworkLink");
+        String goodguysLink = intent.getStringExtra("goodguysLink");
+        String bigwLink = intent.getStringExtra("bigwLink");
+        String brandLink = intent.getStringExtra("brandLink");
         imageView = findViewById(R.id.imageView67);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.jbhifi.com.au/products/apple-iphone-15-128gb-pink");
+                gotoUrl(jbhifiLink);
             }
         });
         imageView = findViewById(R.id.imageView68);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.officeworks.com.au/shop/officeworks/p/iphone-15-128gb-pink-ipp15clr2");
+                gotoUrl(officeworkLink);
             }
         });
         imageView = findViewById(R.id.imageView69);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.thegoodguys.com.au/apple-iphone-15-128gb-pink-mtp13zpa");
+                gotoUrl(goodguysLink);
             }
         });
         imageView = findViewById(R.id.imageView70);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.bigw.com.au/product/apple-iphone-15-128gb-pink/p/292153");
+                gotoUrl(bigwLink);
             }
         });
         imageView = findViewById(R.id.imageView71);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.apple.com/shop/buy-iphone/iphone-15");
+                gotoUrl(brandLink);
             }
         });
         imageView = findViewById(R.id.imageView82);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.apple.com/shop/buy-iphone/iphone-15-pro");
+                gotoUrl("brandLink");
             }
         });
         imageView = findViewById(R.id.imageView83);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.apple.com/shop/buy-iphone/iphone-15-pro");
+                gotoUrl("brandLink");
             }
         });
 
@@ -369,5 +399,28 @@ public class IPhonePinkActivity extends AppCompatActivity {
     private void scrollToTarget(View targetView) {
         ScrollView scrollView = findViewById(R.id.scrollView);
         scrollView.smoothScrollTo(0, targetView.getTop());
+    }
+    private void fillTableLayoutWithSpecs(TableLayout tableLayout, String specs) {
+        String[] specsArray = specs.split("\n");
+        for (int i = 0; i < specsArray.length; i += 2) {
+            String specName = specsArray[i];
+            String specValue = (i + 1 < specsArray.length) ? specsArray[i + 1] : "";
+
+            TableRow tableRow = new TableRow(this);
+            TextView specNameTextView = new TextView(this);
+            specNameTextView.setText(specName);
+            specNameTextView.setTextColor(getResources().getColor(R.color.black));
+            specNameTextView.setTypeface(null, Typeface.BOLD);
+            specNameTextView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+
+            TextView specValueTextView = new TextView(this);
+            specValueTextView.setText(specValue);
+            specValueTextView.setTextColor(getResources().getColor(R.color.black));
+            specValueTextView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+
+            tableRow.addView(specNameTextView);
+            tableRow.addView(specValueTextView);
+            tableLayout.addView(tableRow);
+        }
     }
 }
