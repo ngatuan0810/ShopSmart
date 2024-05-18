@@ -2,8 +2,6 @@
 package com.example.shopsmart.Domain;
 
 import android.content.Context;
-import java.util.Date;
-
 
 public class Product {
     private Context context;
@@ -21,11 +19,41 @@ public class Product {
     private double bigw_fee;
     private double brand_fee;
     private String releaseDate;
-
+    private String jbhifi_link;
+    private String goodguys_link;
+    private String officework_link;
+    private String bigw_link;
+    private String brand_link;
+    private String description;
+    private String specs;
     private boolean isFavourite;
 
-    // Constructor, getters, and setters for other attributes
+    // Constructor
+    public Product(String id, String title, float score_rating, String brand, String type, double jbhifi_fee,
+                   double officework_fee, double goodguys_fee, double bigw_fee, double brand_fee, String releaseDate,
+                   String jbhifi_link, String goodguys_link, String officework_link, String bigw_link, String brand_link,
+                   String description, String specs) {
+        this.id = id;
+        this.title = title;
+        this.score_rating = score_rating;
+        this.brand = brand;
+        this.type = type;
+        this.jbhifi_fee = jbhifi_fee;
+        this.officework_fee = officework_fee;
+        this.goodguys_fee = goodguys_fee;
+        this.bigw_fee = bigw_fee;
+        this.brand_fee = brand_fee;
+        this.releaseDate = releaseDate;
+        this.jbhifi_link = jbhifi_link;
+        this.goodguys_link = goodguys_link;
+        this.officework_link = officework_link;
+        this.bigw_link = bigw_link;
+        this.brand_link = brand_link;
+        this.description = description;
+        this.specs = specs;
+    }
 
+    // Getters and setters
     public boolean isFavourite() {
         return isFavourite;
     }
@@ -34,24 +62,62 @@ public class Product {
         isFavourite = favourite;
     }
 
-
-
-    public Product(Context context, String id, String title, int number_retailers, float score_rating, String brand, String type, double jbhifi_fee, double officework_fee, double goodguys_fee, double bigw_fee, double brand_fee, String releaseDate) {
-        this.context = context;
-        this.id = id;
-        this.title = title;
-        this.number_retailers = number_retailers;
-        this.score_rating = score_rating;
-        this.brand = brand;
-        this.type = type;
-//        this.imageId = getImageIdFromBrand(brand);
-        this.jbhifi_fee = jbhifi_fee;
-        this.officework_fee = officework_fee;
-        this.goodguys_fee = goodguys_fee;
-        this.bigw_fee = bigw_fee;
-        this.brand_fee = brand_fee;
-        this.releaseDate = releaseDate;
+    public String getJbhifi_link() {
+        return jbhifi_link;
     }
+
+    public void setJbhifi_link(String jbhifi_link) {
+        this.jbhifi_link = jbhifi_link;
+    }
+
+    public String getGoodguys_link() {
+        return goodguys_link;
+    }
+
+    public void setGoodguys_link(String goodguys_link) {
+        this.goodguys_link = goodguys_link;
+    }
+
+    public String getOfficework_link() {
+        return officework_link;
+    }
+
+    public void setOfficework_link(String officework_link) {
+        this.officework_link = officework_link;
+    }
+
+    public String getBigw_link() {
+        return bigw_link;
+    }
+
+    public void setBigw_link(String bigw_link) {
+        this.bigw_link = bigw_link;
+    }
+
+    public String getBrand_link() {
+        return brand_link;
+    }
+
+    public void setBrand_link(String brand_link) {
+        this.brand_link = brand_link;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public String getSpecs() {
+        return specs;
+    }
+
+    public void setSpecs(String specs) {
+        this.specs = specs;
+    }
+
     public String getReleaseDate() {
         return releaseDate;
     }
@@ -59,6 +125,7 @@ public class Product {
     public void setReleaseDate(String releaseDate) {
         this.releaseDate = releaseDate;
     }
+
     public int getImageIdFromID() {
         return imageIdFromID;
     }
@@ -122,6 +189,7 @@ public class Product {
     public void setImageId(int imageId) {
         this.imageId = imageId;
     }
+
     public double getJbhifi_fee() {
         return jbhifi_fee;
     }
@@ -173,11 +241,10 @@ public class Product {
         return minFee;
     }
 
-//    private int getImageIdFromBrand(String brand) {
-//        String brandLowercase = brand.toLowerCase();
-//        String resourceName = "drawable/" + brandLowercase;
-//        return context.getResources().getIdentifier(resourceName, null, context.getPackageName());
-//    }
+    public String getImageFolder() {
+        return "gs://shopsmart-29cfe.appspot.com/" + id;
+    }
+
     public static String getImageResourceName(String id) {
         return id;
     }

@@ -1,21 +1,18 @@
+//ProductActivity1.java
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
-import android.content.Intent;
 import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
-import android.view.Menu;
-import android.view.MenuItem;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
 import android.widget.ImageView;
 import android.widget.TextView;
-
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -24,14 +21,23 @@ import com.example.shopsmart.Adapter.BrandsAdapter;
 import com.example.shopsmart.Adapter.ProductAdapter;
 import com.example.shopsmart.Domain.Brand;
 import com.example.shopsmart.Domain.Product;
-import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
 import java.util.List;
 import java.util.Objects;
 import android.widget.SeekBar;
+
+import com.example.shopsmart.utils.ProductUtils;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
+import java.util.List;
+import com.example.shopsmart.Domain.Product;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.bumptech.glide.Glide;
 
 public class ProductActivity1 extends AppCompatActivity {
 
@@ -56,11 +62,17 @@ public class ProductActivity1 extends AppCompatActivity {
     private TextView minPriceTextView;
     private TextView maxPriceTextView;
 
+    private FirebaseStorage storage;
+
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_list);
+
+        // Initialize Firebase Storage
+        storage = FirebaseStorage.getInstance();
 
         searchItemInput = findViewById(R.id.search_item_input);
         searchButton = findViewById(R.id.search_btn);
@@ -74,14 +86,21 @@ public class ProductActivity1 extends AppCompatActivity {
         // Initialize clear filter button
         Button clearFilterBtn = findViewById(R.id.clear_filter_btn);
 
-        productList = new ArrayList<>();
-        productList.add(new Product(this, "p01", "Apple iPhone 15 128GB (Pink)", 5, 4.8F, "Apple", "Smart Phone", 1299, 0, 1299, 1299, 1599, "23/09/2023"));
-        productList.add(new Product(this, "p02", "Samsung Galaxy S22 Ultra 256GB (Black)", 5, 4.9F, "Samsung", "Smart Phone", 1499, 1599, 1599, 1499, 1599, "14/02/2024"));
-        productList.add(new Product(this, "p03", "Google Pixel 8 5G 128GB (ROSE)", 5, 4.5F, "Google", "Smart Phone", 899, 899, 899, 899, 899, "20/11/2023"));
-        productList.add(new Product(this, "p04", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 499, 489, 589, 0, 499, "18/04/2023"));
-        productList.add(new Product(this, "p05", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 499, 499, 0, 499, 499, "08/06/2023"));
-        productList.add(new Product(this, "p06", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 445, 499, 499, 499, 499, "29/12/2023"));
-        productList.add(new Product(this, "p06", "OPPO A18 128GB (Glowing Blue)", 5, 4.2F, "Oppo", "Smart Phone", 1299, 1399, 1299, 1299, 1299, "29/12/2023"));
+//        productList = new ArrayList<>();
+//        productList.add(new Product( "p01", "Apple iPhone 15 128GB (Pink)",  4.8F, "Apple", "Smart Phone", 1299, 0, 1299, 1299, 1599, "23/09/2023"));
+//        productList.add(new Product( "p02", "Samsung Galaxy S22 Ultra 256GB (Black)", 4.9F, "Samsung", "Smart Phone", 1499, 1599, 1599, 1499, 1599, "14/02/2024"));
+//        productList.add(new Product("p03", "Google Pixel 8 5G 128GB (ROSE)", 4.5F, "Google", "Smart Phone", 899, 899, 899, 899, 899, "20/11/2023"));
+//        productList.add(new Product("p04", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 499, 489, 589, 0, 499, "18/04/2023"));
+//        productList.add(new Product("p05", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 499, 499, 0, 499, 499, "08/06/2023"));
+//        productList.add(new Product("p06", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 445, 499, 499, 499, 499, "29/12/2023"));
+//        productList.add(new Product("p06", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 1299, 1399, 1299, 1299, 1299, "29/12/2023"));
+//
+//        // Đọc dữ liệu từ file JSON
+        productList = ProductUtils.loadProductsFromJson(this);
+//
+//        // Push dữ liệu lên Firebase
+        pushDataToFirebase(productList);
+
         for (Product product : productList) {
             int count = 0;
             if (product.getJbhifi_fee() > 0) count++;
@@ -118,31 +137,6 @@ public class ProductActivity1 extends AppCompatActivity {
                 updateBrandsAdapter();
             }
         });
-
-        BottomNavigationView navView = findViewById(R.id.nav);
-        Menu menu = navView.getMenu();
-        MenuItem homeIcon = menu.findItem(R.id.home);
-        MenuItem meIcon = menu.findItem(R.id.me);
-        MenuItem productIcon = menu.findItem(R.id.product);
-        productIcon.setChecked(true);
-        homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                Intent intent = new Intent(ProductActivity1.this, ScreenActivity2.class);
-                startActivity(intent);
-                return true;
-            }
-        });
-        meIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
-            @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                Intent intent = new Intent(ProductActivity1.this, UserProfileActivity.class);
-                startActivity(intent);
-                return true;
-            }
-        });
-
-
 
         // Các sự kiện click cho các nút lọc
         Button latestFilterBtn = findViewById(R.id.latest_filter_btn);
@@ -428,5 +422,15 @@ public class ProductActivity1 extends AppCompatActivity {
         results_found.setText(searchResultText);
         updateBrandsAdapter();
     }
+    private void pushDataToFirebase(List<Product> productList) {
+        FirebaseDatabase database = FirebaseDatabase.getInstance();
+        DatabaseReference myRef = database.getReference("products");
+
+        for (Product product : productList) {
+            myRef.child(product.getId()).setValue(product);
+        }
+    }
+
+
 }
 
