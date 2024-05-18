@@ -46,6 +46,10 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
                 }
                 else if (position == 4) { // Checking if the clicked item is the second one
                     intent.putExtra("filterType", "Smart Phone");
+                } else if (position == 3) {
+                    intent.putExtra("filterType", "Fridge");
+                } else if (position == 5) {
+                    intent.putExtra("filterType", "Earphones");
                 }
                 else if (position == 5) { // Checking if the clicked item is the second one
                     intent.putExtra("filterType", "Earphones");
