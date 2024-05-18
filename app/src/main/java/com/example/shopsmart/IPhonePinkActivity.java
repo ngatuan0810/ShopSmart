@@ -1,6 +1,7 @@
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
@@ -19,7 +20,16 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
+import com.squareup.picasso.Picasso;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -27,13 +37,13 @@ import at.blogc.android.views.ExpandableTextView;
 
 public class IPhonePinkActivity extends AppCompatActivity {
     private boolean isExpanded = false;
-    ViewPager viewPager;
-    ImageView imageView;
-    int[] images = {R.drawable.image_12, R.drawable.image_13, R.drawable.image_14, R.drawable.image_15};
-
-    int currentPage = 0;
-    Timer timer;
-    LinearLayout indicatorContainer1;
+    private ViewPager viewPager;
+    private ImageView imageView;
+    private List<Uri> imageUris = new ArrayList<>();
+    private IphoneAdapter adapter;
+    private int currentPage = 0;
+    private Timer timer;
+    private LinearLayout indicatorContainer1;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,23 +51,55 @@ public class IPhonePinkActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_iphone_pink);
 
+        // Nhận dữ liệu sản phẩm từ Intent
+        Intent intent = getIntent();
+        String productId = intent.getStringExtra("productId");
+        String productTitle = intent.getStringExtra("productTitle");
+        String productBrand = intent.getStringExtra("productBrand");
+        String productType = intent.getStringExtra("productType");
+        double productPrice = intent.getDoubleExtra("productPrice", 0.0);
+        float productScore = intent.getFloatExtra("productScore", 0.0f);
+        int numberRetailers = intent.getIntExtra("numberRetailers", 0);
+        double jbhifiFee = intent.getDoubleExtra("jbhifiFee", 0.0);
+        double officeworkFee = intent.getDoubleExtra("officeworkFee", 0.0);
+        double goodguysFee = intent.getDoubleExtra("goodguysFee", 0.0);
+        double bigwFee = intent.getDoubleExtra("bigwFee", 0.0);
+        double brandFee = intent.getDoubleExtra("brandFee", 0.0);
+
+        // Hiển thị dữ liệu sản phẩm
+        TextView titleTextView = findViewById(R.id.productTitle);
+        TextView scoreTextView = findViewById(R.id.productScore);
+        TextView retailersTextView = findViewById(R.id.number_retailer);
+        TextView jbhifiFeeTextView = findViewById(R.id.jbhifi_fee);
+        TextView officeworkFeeTextView = findViewById(R.id.officework_fee);
+        TextView goodguysFeeTextView = findViewById(R.id.goodguys_fee);
+        TextView bigwFeeTextView = findViewById(R.id.bigw_fee);
+        TextView brandFeeTextView = findViewById(R.id.brand_fee);
+
+        titleTextView.setText(productTitle);
+        scoreTextView.setText(String.valueOf(productScore));
+        retailersTextView.setText(String.valueOf(numberRetailers));
+        jbhifiFeeTextView.setText(String.format("$%,.2f", jbhifiFee));
+        officeworkFeeTextView.setText(String.format("$%,.2f", officeworkFee));
+        goodguysFeeTextView.setText(String.format("$%,.2f", goodguysFee));
+        bigwFeeTextView.setText(String.format("$%,.2f", bigwFee));
+        brandFeeTextView.setText(String.format("$%,.2f", brandFee));
+
         setupTextClickListener(findViewById(R.id.textView43), findViewById(R.id.imageView66), findViewById(R.id.underline43));
         setupTextClickListener(findViewById(R.id.textView45), findViewById(R.id.imageView72), findViewById(R.id.underline45));
         setupTextClickListener(findViewById(R.id.textView46), findViewById(R.id.imageView73), findViewById(R.id.underline46));
         setupTextClickListener(findViewById(R.id.textView47), findViewById(R.id.imageView59), findViewById(R.id.underline47));
+
         viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new IphoneAdapter(images, IPhonePinkActivity.this));
-
-        // Setup indicators
         indicatorContainer1 = findViewById(R.id.indicatorContainer1);
-        createIndicators();
 
-
+        // Fetch images from Firebase
+        fetchImagesFromFirebase(productId);
 
         // Auto-scroll ViewPager
         final Handler handler = new Handler();
         final Runnable update = () -> {
-            if (currentPage == images.length - 1) {
+            if (currentPage == imageUris.size() - 1) {
                 currentPage = 0;
             } else {
                 currentPage++;
@@ -72,20 +114,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
                 handler.post(update);
             }
         }, 2500, 2500);
-
-        // Add ViewPager listener
-        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
-            @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
-
-            @Override
-            public void onPageSelected(int position) {
-                updateIndicators(position);
-            }
-
-            @Override
-            public void onPageScrollStateChanged(int state) {}
-        });
 
         // Set click listener for "Read More" button
         TableLayout tableLayout = findViewById(R.id.table_layout);
@@ -170,7 +198,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);
         MenuItem meIcon = menu.findItem(R.id.me);
-        MenuItem productIcon = menu.findItem(R.id.product);
         homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
@@ -187,15 +214,39 @@ public class IPhonePinkActivity extends AppCompatActivity {
                 return true;
             }
         });
-        productIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+
+    }
+
+    private void fetchImagesFromFirebase(String productId) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference().child(productId);
+
+        storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
             @Override
-            public boolean onMenuItemClick(@NonNull MenuItem item) {
-                Intent intent = new Intent(IPhonePinkActivity.this, ProductActivity1.class);
-                startActivity(intent);
-                return true;
+            public void onSuccess(ListResult listResult) {
+                for (StorageReference item : listResult.getItems()) {
+                    item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageUris.add(uri);
+                            if (adapter == null) {
+                                adapter = new IphoneAdapter(imageUris, IPhonePinkActivity.this);
+                                viewPager.setAdapter(adapter);
+                                createIndicators();
+                            } else {
+                                adapter.notifyDataSetChanged();
+                                createIndicators();
+                            }
+                        }
+                    });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle any errors
             }
         });
-
     }
 
     private void gotoUrl(String s) {
@@ -213,7 +264,8 @@ public class IPhonePinkActivity extends AppCompatActivity {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void createIndicators() {
-        for (int i = 0; i < images.length; i++) {
+        indicatorContainer1.removeAllViews();
+        for (int i = 0; i < imageUris.size(); i++) {
             ImageView indicator = new ImageView(this);
             indicator.setImageDrawable(getResources().getDrawable(R.drawable.iphone_indicator_active));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(

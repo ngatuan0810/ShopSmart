@@ -51,11 +51,11 @@
                     android:textSize="13sp"
                     android:textStyle="italic"
                     app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toEndOf="@+id/number_retailers"
+                    app:layout_constraintStart_toEndOf="@+id/number_retailer"
                     app:layout_constraintTop_toTopOf="parent" />
 
                 <TextView
-                    android:id="@+id/number_retailers"
+                    android:id="@+id/number_retailer"
                     android:layout_width="10dp"
                     android:layout_height="18dp"
                     android:layout_marginStart="4dp"
