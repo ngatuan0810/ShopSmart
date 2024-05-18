@@ -23,6 +23,8 @@ import com.example.shopsmart.utils.ProductUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -175,6 +177,15 @@ public class ScreenActivity2 extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         productList = ProductUtils.loadProductsFromJson(this);
+
+        // Sắp xếp danh sách sản phẩm theo giá từ thấp đến cao
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product p1, Product p2) {
+                return Double.compare(p1.getMinFee(), p2.getMinFee());
+            }
+        });
+
         filteredList = new ArrayList<>(productList);
         adapter = new ProductAdapter(filteredList);
         recyclerView.setAdapter(adapter);

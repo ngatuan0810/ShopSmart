@@ -307,6 +307,24 @@ public class ProductActivity1 extends AppCompatActivity {
             }
             adapter.notifyDataSetChanged();
         }
+        else if (filterType != null && filterType.equals("Earphones")) {
+            filteredList.clear();
+            for (Product product : productList) {
+                if (product.getType().equalsIgnoreCase("Earphones")) {
+                    filteredList.add(product);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
+        else if (filterType != null && filterType.equals("Fridge")) {
+            filteredList.clear();
+            for (Product product : productList) {
+                if (product.getType().equalsIgnoreCase("Fridge")) {
+                    filteredList.add(product);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void clearFilters() {
