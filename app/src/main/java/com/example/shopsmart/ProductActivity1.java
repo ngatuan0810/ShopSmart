@@ -2,11 +2,15 @@
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
+import android.support.annotation.NonNull;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -31,6 +35,7 @@ import java.util.Objects;
 import android.widget.SeekBar;
 
 import com.example.shopsmart.utils.ProductUtils;
+import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
@@ -137,6 +142,30 @@ public class ProductActivity1 extends AppCompatActivity {
                 updateBrandsAdapter();
             }
         });
+
+        BottomNavigationView navView = findViewById(R.id.nav);
+        Menu menu = navView.getMenu();
+        MenuItem homeIcon = menu.findItem(R.id.home);
+        MenuItem meIcon = menu.findItem(R.id.me);
+        MenuItem productIcon = menu.findItem(R.id.product);
+        productIcon.setChecked(true);
+        homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(ProductActivity1.this, ScreenActivity2.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        meIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(ProductActivity1.this, UserProfileActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+
 
         // Các sự kiện click cho các nút lọc
         Button latestFilterBtn = findViewById(R.id.latest_filter_btn);
