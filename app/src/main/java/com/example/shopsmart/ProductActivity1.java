@@ -423,7 +423,7 @@ public class ProductActivity1 extends AppCompatActivity {
         results_found.setText(searchResultText);
         updatePriceSeekBarRange();
     }
-
+//fjhgkjhkh
     private void updateUnderlineVisibility() {
         ImageView underline1 = findViewById(R.id.underline1);
         ImageView underline2 = findViewById(R.id.underline2);
