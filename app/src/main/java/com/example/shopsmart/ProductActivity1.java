@@ -288,6 +288,25 @@ public class ProductActivity1 extends AppCompatActivity {
                 filterSlideBar.setVisibility(View.GONE);
             }
         });
+        String filterType = getIntent().getStringExtra("filterType");
+        if (filterType != null && filterType.equals("Tivi")) {
+            filteredList.clear();
+            for (Product product : productList) {
+                if (product.getType().equalsIgnoreCase("Tivi")) {
+                    filteredList.add(product);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
+        else if (filterType != null && filterType.equals("Smart Phone")) {
+            filteredList.clear();
+            for (Product product : productList) {
+                if (product.getType().equalsIgnoreCase("Smart Phone")) {
+                    filteredList.add(product);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void clearFilters() {
