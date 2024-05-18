@@ -308,7 +308,7 @@
                 <TextView
                     android:id="@+id/subproductTitle1"
                     android:layout_width="262dp"
-                    android:layout_height="39dp"
+                    android:layout_height="33dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:paddingLeft="16sp"
@@ -366,7 +366,7 @@
                 <TextView
                     android:id="@+id/subproductTitle2"
                     android:layout_width="254dp"
-                    android:layout_height="38dp"
+                    android:layout_height="33dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:paddingLeft="16sp"
@@ -423,7 +423,7 @@
                 <TextView
                     android:id="@+id/subproductTitle3"
                     android:layout_width="254dp"
-                    android:layout_height="38dp"
+                    android:layout_height="33dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:paddingLeft="16sp"
@@ -481,7 +481,7 @@
                 <TextView
                     android:id="@+id/subproductTitle4"
                     android:layout_width="254dp"
-                    android:layout_height="38dp"
+                    android:layout_height="33dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:paddingLeft="16sp"
@@ -540,7 +540,7 @@
                 <TextView
                     android:id="@+id/subproductTitle5"
                     android:layout_width="254dp"
-                    android:layout_height="38dp"
+                    android:layout_height="33dp"
                     android:layout_marginTop="10dp"
                     android:background="@color/white"
                     android:paddingLeft="16sp"
