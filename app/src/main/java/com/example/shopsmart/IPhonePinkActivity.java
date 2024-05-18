@@ -91,7 +91,9 @@ public class IPhonePinkActivity extends AppCompatActivity {
         setupTextClickListener(findViewById(R.id.textView47), findViewById(R.id.imageView59), findViewById(R.id.underline47));
 
         viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(new IphoneAdapter(imageUris, IPhonePinkActivity.this));
         indicatorContainer1 = findViewById(R.id.indicatorContainer1);
+        createIndicators();
 
         // Fetch images from Firebase
         fetchImagesFromFirebase(productId);
@@ -114,6 +116,20 @@ public class IPhonePinkActivity extends AppCompatActivity {
                 handler.post(update);
             }
         }, 2500, 2500);
+        viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){}
+
+            @Override
+            public void onPageSelected(int position) {
+                updateIndicators(position);
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         // Set click listener for "Read More" button
         TableLayout tableLayout = findViewById(R.id.table_layout);
