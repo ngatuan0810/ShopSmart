@@ -298,6 +298,15 @@ public class ProductActivity1 extends AppCompatActivity {
             }
             adapter.notifyDataSetChanged();
         }
+        else if (filterType != null && filterType.equals("Smart Phone")) {
+            filteredList.clear();
+            for (Product product : productList) {
+                if (product.getType().equalsIgnoreCase("Smart Phone")) {
+                    filteredList.add(product);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void clearFilters() {
