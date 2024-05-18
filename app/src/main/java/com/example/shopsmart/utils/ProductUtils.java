@@ -33,7 +33,14 @@ public class ProductUtils {
                             jsonObject.getDouble("goodguys_fee"),
                             jsonObject.getDouble("bigw_fee"),
                             jsonObject.getDouble("brand_fee"),
-                            jsonObject.getString("releaseDate")
+                            jsonObject.getString("releaseDate"),
+                            jsonObject.getString("jbhifi_link"),
+                            jsonObject.getString("goodguys_link"),
+                            jsonObject.getString("officework_link"),
+                            jsonObject.getString("bigw_link"),
+                            jsonObject.getString("brand_link"),
+                            jsonObject.getString("description"),
+                            jsonObject.getString("specs")
                     );
                     productList.add(product);
                 }

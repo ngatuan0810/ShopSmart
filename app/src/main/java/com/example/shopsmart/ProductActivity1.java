@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.transition.Transition;
 import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -20,6 +21,8 @@ import com.example.shopsmart.Adapter.BrandsAdapter;
 import com.example.shopsmart.Adapter.ProductAdapter;
 import com.example.shopsmart.Domain.Brand;
 import com.example.shopsmart.Domain.Product;
+
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -32,7 +35,9 @@ import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
 import java.util.List;
 import com.example.shopsmart.Domain.Product;
-
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
+import com.bumptech.glide.Glide;
 
 public class ProductActivity1 extends AppCompatActivity {
 
@@ -57,11 +62,17 @@ public class ProductActivity1 extends AppCompatActivity {
     private TextView minPriceTextView;
     private TextView maxPriceTextView;
 
+    private FirebaseStorage storage;
+
+
     @SuppressLint("WrongViewCast")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_products_list);
+
+        // Initialize Firebase Storage
+        storage = FirebaseStorage.getInstance();
 
         searchItemInput = findViewById(R.id.search_item_input);
         searchButton = findViewById(R.id.search_btn);
@@ -88,7 +99,7 @@ public class ProductActivity1 extends AppCompatActivity {
         productList = ProductUtils.loadProductsFromJson(this);
 //
 //        // Push dữ liệu lên Firebase
-//        pushDataToFirebase(productList);
+        pushDataToFirebase(productList);
 
         for (Product product : productList) {
             int count = 0;
@@ -419,5 +430,7 @@ public class ProductActivity1 extends AppCompatActivity {
             myRef.child(product.getId()).setValue(product);
         }
     }
+
+
 }
 
