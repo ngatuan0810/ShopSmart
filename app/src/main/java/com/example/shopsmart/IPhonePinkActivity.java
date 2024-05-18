@@ -170,6 +170,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);
         MenuItem meIcon = menu.findItem(R.id.me);
+        MenuItem productIcon = menu.findItem(R.id.product);
         homeIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
@@ -182,6 +183,14 @@ public class IPhonePinkActivity extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
                 Intent intent = new Intent(IPhonePinkActivity.this, UserProfileActivity.class);
+                startActivity(intent);
+                return true;
+            }
+        });
+        productIcon.setOnMenuItemClickListener(new MenuItem.OnMenuItemClickListener() {
+            @Override
+            public boolean onMenuItemClick(@NonNull MenuItem item) {
+                Intent intent = new Intent(IPhonePinkActivity.this, ProductActivity1.class);
                 startActivity(intent);
                 return true;
             }
