@@ -2,6 +2,7 @@ package com.example.shopsmart;
 
 import android.content.Context;
 
+import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -37,6 +38,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public void onBindViewHolder(MyViewHolder holder, int position) {
 
         holder.image_thumbnail.setImageResource(mData.get(position).getThumbnail());
+        holder.cardView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(mContext, ProductActivity1.class);
+                mContext.startActivity(intent);
+            }
+        });
 
 
 
@@ -50,13 +58,13 @@ public class RecyclerViewAdapter extends RecyclerView.Adapter<RecyclerViewAdapte
     public static class MyViewHolder extends RecyclerView.ViewHolder{
 
         ImageView image_thumbnail;
-
+        CardView cardView;
 
 
         public MyViewHolder(View itemView) {
             super(itemView);
             image_thumbnail = (ImageView) itemView.findViewById(R.id.item_img_id);
-
+            cardView = (CardView) itemView.findViewById(R.id.cardView_id);
         }
     }
 }

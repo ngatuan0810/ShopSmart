@@ -3,12 +3,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ScrollView
         android:id="@+id/scrollView3"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -29,7 +31,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
                     android:padding="10dp"
-                    app:srcCompat="@drawable/arrow_icon" />
+                    app:srcCompat="@drawable/arrow_icon"
+                    android:contentDescription="@string/todo32" />
 
                 <EditText
                     android:id="@+id/search_item_input"
@@ -39,18 +42,21 @@
                     android:background="@drawable/group_16"
                     android:ems="10"
                     android:inputType="text"
-                    android:paddingLeft="10dp"
-                    android:text="Search" />
+                    android:paddingStart="10dp"
+                    android:text="@string/search"
+                    android:autofillHints=""
+                    tools:ignore="LabelFor,RtlSymmetry" />
 
                 <ImageButton
                     android:id="@+id/search_btn"
                     android:layout_width="60dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
+                    android:layout_height="48dp"
+                    android:layout_marginStart="5dp"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
                     android:translationY="10dp"
-                    app:srcCompat="@drawable/group_30" />
+                    app:srcCompat="@drawable/group_30"
+                    android:contentDescription="@string/todo57" />
 
                 <ImageButton
                     android:id="@+id/filter_button"
@@ -58,7 +64,7 @@
                     android:layout_height="60dp"
                     android:layout_weight="1"
                     android:background="#FFFFFF"
-                    android:contentDescription="Tìm kiếm"
+                    android:contentDescription="@string/t_m_ki_m"
                     android:paddingHorizontal="10dp"
                     app:srcCompat="@drawable/group_32" />
 
@@ -77,7 +83,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
                     android:outlineProvider="none"
-                    android:text="Relevant"
+                    android:text="@string/relevant"
                     android:textColor="#000000"
                     android:textStyle="bold"
                     android:translationX="2.5dp" />
@@ -88,7 +94,8 @@
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     android:translationY="10dp"
-                    app:srcCompat="@drawable/line_13" />
+                    app:srcCompat="@drawable/line_13"
+                    android:contentDescription="@string/todo62" />
 
                 <Button
                     android:id="@+id/latest_filter_btn"
@@ -97,7 +104,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
                     android:outlineProvider="none"
-                    android:text="Latest"
+                    android:text="@string/latest"
                     android:textColor="@android:color/black"
                     android:textStyle="bold" />
 
@@ -107,7 +114,8 @@
                     android:layout_height="30dp"
                     android:layout_weight="1"
                     android:translationY="10dp"
-                    app:srcCompat="@drawable/line_13" />
+                    app:srcCompat="@drawable/line_13"
+                    android:contentDescription="@string/todo58" />
 
                 <Button
                     android:id="@+id/price_filter_btn"
@@ -116,7 +124,7 @@
                     android:layout_weight="1"
                     android:backgroundTint="@color/white"
                     android:outlineProvider="none"
-                    android:text="Price"
+                    android:text="@string/price"
                     android:textColor="@color/black"
                     android:textStyle="bold" />
 
@@ -132,7 +140,8 @@
                     android:layout_width="130dp"
                     android:layout_height="wrap_content"
                     android:translationX="5dp"
-                    app:srcCompat="@drawable/line_12" />
+                    app:srcCompat="@drawable/line_12"
+                    android:contentDescription="@string/todo59" />
 
                 <ImageView
                     android:id="@+id/underline2"
@@ -140,7 +149,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:translationX="5dp"
-                    app:srcCompat="@drawable/line_12" />
+                    app:srcCompat="@drawable/line_12"
+                    android:contentDescription="@string/todo60" />
 
                 <ImageView
                     android:id="@+id/underline3"
@@ -148,7 +158,8 @@
                     android:layout_height="wrap_content"
                     android:layout_weight="1"
                     android:translationX="5dp"
-                    app:srcCompat="@drawable/line_12" />
+                    app:srcCompat="@drawable/line_12"
+                    android:contentDescription="@string/todo61" />
 
             </LinearLayout>
 
@@ -163,8 +174,8 @@
                     android:layout_height="47dp"
                     android:background="@color/white"
                     android:gravity="center_vertical"
-                    android:paddingLeft="20dp"
-                    android:text="Highlighted Items"
+                    android:paddingStart="20dp"
+                    android:text="@string/highlighted_items"
                     android:textColor="@color/black"
                     android:textSize="20sp"
                     android:textStyle="bold"
@@ -173,21 +184,41 @@
                     app:layout_constraintHorizontal_bias="0.0"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
-                    app:layout_constraintVertical_bias="0.01" />
+                    app:layout_constraintVertical_bias="0.01"
+                    tools:ignore="RtlSymmetry" />
 
                 <androidx.recyclerview.widget.RecyclerView
                     android:id="@+id/recyclerView"
                     android:layout_width="389dp"
-                    android:layout_height="750dp"
-                    android:layout_marginBottom="68dp"
-                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_height="730dp"
+                    android:layout_marginTop="11dp"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintStart_toStartOf="parent" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/results_found" />
 
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>
     </ScrollView>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        app:layout_constraintBottom_toBottomOf="@+id/scrollView3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/nav"
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:layout_marginTop="50dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:menu="@menu/bottom_nav_menu" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
     <include
         layout="@layout/filter_slide_bar"
