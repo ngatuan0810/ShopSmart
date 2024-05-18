@@ -307,7 +307,6 @@ public class ProductActivity1 extends AppCompatActivity {
             }
             adapter.notifyDataSetChanged();
         }
-
     }
 
     private void clearFilters() {
