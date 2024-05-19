@@ -39,7 +39,9 @@ public class UserProfileActivity extends AppCompatActivity {
 
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
-        favorites = (List<Product>) args.getSerializable("FAV");
+        if (args != null) {
+            favorites = (List<Product>) args.getSerializable("FAV");
+        }
 
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
