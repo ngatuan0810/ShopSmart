@@ -23,6 +23,8 @@ import com.example.shopsmart.utils.ProductUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
@@ -35,6 +37,7 @@ public class ScreenActivity2 extends AppCompatActivity {
     private ProductAdapter adapter;
     private List<Product> filteredList;
     private List<Product> productList;
+    private LinearLayout linear;
     int images[] = {R.drawable.image_3, R.drawable.image_2, R.drawable.image_1};
     int currentPage = 0;
     Timer timer;
@@ -95,6 +98,16 @@ public class ScreenActivity2 extends AppCompatActivity {
             }
         });
 
+        linear = findViewById(R.id.linear);
+        linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScreenActivity2.this, ProductActivity1.class);
+                startActivity(intent);
+            }
+        });
+
+
         imageView = findViewById(R.id.imageView17);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -110,14 +123,14 @@ public class ScreenActivity2 extends AppCompatActivity {
                 gotoUrl("https://www.thegoodguys.com.au");
             }
         });
-
-        LinearLayout linearLayout = findViewById(R.id.linear);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ScreenActivity2.this, SearchActivity.class));
-            }
-        });
+//
+//        LinearLayout linearLayout = findViewById(R.id.linear);
+//        linearLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(ScreenActivity2.this, SearchActivity.class));
+//            }
+//        });
 
         lstItem = new ArrayList<>();
         lstItem.add(new Item(R.drawable.image_4, ProductActivity1.class));
@@ -175,6 +188,24 @@ public class ScreenActivity2 extends AppCompatActivity {
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         productList = ProductUtils.loadProductsFromJson(this);
+        for (Product product : productList) {
+            int count = 0;
+            if (product.getJbhifi_fee() > 0) count++;
+            if (product.getOfficework_fee() > 0) count++;
+            if (product.getGoodguys_fee() > 0) count++;
+            if (product.getBigw_fee() > 0) count++;
+            if (product.getBrand_fee() > 0) count++;
+            product.setNumber_retailers(count);
+        }
+
+        // Sắp xếp danh sách sản phẩm theo giá từ thấp đến cao
+        Collections.sort(productList, new Comparator<Product>() {
+            @Override
+            public int compare(Product p1, Product p2) {
+                return Double.compare(p1.getMinFee(), p2.getMinFee());
+            }
+        });
+
         filteredList = new ArrayList<>(productList);
         adapter = new ProductAdapter(filteredList);
         recyclerView.setAdapter(adapter);

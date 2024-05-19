@@ -7,8 +7,6 @@
     android:layout_height="match_parent"
     tools:context=".MainActivity">
 
-<!--    <include layout="@layout/activity_intro"/>-->
-
     <include
         layout="@layout/activity_log_in"
         app:layout_constraintBottom_toBottomOf="parent"

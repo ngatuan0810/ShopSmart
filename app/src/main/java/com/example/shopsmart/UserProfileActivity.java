@@ -14,19 +14,35 @@ import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
+import com.example.shopsmart.Adapter.ProductAdapter;
 import com.example.shopsmart.Domain.Product;
+import com.example.shopsmart.utils.ProductUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 import java.io.Serializable;
-import java.util.List;
 
 public class UserProfileActivity extends AppCompatActivity {
     ViewFlipper flipper;
     FirebaseAuth firebaseAuth;
+    private RecyclerView recyclerView;
+    private List<Product> productList;
+    private ProductAdapter adapter;
+    private List<Product> filteredList;
     List<Product> favorites;
     int[] layouts = new int[] {R.layout.my_interest, R.layout.my_watched, R.layout.my_review, R.layout.my_coupon, R.layout.my_notification};
+
+    // Mảng tĩnh lưu các ID sản phẩm đã xem
+    public static Set<String> watchedProductIds = new HashSet<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -144,6 +160,30 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        recyclerView = findViewById(R.id.watched_products_recycler);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        productList = ProductUtils.loadProductsFromJson(this);
+
+        // Lọc danh sách sản phẩm dựa trên các ID đã xem
+        filteredList = new ArrayList<>();
+        for (Product product : productList) {
+            if (watchedProductIds.contains(product.getId())) {
+                filteredList.add(product);
+            }
+        }
+        for (Product product : productList) {
+            int count = 0;
+            if (product.getJbhifi_fee() > 0) count++;
+            if (product.getOfficework_fee() > 0) count++;
+            if (product.getGoodguys_fee() > 0) count++;
+            if (product.getBigw_fee() > 0) count++;
+            if (product.getBrand_fee() > 0) count++;
+            product.setNumber_retailers(count);
+        }
+        adapter = new ProductAdapter(filteredList);
+        recyclerView.setAdapter(adapter);
     }
     void handleItemNav(int id, int back) {
         flipper.setDisplayedChild(id);

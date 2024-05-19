@@ -1,6 +1,7 @@
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -20,21 +21,34 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import com.example.shopsmart.Adapter.ProductAdapter;
+import com.example.shopsmart.utils.ProductUtils;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
 
+
 import java.util.ArrayList;
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import com.example.shopsmart.Domain.Product;
+
 public class IPhonePinkActivity extends AppCompatActivity {
     private boolean isExpanded = false;
     private ViewPager viewPager;
@@ -45,7 +59,12 @@ public class IPhonePinkActivity extends AppCompatActivity {
     private Timer timer;
     private LinearLayout indicatorContainer1;
     private Product product;
+    private RecyclerView recyclerView;
+    private ProductAdapter adapterProduct;
+    private List<Product> filteredList;
+    private List<Product> productList;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -69,7 +88,8 @@ public class IPhonePinkActivity extends AppCompatActivity {
         double brandFee = intent.getDoubleExtra("brandFee", 0.0);
         String description = intent.getStringExtra("description");
         String specs = intent.getStringExtra("specs");
-
+        String releaseDate = intent.getStringExtra("releaseDate");
+        double minFee = intent.getDoubleExtra("minFee", 0.0);
 
         product = (Product) intent.getSerializableExtra("product"); // Assuming Product implements Serializable
 
@@ -99,15 +119,59 @@ public class IPhonePinkActivity extends AppCompatActivity {
         titleTextView5.setText(productTitle);
         scoreTextView.setText(String.valueOf(productScore));
         retailersTextView.setText(String.valueOf(numberRetailers));
-        jbhifiFeeTextView.setText(String.format("$%,.2f", jbhifiFee));
-        officeworkFeeTextView.setText(String.format("$%,.2f", officeworkFee));
-        goodguysFeeTextView.setText(String.format("$%,.2f", goodguysFee));
-        bigwFeeTextView.setText(String.format("$%,.2f", bigwFee));
-        brandFeeTextView.setText(String.format("$%,.2f", brandFee));
+        jbhifiFeeTextView.setText(String.format("$%,.0f", jbhifiFee));
+        officeworkFeeTextView.setText(String.format("$%,.0f", officeworkFee));
+        goodguysFeeTextView.setText(String.format("$%,.0f", goodguysFee));
+        bigwFeeTextView.setText(String.format("$%,.0f", bigwFee));
+        brandFeeTextView.setText(String.format("$%,.0f", brandFee));
+
+        // Ẩn các ConstraintLayout nếu phí bằng 0.0
+        ConstraintLayout jbhifiLayout = findViewById(R.id.jbhifi_retailer);
+        ConstraintLayout officeworkLayout = findViewById(R.id.officework_retailer);
+        ConstraintLayout goodguysLayout = findViewById(R.id.goodguys_retailer);
+        ConstraintLayout bigwLayout = findViewById(R.id.bigw_retailer);
+
+        if (jbhifiFee == 0.0) {
+            jbhifiLayout.setVisibility(View.GONE);
+        }
+        if (officeworkFee == 0.0) {
+            officeworkLayout.setVisibility(View.GONE);
+        }
+        if (goodguysFee == 0.0) {
+            goodguysLayout.setVisibility(View.GONE);
+        }
+        if (bigwFee == 0.0) {
+            bigwLayout.setVisibility(View.GONE);
+        }
+
+        ImageView jbhifiTag = findViewById(R.id.supposed_tag_jbhifi);
+        ImageView officeworkTag = findViewById(R.id.supposed_tag_officework);
+        ImageView goodguysTag = findViewById(R.id.supposed_tag_goodguys);
+        ImageView bigwTag = findViewById(R.id.supposed_tag_bigw);
+        ImageView brandTag = findViewById(R.id.supposed_tag_brand);
+        if (jbhifiFee == minFee) {
+            jbhifiTag.setVisibility(View.VISIBLE);
+        }
+        if (officeworkFee == minFee) {
+            officeworkTag.setVisibility(View.VISIBLE);
+        }
+        if (goodguysFee == minFee) {
+            goodguysTag.setVisibility(View.VISIBLE);
+        }
+        if (bigwFee == minFee) {
+            bigwTag.setVisibility(View.VISIBLE);
+        }
+        if (brandFee == minFee) {
+            brandTag.setVisibility(View.VISIBLE);
+        }
+
+
 
         TableLayout tableLayout = findViewById(R.id.table_layout);
         fillTableLayoutWithSpecs(tableLayout, specs);
 
+
+        //setting up click listeners for text views and managing associated image views and underlines
         setupTextClickListener(findViewById(R.id.textView43), findViewById(R.id.imageView66), findViewById(R.id.underline43));
         setupTextClickListener(findViewById(R.id.textView45), findViewById(R.id.imageView72), findViewById(R.id.underline45));
         setupTextClickListener(findViewById(R.id.textView46), findViewById(R.id.imageView73), findViewById(R.id.underline46));
@@ -222,18 +286,14 @@ public class IPhonePinkActivity extends AppCompatActivity {
                 gotoUrl(brandLink);
             }
         });
-        imageView = findViewById(R.id.imageView82);
+
+
+        imageView = findViewById(R.id.imageView26);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("brandLink");
-            }
-        });
-        imageView = findViewById(R.id.imageView83);
-        imageView.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                gotoUrl("brandLink");
+                Intent intent = new Intent(IPhonePinkActivity.this, ScreenActivity2.class);
+                startActivity(intent);
             }
         });
 
@@ -258,8 +318,80 @@ public class IPhonePinkActivity extends AppCompatActivity {
             }
         });
 
+        // Lưu sản phẩm đã xem vào Firebase
+//        saveWatchedProduct(new Product(
+//                productId, productTitle, productScore, productBrand, productType, jbhifiFee, officeworkFee, goodguysFee, bigwFee, brandFee,
+//                releaseDate, jbhifiLink, goodguysLink, officeworkLink, bigwLink, brandLink, description, specs
+//        ));
+        // Lưu ID sản phẩm đã xem vào mảng
+        UserProfileActivity.watchedProductIds.add(productId);
+
+
+        recyclerView = findViewById(R.id.similiar_products);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        productList = ProductUtils.loadProductsFromJson(this);
+        for (Product product : productList) {
+            int count = 0;
+            if (product.getJbhifi_fee() > 0) count++;
+            if (product.getOfficework_fee() > 0) count++;
+            if (product.getGoodguys_fee() > 0) count++;
+            if (product.getBigw_fee() > 0) count++;
+            if (product.getBrand_fee() > 0) count++;
+            product.setNumber_retailers(count);
+        }
+
+        // Sắp xếp danh sách sản phẩm tương tự
+        filteredList = filterAndSortSimilarProducts(productList, productBrand, productType);
+        adapterProduct = new ProductAdapter(filteredList);
+        recyclerView.setAdapter(adapterProduct);
+
+        ImageView brandLogo = findViewById(R.id.brand_retailer_logo);
+        int brandImageId = getBrandImageId(this, productBrand);
+        brandLogo.setImageResource(brandImageId);
+
     }
 
+//    private void saveWatchedProduct(Product product) {
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("watched_products").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//        myRef.child(product.getId()).setValue(product);
+//    }
+
+
+    private int getBrandImageId(Context context, String brand) {
+        String brandLowercase = brand.toLowerCase();
+        String resourceName = "drawable/" + brandLowercase;
+        return context.getResources().getIdentifier(resourceName, null, context.getPackageName());
+    }
+
+    private List<Product> filterAndSortSimilarProducts(List<Product> products, String brand, String type) {
+        List<Product> similarProducts = new ArrayList<>();
+
+        // Thêm sản phẩm cùng brand trước
+        for (Product product : products) {
+            if (product.getBrand().equalsIgnoreCase(brand) && product.getType().equalsIgnoreCase(type)) {
+                similarProducts.add(product);
+            }
+        }
+        for (Product product : products) {
+            if (product.getBrand().equalsIgnoreCase(brand) && !product.getType().equalsIgnoreCase(type)) {
+                similarProducts.add(product);
+            }
+        }
+
+        // Thêm sản phẩm cùng type nếu không trùng brand
+        for (Product product : products) {
+            if (!product.getBrand().equalsIgnoreCase(brand) && product.getType().equalsIgnoreCase(type)) {
+                similarProducts.add(product);
+            }
+        }
+
+        // Sắp xếp danh sách sản phẩm tương tự theo giá từ thấp đến cao
+
+
+        return similarProducts;
+    }
     private void fetchImagesFromFirebase(String productId) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReference().child(productId);
