@@ -20,6 +20,7 @@ import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.viewpager.widget.ViewPager;
 
 import com.google.android.gms.tasks.OnFailureListener;
@@ -111,6 +112,27 @@ public class IPhonePinkActivity extends AppCompatActivity {
         goodguysFeeTextView.setText(String.format("$%,.2f", goodguysFee));
         bigwFeeTextView.setText(String.format("$%,.2f", bigwFee));
         brandFeeTextView.setText(String.format("$%,.2f", brandFee));
+
+        // Ẩn các ConstraintLayout nếu phí bằng 0.0
+        ConstraintLayout jbhifiLayout = findViewById(R.id.jbhifi_retailer);
+        ConstraintLayout officeworkLayout = findViewById(R.id.officework_retailer);
+        ConstraintLayout goodguysLayout = findViewById(R.id.goodguys_retailer);
+        ConstraintLayout bigwLayout = findViewById(R.id.bigw_retailer);
+
+        if (jbhifiFee == 0.0) {
+            jbhifiLayout.setVisibility(View.GONE);
+        }
+        if (officeworkFee == 0.0) {
+            officeworkLayout.setVisibility(View.GONE);
+        }
+        if (goodguysFee == 0.0) {
+            goodguysLayout.setVisibility(View.GONE);
+        }
+        if (bigwFee == 0.0) {
+            bigwLayout.setVisibility(View.GONE);
+        }
+
+
 
         TableLayout tableLayout = findViewById(R.id.table_layout);
         fillTableLayoutWithSpecs(tableLayout, specs);
