@@ -26,10 +26,11 @@
                 android:layout_height="match_parent"
                 android:orientation="horizontal">
 
-                <ImageView
+                <ImageButton
                     android:id="@+id/imageView17"
                     android:layout_width="wrap_content"
                     android:layout_height="match_parent"
+                    android:background="@android:color/transparent"
                     android:padding="10dp"
                     app:srcCompat="@drawable/arrow_icon"
                     android:contentDescription="@string/todo32" />

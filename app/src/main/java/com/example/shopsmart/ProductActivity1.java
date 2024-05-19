@@ -91,15 +91,6 @@ public class ProductActivity1 extends AppCompatActivity {
         // Initialize clear filter button
         Button clearFilterBtn = findViewById(R.id.clear_filter_btn);
 
-//        productList = new ArrayList<>();
-//        productList.add(new Product( "p01", "Apple iPhone 15 128GB (Pink)",  4.8F, "Apple", "Smart Phone", 1299, 0, 1299, 1299, 1599, "23/09/2023"));
-//        productList.add(new Product( "p02", "Samsung Galaxy S22 Ultra 256GB (Black)", 4.9F, "Samsung", "Smart Phone", 1499, 1599, 1599, 1499, 1599, "14/02/2024"));
-//        productList.add(new Product("p03", "Google Pixel 8 5G 128GB (ROSE)", 4.5F, "Google", "Smart Phone", 899, 899, 899, 899, 899, "20/11/2023"));
-//        productList.add(new Product("p04", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 499, 489, 589, 0, 499, "18/04/2023"));
-//        productList.add(new Product("p05", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 499, 499, 0, 499, 499, "08/06/2023"));
-//        productList.add(new Product("p06", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 445, 499, 499, 499, 499, "29/12/2023"));
-//        productList.add(new Product("p06", "OPPO A18 128GB (Glowing Blue)", 4.2F, "Oppo", "Smart Phone", 1299, 1399, 1299, 1299, 1299, "29/12/2023"));
-//
 //        // Đọc dữ liệu từ file JSON
         productList = ProductUtils.loadProductsFromJson(this);
 //
@@ -143,6 +134,8 @@ public class ProductActivity1 extends AppCompatActivity {
             }
         });
 
+
+
         ImageView imageView = findViewById(R.id.imageView17);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -151,7 +144,7 @@ public class ProductActivity1 extends AppCompatActivity {
                 startActivity(intent);
             }
         });
-
+//defines click actions for each menu item to navigate to different activities
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);

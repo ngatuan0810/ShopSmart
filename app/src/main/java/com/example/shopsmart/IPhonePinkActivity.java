@@ -22,6 +22,7 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
@@ -63,6 +64,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
     private List<Product> filteredList;
     private List<Product> productList;
 
+    @SuppressLint("MissingInflatedId")
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -149,6 +151,8 @@ public class IPhonePinkActivity extends AppCompatActivity {
         TableLayout tableLayout = findViewById(R.id.table_layout);
         fillTableLayoutWithSpecs(tableLayout, specs);
 
+
+        //setting up click listeners for text views and managing associated image views and underlines
         setupTextClickListener(findViewById(R.id.textView43), findViewById(R.id.imageView66), findViewById(R.id.underline43));
         setupTextClickListener(findViewById(R.id.textView45), findViewById(R.id.imageView72), findViewById(R.id.underline45));
         setupTextClickListener(findViewById(R.id.textView46), findViewById(R.id.imageView73), findViewById(R.id.underline46));
@@ -304,7 +308,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         UserProfileActivity.watchedProductIds.add(productId);
 
 
-        recyclerView = findViewById(R.id.similiar_products);
+        recyclerView = findViewById(R.id.similar_products);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         productList = ProductUtils.loadProductsFromJson(this);

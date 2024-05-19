@@ -14,20 +14,21 @@ import java.util.List;
 
 public class IphoneAdapter extends PagerAdapter {
 
-    private List<Uri> imageUris;
-    private LayoutInflater layoutInflater;
-    private Context context;
+    private final List<Uri> imageUris;
+    private final LayoutInflater layoutInflater;
+
 
     public IphoneAdapter(List<Uri> imageUris, Context context) {
         this.imageUris = imageUris;
         this.layoutInflater = LayoutInflater.from(context);
-        this.context = context;
     }
 
     @Override
     public int getCount() {
         return imageUris.size();
     }
+
+    //creating the views for each page in the ViewPager
 
     @SuppressLint("UseCompatLoadingForDrawables")
     @NonNull
