@@ -240,6 +240,15 @@ public class IPhonePinkActivity extends AppCompatActivity {
             }
         });
 
+        ImageView imageView = findViewById(R.id.imageView26);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(IPhonePinkActivity.this, ScreenActivity2.class);
+                startActivity(intent);
+            }
+        });
+
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);

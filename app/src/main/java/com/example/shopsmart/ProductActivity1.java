@@ -143,6 +143,15 @@ public class ProductActivity1 extends AppCompatActivity {
             }
         });
 
+        ImageView imageView = findViewById(R.id.imageView17);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductActivity1.this, ScreenActivity2.class);
+                startActivity(intent);
+            }
+        });
+
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);
