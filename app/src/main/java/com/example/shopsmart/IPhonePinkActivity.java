@@ -25,6 +25,9 @@ import androidx.viewpager.widget.ViewPager;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.database.DatabaseReference;
+import com.google.firebase.database.FirebaseDatabase;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.ListResult;
 import com.google.firebase.storage.StorageReference;
@@ -70,6 +73,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         double brandFee = intent.getDoubleExtra("brandFee", 0.0);
         String description = intent.getStringExtra("description");
         String specs = intent.getStringExtra("specs");
+        String releaseDate = intent.getStringExtra("releaseDate");
 
 
         product = (Product) intent.getSerializableExtra("product"); // Assuming Product implements Serializable
@@ -270,7 +274,21 @@ public class IPhonePinkActivity extends AppCompatActivity {
             }
         });
 
+        // Lưu sản phẩm đã xem vào Firebase
+//        saveWatchedProduct(new Product(
+//                productId, productTitle, productScore, productBrand, productType, jbhifiFee, officeworkFee, goodguysFee, bigwFee, brandFee,
+//                releaseDate, jbhifiLink, goodguysLink, officeworkLink, bigwLink, brandLink, description, specs
+//        ));
+        // Lưu ID sản phẩm đã xem vào mảng
+        UserProfileActivity.watchedProductIds.add(productId);
+
     }
+
+//    private void saveWatchedProduct(Product product) {
+//        FirebaseDatabase database = FirebaseDatabase.getInstance();
+//        DatabaseReference myRef = database.getReference("watched_products").child(FirebaseAuth.getInstance().getCurrentUser().getUid());
+//        myRef.child(product.getId()).setValue(product);
+//    }
 
     private void fetchImagesFromFirebase(String productId) {
         FirebaseStorage storage = FirebaseStorage.getInstance();
