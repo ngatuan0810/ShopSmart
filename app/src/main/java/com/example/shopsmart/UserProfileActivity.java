@@ -103,9 +103,11 @@ public class UserProfileActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(UserProfileActivity.this, MyInterestActivity.class);
-                Bundle favorite = new Bundle();
-                favorite.putSerializable("FAV", (Serializable) favorites);
-                intent.putExtra("BUNDLE", favorite);
+                if (favorites != null) {
+                    Bundle favorite = new Bundle();
+                    favorite.putSerializable("FAV", (Serializable) favorites);
+                    intent.putExtra("BUNDLE", favorite);
+                }
                 startActivity(intent);
             }
         });

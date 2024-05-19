@@ -36,11 +36,13 @@ public class MyInterestActivity extends AppCompatActivity {
         // Get favorite data
         Intent intent = getIntent();
         Bundle args = intent.getBundleExtra("BUNDLE");
-        interests = (List<Product>) args.getSerializable("FAV");
-        RecyclerView recyclerView = findViewById(R.id.recycler);
-        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
-        adapter = new ProductAdapter(interests);
-        recyclerView.setAdapter(adapter);
+        if (args != null) {
+            RecyclerView recyclerView = findViewById(R.id.recycler);
+            recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+            interests = (List<Product>) args.getSerializable("FAV");
+            adapter = new ProductAdapter(interests);
+            recyclerView.setAdapter(adapter);
+        }
         ImageView imageView = findViewById(R.id.imageView1);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
