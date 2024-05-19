@@ -266,7 +266,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
             }
         });
 
-        ImageView imageView = findViewById(R.id.imageView26);
+        imageView = findViewById(R.id.imageView26);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
