@@ -163,7 +163,15 @@ public class UserProfileActivity extends AppCompatActivity {
                 filteredList.add(product);
             }
         }
-
+        for (Product product : productList) {
+            int count = 0;
+            if (product.getJbhifi_fee() > 0) count++;
+            if (product.getOfficework_fee() > 0) count++;
+            if (product.getGoodguys_fee() > 0) count++;
+            if (product.getBigw_fee() > 0) count++;
+            if (product.getBrand_fee() > 0) count++;
+            product.setNumber_retailers(count);
+        }
         adapter = new ProductAdapter(filteredList);
         recyclerView.setAdapter(adapter);
     }
