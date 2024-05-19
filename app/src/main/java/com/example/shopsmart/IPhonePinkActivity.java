@@ -23,7 +23,6 @@ import com.google.android.material.bottomnavigation.BottomNavigationView;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import at.blogc.android.views.ExpandableTextView;
 
 public class IPhonePinkActivity extends AppCompatActivity {
     private boolean isExpanded = false;
@@ -229,8 +228,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
     }
 
     private void toggleTextExpansion() {
-        ExpandableTextView expandableTextView = findViewById(R.id.expandableTextView);
-        expandableTextView.toggle(); // Toggle text expansion
 
         Button toggleButton = findViewById(R.id.button_toggle);
         if (isExpanded) {
