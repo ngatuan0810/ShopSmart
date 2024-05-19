@@ -143,6 +143,15 @@ public class ProductActivity1 extends AppCompatActivity {
             }
         });
 
+        ImageView imageView = findViewById(R.id.imageView17);
+        imageView.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ProductActivity1.this, ScreenActivity2.class);
+                startActivity(intent);
+            }
+        });
+
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
         MenuItem homeIcon = menu.findItem(R.id.home);
@@ -334,6 +343,24 @@ public class ProductActivity1 extends AppCompatActivity {
             }
             adapter.notifyDataSetChanged();
         }
+        else if (filterType != null && filterType.equals("Smartwatch")) {
+            filteredList.clear();
+            for (Product product : productList) {
+                if (product.getType().equalsIgnoreCase("Smartwatch")) {
+                    filteredList.add(product);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
+        else if (filterType != null && filterType.equals("Drone")) {
+            filteredList.clear();
+            for (Product product : productList) {
+                if (product.getType().equalsIgnoreCase("Drone")) {
+                    filteredList.add(product);
+                }
+            }
+            adapter.notifyDataSetChanged();
+        }
     }
 
     private void clearFilters() {
@@ -508,4 +535,3 @@ public class ProductActivity1 extends AppCompatActivity {
 
 
 }
-
