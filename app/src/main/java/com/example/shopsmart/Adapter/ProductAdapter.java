@@ -2,6 +2,7 @@ package com.example.shopsmart.Adapter;
 
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -11,10 +12,13 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.Domain.Product;
 import com.example.shopsmart.IPhonePinkActivity;
+import com.example.shopsmart.MyInterestActivity;
+import com.example.shopsmart.ProductActivity1;
 import com.example.shopsmart.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -28,16 +32,19 @@ import java.util.List;
 public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductViewHolder> {
 
     private List<Product> productList;
+    private List<Product> favoriteProducts;
 
     public ProductAdapter(List<Product> productList) {
         this.productList = productList;
     }
-
+    public void setFavoriteProducts(List<Product> products) {
+        favoriteProducts = products;
+    }
     @NonNull
     @Override
     public ProductViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.viewholder_prod_list, parent, false);
-        return new ProductViewHolder(view);
+        return new ProductViewHolder(view, favoriteProducts);
     }
 
     @Override
@@ -59,8 +66,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         private ImageView brandImg;
         private ImageView pic;
         private ImageButton favouriteButton;
-
-        public ProductViewHolder(@NonNull View itemView) {
+        private List<Product> favoritesProducts;
+        public ProductViewHolder(@NonNull View itemView, @Nullable List<Product> favorites) {
             super(itemView);
             titleTxt = itemView.findViewById(R.id.titleTxt);
             feeTxt = itemView.findViewById(R.id.feeTxt);
@@ -69,6 +76,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             brandImg = itemView.findViewById(R.id.brand_img);
             pic = itemView.findViewById(R.id.pic);
             favouriteButton = itemView.findViewById(R.id.favourite_btn);
+            favoritesProducts = favorites;
         }
 
         public void bind(Product product) {
@@ -91,6 +99,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     product.setFavourite(!product.isFavourite());
                     if (product.isFavourite()) {
                         favouriteButton.setImageResource(R.drawable.vector);
+                        favoritesProducts.add(product);
                     } else {
                         favouriteButton.setImageResource(R.drawable.vector_3);
                     }
@@ -171,5 +180,6 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             String resourceName = "drawable/" + brandLowercase;
             return context.getResources().getIdentifier(resourceName, null, context.getPackageName());
         }
+
     }
 }

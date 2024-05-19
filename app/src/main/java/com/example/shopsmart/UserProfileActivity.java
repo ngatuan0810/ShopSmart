@@ -13,13 +13,19 @@ import android.widget.ViewFlipper;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.shopsmart.Domain.Product;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import java.io.Serializable;
+import java.util.List;
+
 public class UserProfileActivity extends AppCompatActivity {
     ViewFlipper flipper;
     FirebaseAuth firebaseAuth;
+    List<Product> favorites;
     int[] layouts = new int[] {R.layout.my_interest, R.layout.my_watched, R.layout.my_review, R.layout.my_coupon, R.layout.my_notification};
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +36,10 @@ public class UserProfileActivity extends AppCompatActivity {
         // Get the current user's profile
         firebaseAuth = FirebaseAuth.getInstance();
         FirebaseUser user = firebaseAuth.getCurrentUser();
+
+        Intent intent = getIntent();
+        Bundle args = intent.getBundleExtra("BUNDLE");
+        favorites = (List<Product>) args.getSerializable("FAV");
 
         BottomNavigationView navView = findViewById(R.id.nav);
         Menu menu = navView.getMenu();
@@ -90,7 +100,11 @@ public class UserProfileActivity extends AppCompatActivity {
         likedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                handleItemNav(1, R.id.imageView1);
+                Intent intent = new Intent(UserProfileActivity.this, MyInterestActivity.class);
+                Bundle favorite = new Bundle();
+                favorite.putSerializable("FAV", (Serializable) favorites);
+                intent.putExtra("BUNDLE", favorite);
+                startActivity(intent);
             }
         });
         watchedButton.setOnClickListener(new View.OnClickListener() {

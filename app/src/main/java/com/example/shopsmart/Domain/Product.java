@@ -3,7 +3,9 @@ package com.example.shopsmart.Domain;
 
 import android.content.Context;
 
-public class Product {
+import java.io.Serializable;
+
+public class Product implements Serializable {
     private Context context;
     private String id;
     private String title;

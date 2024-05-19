@@ -34,7 +34,6 @@ import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import at.blogc.android.views.ExpandableTextView;
 import com.example.shopsmart.Domain.Product;
 public class IPhonePinkActivity extends AppCompatActivity {
     private boolean isExpanded = false;
@@ -82,7 +81,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
         TextView titleTextView3 = findViewById(R.id.subproductTitle3);
         TextView titleTextView4 = findViewById(R.id.subproductTitle4);
         TextView titleTextView5 = findViewById(R.id.subproductTitle5);
-        ExpandableTextView  descriptionView = findViewById(R.id.expandableTextView);
 
 
         TextView scoreTextView = findViewById(R.id.productScore);
@@ -93,7 +91,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
         TextView bigwFeeTextView = findViewById(R.id.bigw_fee);
         TextView brandFeeTextView = findViewById(R.id.brand_fee);
 
-        descriptionView.setText(description);
         titleTextView.setText(productTitle);
         titleTextView1.setText(productTitle);
         titleTextView2.setText(productTitle);
@@ -336,8 +333,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
     }
 
     private void toggleTextExpansion() {
-        ExpandableTextView expandableTextView = findViewById(R.id.expandableTextView);
-        expandableTextView.toggle(); // Toggle text expansion
 
         Button toggleButton = findViewById(R.id.button_toggle);
         if (isExpanded) {
