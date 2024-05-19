@@ -2,34 +2,31 @@ package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import androidx.annotation.NonNull;
 import androidx.viewpager.widget.PagerAdapter;
+import com.squareup.picasso.Picasso;
+import java.util.List;
 
 public class IphoneAdapter extends PagerAdapter {
 
-    int [] images;
-    LayoutInflater layoutInflater;
-    Context context;
+    private List<Uri> imageUris;
+    private LayoutInflater layoutInflater;
+    private Context context;
 
-    public IphoneAdapter(int [] images, Context context){
-        this.images = images;
+    public IphoneAdapter(List<Uri> imageUris, Context context) {
+        this.imageUris = imageUris;
         this.layoutInflater = LayoutInflater.from(context);
         this.context = context;
     }
 
     @Override
-    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
-        container.removeView((View) object);
-
-    }
-
-    @Override
     public int getCount() {
-        return images.length;
+        return imageUris.size();
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
@@ -38,10 +35,14 @@ public class IphoneAdapter extends PagerAdapter {
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
         View myImageLayout = layoutInflater.inflate(R.layout.iphone_image, container, false);
         ImageView imageView = myImageLayout.findViewById(R.id.imageView62);
-        imageView.setImageDrawable(context.getDrawable(images[position]));
+        Picasso.get().load(imageUris.get(position)).into(imageView);
         container.addView(myImageLayout);
         return myImageLayout;
+    }
 
+    @Override
+    public void destroyItem(@NonNull ViewGroup container, int position, @NonNull Object object) {
+        container.removeView((View) object);
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.graphics.Typeface;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Handler;
@@ -14,25 +15,37 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.ScrollView;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
+
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.ListResult;
+import com.google.firebase.storage.StorageReference;
+
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Timer;
 import java.util.TimerTask;
 
-
+import at.blogc.android.views.ExpandableTextView;
+import com.example.shopsmart.Domain.Product;
 public class IPhonePinkActivity extends AppCompatActivity {
     private boolean isExpanded = false;
-    ViewPager viewPager;
-    ImageView imageView;
-    int[] images = {R.drawable.image_12, R.drawable.image_13, R.drawable.image_14, R.drawable.image_15};
-
-    int currentPage = 0;
-    Timer timer;
-    LinearLayout indicatorContainer1;
+    private ViewPager viewPager;
+    private ImageView imageView;
+    private List<Uri> imageUris = new ArrayList<>();
+    private IphoneAdapter adapter;
+    private int currentPage = 0;
+    private Timer timer;
+    private LinearLayout indicatorContainer1;
+    private Product product;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,23 +53,81 @@ public class IPhonePinkActivity extends AppCompatActivity {
         EdgeToEdge.enable(this);
         setContentView(R.layout.activity_iphone_pink);
 
+        // Nhận dữ liệu sản phẩm từ Intent
+        Intent intent = getIntent();
+        String productId = intent.getStringExtra("productId");
+
+        String productTitle = intent.getStringExtra("productTitle");
+        String productBrand = intent.getStringExtra("productBrand");
+        String productType = intent.getStringExtra("productType");
+        double productPrice = intent.getDoubleExtra("productPrice", 0.0);
+        float productScore = intent.getFloatExtra("productScore", 0.0f);
+        int numberRetailers = intent.getIntExtra("numberRetailers", 0);
+        double jbhifiFee = intent.getDoubleExtra("jbhifiFee", 0.0);
+        double officeworkFee = intent.getDoubleExtra("officeworkFee", 0.0);
+        double goodguysFee = intent.getDoubleExtra("goodguysFee", 0.0);
+        double bigwFee = intent.getDoubleExtra("bigwFee", 0.0);
+        double brandFee = intent.getDoubleExtra("brandFee", 0.0);
+        String description = intent.getStringExtra("description");
+        String specs = intent.getStringExtra("specs");
+
+
+        product = (Product) intent.getSerializableExtra("product"); // Assuming Product implements Serializable
+
+
+        // Hiển thị dữ liệu sản phẩm
+        TextView titleTextView = findViewById(R.id.productTitle);
+        TextView titleTextView1 = findViewById(R.id.subproductTitle1);
+        TextView titleTextView2 = findViewById(R.id.subproductTitle2);
+        TextView titleTextView3 = findViewById(R.id.subproductTitle3);
+        TextView titleTextView4 = findViewById(R.id.subproductTitle4);
+        TextView titleTextView5 = findViewById(R.id.subproductTitle5);
+        ExpandableTextView  descriptionView = findViewById(R.id.expandableTextView);
+
+
+        TextView scoreTextView = findViewById(R.id.productScore);
+        TextView retailersTextView = findViewById(R.id.number_retailer);
+        TextView jbhifiFeeTextView = findViewById(R.id.jbhifi_fee);
+        TextView officeworkFeeTextView = findViewById(R.id.officework_fee);
+        TextView goodguysFeeTextView = findViewById(R.id.goodguys_fee);
+        TextView bigwFeeTextView = findViewById(R.id.bigw_fee);
+        TextView brandFeeTextView = findViewById(R.id.brand_fee);
+
+        descriptionView.setText(description);
+        titleTextView.setText(productTitle);
+        titleTextView1.setText(productTitle);
+        titleTextView2.setText(productTitle);
+        titleTextView3.setText(productTitle);
+        titleTextView4.setText(productTitle);
+        titleTextView5.setText(productTitle);
+        scoreTextView.setText(String.valueOf(productScore));
+        retailersTextView.setText(String.valueOf(numberRetailers));
+        jbhifiFeeTextView.setText(String.format("$%,.2f", jbhifiFee));
+        officeworkFeeTextView.setText(String.format("$%,.2f", officeworkFee));
+        goodguysFeeTextView.setText(String.format("$%,.2f", goodguysFee));
+        bigwFeeTextView.setText(String.format("$%,.2f", bigwFee));
+        brandFeeTextView.setText(String.format("$%,.2f", brandFee));
+
+        TableLayout tableLayout = findViewById(R.id.table_layout);
+        fillTableLayoutWithSpecs(tableLayout, specs);
+
         setupTextClickListener(findViewById(R.id.textView43), findViewById(R.id.imageView66), findViewById(R.id.underline43));
         setupTextClickListener(findViewById(R.id.textView45), findViewById(R.id.imageView72), findViewById(R.id.underline45));
         setupTextClickListener(findViewById(R.id.textView46), findViewById(R.id.imageView73), findViewById(R.id.underline46));
         setupTextClickListener(findViewById(R.id.textView47), findViewById(R.id.imageView59), findViewById(R.id.underline47));
-        viewPager = findViewById(R.id.viewPager);
-        viewPager.setAdapter(new IphoneAdapter(images, IPhonePinkActivity.this));
 
-        // Setup indicators
+        viewPager = findViewById(R.id.viewPager);
+        viewPager.setAdapter(new IphoneAdapter(imageUris, IPhonePinkActivity.this));
         indicatorContainer1 = findViewById(R.id.indicatorContainer1);
         createIndicators();
 
-
+        // Fetch images from Firebase
+        fetchImagesFromFirebase(productId);
 
         // Auto-scroll ViewPager
         final Handler handler = new Handler();
         final Runnable update = () -> {
-            if (currentPage == images.length - 1) {
+            if (currentPage == imageUris.size() - 1) {
                 currentPage = 0;
             } else {
                 currentPage++;
@@ -71,11 +142,9 @@ public class IPhonePinkActivity extends AppCompatActivity {
                 handler.post(update);
             }
         }, 2500, 2500);
-
-        // Add ViewPager listener
         viewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {}
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels){}
 
             @Override
             public void onPageSelected(int position) {
@@ -83,11 +152,13 @@ public class IPhonePinkActivity extends AppCompatActivity {
             }
 
             @Override
-            public void onPageScrollStateChanged(int state) {}
+            public void onPageScrollStateChanged(int state) {
+
+            }
         });
 
         // Set click listener for "Read More" button
-        TableLayout tableLayout = findViewById(R.id.table_layout);
+
         for (int i = 0; i < tableLayout.getChildCount(); i++) {
             View child = tableLayout.getChildAt(i);
             if (i >= 4) {
@@ -114,54 +185,58 @@ public class IPhonePinkActivity extends AppCompatActivity {
                 toggleTextExpansion();
             }
         });
-
+        String jbhifiLink = intent.getStringExtra("jbhifiLink");
+        String officeworkLink = intent.getStringExtra("officeworkLink");
+        String goodguysLink = intent.getStringExtra("goodguysLink");
+        String bigwLink = intent.getStringExtra("bigwLink");
+        String brandLink = intent.getStringExtra("brandLink");
         imageView = findViewById(R.id.imageView67);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.jbhifi.com.au/products/apple-iphone-15-128gb-pink");
+                gotoUrl(jbhifiLink);
             }
         });
         imageView = findViewById(R.id.imageView68);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.officeworks.com.au/shop/officeworks/p/iphone-15-128gb-pink-ipp15clr2");
+                gotoUrl(officeworkLink);
             }
         });
         imageView = findViewById(R.id.imageView69);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.thegoodguys.com.au/apple-iphone-15-128gb-pink-mtp13zpa");
+                gotoUrl(goodguysLink);
             }
         });
         imageView = findViewById(R.id.imageView70);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.bigw.com.au/product/apple-iphone-15-128gb-pink/p/292153");
+                gotoUrl(bigwLink);
             }
         });
         imageView = findViewById(R.id.imageView71);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.apple.com/shop/buy-iphone/iphone-15");
+                gotoUrl(brandLink);
             }
         });
         imageView = findViewById(R.id.imageView82);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.apple.com/shop/buy-iphone/iphone-15-pro");
+                gotoUrl("brandLink");
             }
         });
         imageView = findViewById(R.id.imageView83);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                gotoUrl("https://www.apple.com/shop/buy-iphone/iphone-15-pro");
+                gotoUrl("brandLink");
             }
         });
 
@@ -188,6 +263,38 @@ public class IPhonePinkActivity extends AppCompatActivity {
 
     }
 
+    private void fetchImagesFromFirebase(String productId) {
+        FirebaseStorage storage = FirebaseStorage.getInstance();
+        StorageReference storageRef = storage.getReference().child(productId);
+
+        storageRef.listAll().addOnSuccessListener(new OnSuccessListener<ListResult>() {
+            @Override
+            public void onSuccess(ListResult listResult) {
+                for (StorageReference item : listResult.getItems()) {
+                    item.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+                        @Override
+                        public void onSuccess(Uri uri) {
+                            imageUris.add(uri);
+                            if (adapter == null) {
+                                adapter = new IphoneAdapter(imageUris, IPhonePinkActivity.this);
+                                viewPager.setAdapter(adapter);
+                                createIndicators();
+                            } else {
+                                adapter.notifyDataSetChanged();
+                                createIndicators();
+                            }
+                        }
+                    });
+                }
+            }
+        }).addOnFailureListener(new OnFailureListener() {
+            @Override
+            public void onFailure(@NonNull Exception e) {
+                // Handle any errors
+            }
+        });
+    }
+
     private void gotoUrl(String s) {
         Uri uri = Uri.parse(s);
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
@@ -203,7 +310,8 @@ public class IPhonePinkActivity extends AppCompatActivity {
 
     @SuppressLint("UseCompatLoadingForDrawables")
     private void createIndicators() {
-        for (int i = 0; i < images.length; i++) {
+        indicatorContainer1.removeAllViews();
+        for (int i = 0; i < imageUris.size(); i++) {
             ImageView indicator = new ImageView(this);
             indicator.setImageDrawable(getResources().getDrawable(R.drawable.iphone_indicator_active));
             LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
@@ -228,6 +336,8 @@ public class IPhonePinkActivity extends AppCompatActivity {
     }
 
     private void toggleTextExpansion() {
+        ExpandableTextView expandableTextView = findViewById(R.id.expandableTextView);
+        expandableTextView.toggle(); // Toggle text expansion
 
         Button toggleButton = findViewById(R.id.button_toggle);
         if (isExpanded) {
@@ -289,5 +399,28 @@ public class IPhonePinkActivity extends AppCompatActivity {
     private void scrollToTarget(View targetView) {
         ScrollView scrollView = findViewById(R.id.scrollView);
         scrollView.smoothScrollTo(0, targetView.getTop());
+    }
+    private void fillTableLayoutWithSpecs(TableLayout tableLayout, String specs) {
+        String[] specsArray = specs.split("\n");
+        for (int i = 0; i < specsArray.length; i += 2) {
+            String specName = specsArray[i];
+            String specValue = (i + 1 < specsArray.length) ? specsArray[i + 1] : "";
+
+            TableRow tableRow = new TableRow(this);
+            TextView specNameTextView = new TextView(this);
+            specNameTextView.setText(specName);
+            specNameTextView.setTextColor(getResources().getColor(R.color.black));
+            specNameTextView.setTypeface(null, Typeface.BOLD);
+            specNameTextView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+
+            TextView specValueTextView = new TextView(this);
+            specValueTextView.setText(specValue);
+            specValueTextView.setTextColor(getResources().getColor(R.color.black));
+            specValueTextView.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.WRAP_CONTENT, TableRow.LayoutParams.WRAP_CONTENT, 1f));
+
+            tableRow.addView(specNameTextView);
+            tableRow.addView(specValueTextView);
+            tableLayout.addView(tableRow);
+        }
     }
 }

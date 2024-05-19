@@ -1,6 +1,7 @@
 package com.example.shopsmart.Adapter;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -13,6 +14,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.example.shopsmart.Domain.Product;
+import com.example.shopsmart.IPhonePinkActivity;
 import com.example.shopsmart.R;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -62,7 +64,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             super(itemView);
             titleTxt = itemView.findViewById(R.id.titleTxt);
             feeTxt = itemView.findViewById(R.id.feeTxt);
-            retailersTxt = itemView.findViewById(R.id.number_retailers);
+            retailersTxt = itemView.findViewById(R.id.number_retailer);
             scoreTxt = itemView.findViewById(R.id.scoreTxt);
             brandImg = itemView.findViewById(R.id.brand_img);
             pic = itemView.findViewById(R.id.pic);
@@ -92,6 +94,34 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     } else {
                         favouriteButton.setImageResource(R.drawable.vector_3);
                     }
+                }
+            });
+
+            itemView.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View v) {
+                    Context context = itemView.getContext();
+                    Intent intent = new Intent(context, IPhonePinkActivity.class);
+                    intent.putExtra("productId", product.getId());
+                    intent.putExtra("productTitle", product.getTitle());
+                    intent.putExtra("productBrand", product.getBrand());
+                    intent.putExtra("productType", product.getType());
+                    intent.putExtra("productPrice", product.getMinFee());
+                    intent.putExtra("productScore", product.getScore_rating());
+                    intent.putExtra("numberRetailers", product.getNumber_retailers());
+                    intent.putExtra("jbhifiFee", product.getJbhifi_fee());
+                    intent.putExtra("officeworkFee", product.getOfficework_fee());
+                    intent.putExtra("goodguysFee", product.getGoodguys_fee());
+                    intent.putExtra("bigwFee", product.getBigw_fee());
+                    intent.putExtra("brandFee", product.getBrand_fee());
+                    intent.putExtra("jbhifiLink", product.getJbhifi_link());
+                    intent.putExtra("officeworkLink", product.getOfficework_link());
+                    intent.putExtra("goodguysLink", product.getGoodguys_link());
+                    intent.putExtra("bigwLink", product.getBigw_link());
+                    intent.putExtra("brandLink", product.getBrand_link());
+                    intent.putExtra("description", product.getDescription());
+                    intent.putExtra("specs", product.getSpecs());
+                    context.startActivity(intent);
                 }
             });
 
