@@ -121,6 +121,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
                     intent.putExtra("brandLink", product.getBrand_link());
                     intent.putExtra("description", product.getDescription());
                     intent.putExtra("specs", product.getSpecs());
+                    intent.putExtra("minFee", product.getMinFee());
                     context.startActivity(intent);
                 }
             });
