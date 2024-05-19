@@ -1,6 +1,7 @@
 package com.example.shopsmart;
 
 import android.annotation.SuppressLint;
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.Typeface;
 import android.net.Uri;
@@ -89,7 +90,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         String description = intent.getStringExtra("description");
         String specs = intent.getStringExtra("specs");
         String releaseDate = intent.getStringExtra("releaseDate");
-
+        double minFee = intent.getDoubleExtra("minFee", 0.0);
 
         product = (Product) intent.getSerializableExtra("product"); // Assuming Product implements Serializable
 
@@ -121,11 +122,11 @@ public class IPhonePinkActivity extends AppCompatActivity {
         titleTextView5.setText(productTitle);
         scoreTextView.setText(String.valueOf(productScore));
         retailersTextView.setText(String.valueOf(numberRetailers));
-        jbhifiFeeTextView.setText(String.format("$%,.2f", jbhifiFee));
-        officeworkFeeTextView.setText(String.format("$%,.2f", officeworkFee));
-        goodguysFeeTextView.setText(String.format("$%,.2f", goodguysFee));
-        bigwFeeTextView.setText(String.format("$%,.2f", bigwFee));
-        brandFeeTextView.setText(String.format("$%,.2f", brandFee));
+        jbhifiFeeTextView.setText(String.format("$%,.0f", jbhifiFee));
+        officeworkFeeTextView.setText(String.format("$%,.0f", officeworkFee));
+        goodguysFeeTextView.setText(String.format("$%,.0f", goodguysFee));
+        bigwFeeTextView.setText(String.format("$%,.0f", bigwFee));
+        brandFeeTextView.setText(String.format("$%,.0f", brandFee));
 
         // Ẩn các ConstraintLayout nếu phí bằng 0.0
         ConstraintLayout jbhifiLayout = findViewById(R.id.jbhifi_retailer);
@@ -144,6 +145,27 @@ public class IPhonePinkActivity extends AppCompatActivity {
         }
         if (bigwFee == 0.0) {
             bigwLayout.setVisibility(View.GONE);
+        }
+
+        ImageView jbhifiTag = findViewById(R.id.supposed_tag_jbhifi);
+        ImageView officeworkTag = findViewById(R.id.supposed_tag_officework);
+        ImageView goodguysTag = findViewById(R.id.supposed_tag_goodguys);
+        ImageView bigwTag = findViewById(R.id.supposed_tag_bigw);
+        ImageView brandTag = findViewById(R.id.supposed_tag_brand);
+        if (jbhifiFee == minFee) {
+            jbhifiTag.setVisibility(View.VISIBLE);
+        }
+        if (officeworkFee == minFee) {
+            officeworkTag.setVisibility(View.VISIBLE);
+        }
+        if (goodguysFee == minFee) {
+            goodguysTag.setVisibility(View.VISIBLE);
+        }
+        if (bigwFee == minFee) {
+            bigwTag.setVisibility(View.VISIBLE);
+        }
+        if (brandFee == minFee) {
+            brandTag.setVisibility(View.VISIBLE);
         }
 
 
@@ -308,7 +330,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         UserProfileActivity.watchedProductIds.add(productId);
 
 
-        recyclerView = findViewById(R.id.similar_products);
+        recyclerView = findViewById(R.id.similiar_products);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         productList = ProductUtils.loadProductsFromJson(this);
@@ -327,6 +349,10 @@ public class IPhonePinkActivity extends AppCompatActivity {
         adapterProduct = new ProductAdapter(filteredList);
         recyclerView.setAdapter(adapterProduct);
 
+        ImageView brandLogo = findViewById(R.id.brand_retailer_logo);
+        int brandImageId = getBrandImageId(this, productBrand);
+        brandLogo.setImageResource(brandImageId);
+
     }
 
 //    private void saveWatchedProduct(Product product) {
@@ -335,6 +361,12 @@ public class IPhonePinkActivity extends AppCompatActivity {
 //        myRef.child(product.getId()).setValue(product);
 //    }
 
+
+    private int getBrandImageId(Context context, String brand) {
+        String brandLowercase = brand.toLowerCase();
+        String resourceName = "drawable/" + brandLowercase;
+        return context.getResources().getIdentifier(resourceName, null, context.getPackageName());
+    }
 
     private List<Product> filterAndSortSimilarProducts(List<Product> products, String brand, String type) {
         List<Product> similarProducts = new ArrayList<>();
