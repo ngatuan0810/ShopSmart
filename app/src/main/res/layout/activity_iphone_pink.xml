@@ -710,6 +710,7 @@
                     android:id="@+id/table_layout"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:paddingLeft="20dp"
                     android:stretchColumns="*">
 
                     <!--                    <TableRow>-->
@@ -1365,6 +1366,7 @@
                             android:layout_width="match_parent"
                             android:layout_height="match_parent"
                             android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
                             app:layout_constraintEnd_toEndOf="parent"
                             app:layout_constraintStart_toStartOf="parent"
                             app:layout_constraintTop_toTopOf="parent" />
