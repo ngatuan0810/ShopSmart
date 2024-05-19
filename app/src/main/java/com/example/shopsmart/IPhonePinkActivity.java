@@ -330,7 +330,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         UserProfileActivity.watchedProductIds.add(productId);
 
 
-        recyclerView = findViewById(R.id.similar_products);
+        recyclerView = findViewById(R.id.similiar_products);
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
 
         productList = ProductUtils.loadProductsFromJson(this);
