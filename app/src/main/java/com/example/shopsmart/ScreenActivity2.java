@@ -37,6 +37,7 @@ public class ScreenActivity2 extends AppCompatActivity {
     private ProductAdapter adapter;
     private List<Product> filteredList;
     private List<Product> productList;
+    private LinearLayout linear;
     int images[] = {R.drawable.image_3, R.drawable.image_2, R.drawable.image_1};
     int currentPage = 0;
     Timer timer;
@@ -97,6 +98,16 @@ public class ScreenActivity2 extends AppCompatActivity {
             }
         });
 
+        linear = findViewById(R.id.linear);
+        linear.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(ScreenActivity2.this, ProductActivity1.class);
+                startActivity(intent);
+            }
+        });
+
+
         imageView = findViewById(R.id.imageView17);
         imageView.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -112,14 +123,14 @@ public class ScreenActivity2 extends AppCompatActivity {
                 gotoUrl("https://www.thegoodguys.com.au");
             }
         });
-
-        LinearLayout linearLayout = findViewById(R.id.linear);
-        linearLayout.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                startActivity(new Intent(ScreenActivity2.this, SearchActivity.class));
-            }
-        });
+//
+//        LinearLayout linearLayout = findViewById(R.id.linear);
+//        linearLayout.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View v) {
+//                startActivity(new Intent(ScreenActivity2.this, SearchActivity.class));
+//            }
+//        });
 
         lstItem = new ArrayList<>();
         lstItem.add(new Item(R.drawable.image_4, ProductActivity1.class));
