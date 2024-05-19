@@ -355,12 +355,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         }
 
         // Sắp xếp danh sách sản phẩm tương tự theo giá từ thấp đến cao
-        Collections.sort(similarProducts, new Comparator<Product>() {
-            @Override
-            public int compare(Product p1, Product p2) {
-                return Double.compare(p1.getMinFee(), p2.getMinFee());
-            }
-        });
+
 
         return similarProducts;
     }
