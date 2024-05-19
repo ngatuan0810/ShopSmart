@@ -1267,27 +1267,10 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
 
-                        <LinearLayout
-                            android:id="@+id/linearLayout19"
-                            android:layout_width="wrap_content"
-                            android:layout_height="match_parent"
-                            android:layout_marginEnd="225dp"
-                            android:orientation="horizontal"
-                            app:layout_constraintBottom_toBottomOf="parent"
-                            app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/imageView82"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="25dp"
-                                android:layout_weight="1"
-                                android:contentDescription="@string/todo53"
-                                app:srcCompat="@drawable/group_13" />
-                        </LinearLayout>
+                        <androidx.recyclerview.widget.RecyclerView
+                            android:id="@+id/similiar_products"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent" />
 
                         <LinearLayout
                             android:layout_width="wrap_content"
@@ -1295,21 +1278,7 @@
                             android:orientation="horizontal"
                             app:layout_constraintBottom_toBottomOf="parent"
                             app:layout_constraintEnd_toEndOf="parent"
-                            app:layout_constraintHorizontal_bias="0.95"
-                            app:layout_constraintStart_toStartOf="@+id/linearLayout19"
-                            app:layout_constraintTop_toTopOf="parent">
-
-                            <ImageView
-                                android:id="@+id/imageView83"
-                                android:layout_width="0dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="25dp"
-                                android:layout_weight="1"
-                                android:contentDescription="@string/todo54"
-                                app:srcCompat="@drawable/group_14" />
-
-                        </LinearLayout>
+                            app:layout_constraintTop_toTopOf="parent"/>
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 

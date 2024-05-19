@@ -13,14 +13,33 @@ import android.widget.ViewFlipper;
 import androidx.activity.EdgeToEdge;
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+
+import com.example.shopsmart.Adapter.ProductAdapter;
+import com.example.shopsmart.Domain.Product;
+import com.example.shopsmart.utils.ProductUtils;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
+
+import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class UserProfileActivity extends AppCompatActivity {
     ViewFlipper flipper;
     FirebaseAuth firebaseAuth;
+    private RecyclerView recyclerView;
+    private List<Product> productList;
+    private ProductAdapter adapter;
+    private List<Product> filteredList;
     int[] layouts = new int[] {R.layout.my_interest, R.layout.my_watched, R.layout.my_review, R.layout.my_coupon, R.layout.my_notification};
+
+    // Mảng tĩnh lưu các ID sản phẩm đã xem
+    public static Set<String> watchedProductIds = new HashSet<>();
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,6 +73,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 return false;
             }
         });
+
         // Display username in profile
         TextView userName = findViewById(R.id.textView21);
         flipper = findViewById(R.id.flipper);
@@ -65,6 +85,7 @@ public class UserProfileActivity extends AppCompatActivity {
             View childView = getLayoutInflater().inflate(layout, null);
             flipper.addView(childView);
         }
+
         LinearLayout likedButton = findViewById(R.id.likedButton);
         LinearLayout watchedButton = findViewById(R.id.watchedButton);
         LinearLayout reviewedButton = findViewById(R.id.reviewedButton);
@@ -72,6 +93,7 @@ public class UserProfileActivity extends AppCompatActivity {
         LinearLayout seller1 = findViewById(R.id.JBHifi);
         LinearLayout seller2 = findViewById(R.id.GoodGuys);
         ImageView noticeButton = findViewById(R.id.imageView37);
+
         // URL redirection for sellers
         seller1.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,6 +109,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
         likedButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -117,6 +140,7 @@ public class UserProfileActivity extends AppCompatActivity {
                 handleItemNav(5, R.id.imageView5);
             }
         });
+
         ImageView logOut = findViewById(R.id.imageView36);
         logOut.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -126,7 +150,24 @@ public class UserProfileActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        recyclerView = findViewById(R.id.watched_products_recycler);
+        recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
+
+        productList = ProductUtils.loadProductsFromJson(this);
+
+        // Lọc danh sách sản phẩm dựa trên các ID đã xem
+        filteredList = new ArrayList<>();
+        for (Product product : productList) {
+            if (watchedProductIds.contains(product.getId())) {
+                filteredList.add(product);
+            }
+        }
+
+        adapter = new ProductAdapter(filteredList);
+        recyclerView.setAdapter(adapter);
     }
+
     void handleItemNav(int id, int back) {
         flipper.setDisplayedChild(id);
         ImageView backIcon = findViewById(back);
