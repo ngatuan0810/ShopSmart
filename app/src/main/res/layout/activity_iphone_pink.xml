@@ -661,18 +661,7 @@
                 android:layout_height="match_parent"
                 android:orientation="vertical">
 
-                <at.blogc.android.views.ExpandableTextView
-                    android:id="@+id/expandableTextView"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginEnd="10dp"
-                    android:ellipsize="end"
-                    android:maxLines="10"
-                    android:text="@string/text"
-                    app:animation_duration="750"
-                    android:textSize="15sp"/>
+
 
 
                 <androidx.appcompat.widget.AppCompatButton

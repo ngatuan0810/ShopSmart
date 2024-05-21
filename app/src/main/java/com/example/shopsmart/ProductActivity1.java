@@ -27,6 +27,7 @@ import com.example.shopsmart.Domain.Brand;
 import com.example.shopsmart.Domain.Product;
 
 import java.io.InputStream;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -68,6 +69,7 @@ public class ProductActivity1 extends AppCompatActivity {
     private TextView maxPriceTextView;
 
     private FirebaseStorage storage;
+    private List<Product> favoriteProducts = new ArrayList<Product>();
 
 
     @SuppressLint("WrongViewCast")
@@ -124,6 +126,7 @@ public class ProductActivity1 extends AppCompatActivity {
 
         recyclerView.setLayoutManager(new GridLayoutManager(this, 2));
         adapter = new ProductAdapter(filteredList);
+        adapter.setFavoriteProducts(favoriteProducts);
         recyclerView.setAdapter(adapter);
 
         searchButton.setOnClickListener(new View.OnClickListener() {
@@ -163,6 +166,9 @@ public class ProductActivity1 extends AppCompatActivity {
             @Override
             public boolean onMenuItemClick(@NonNull MenuItem item) {
                 Intent intent = new Intent(ProductActivity1.this, UserProfileActivity.class);
+                Bundle favorites = new Bundle();
+                favorites.putSerializable("FAV", (Serializable) favoriteProducts);
+                intent.putExtra("BUNDLE", favorites);
                 startActivity(intent);
                 return true;
             }
