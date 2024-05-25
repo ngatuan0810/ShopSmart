@@ -43,7 +43,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Arrays;
 
-public class LogInActivity extends AppCompatActivity {
+public abstract class LogInActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String TAG = "SUCCESS";
     String FAIL = "FAILED";
@@ -249,7 +249,5 @@ public class LogInActivity extends AppCompatActivity {
     }
 
 
-
-
-
+    public abstract FirebaseAuth getFirebaseAuthInstance();
 }

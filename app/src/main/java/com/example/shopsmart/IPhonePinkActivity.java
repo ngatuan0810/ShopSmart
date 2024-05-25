@@ -49,6 +49,8 @@ import java.util.TimerTask;
 
 import com.example.shopsmart.Domain.Product;
 
+import at.blogc.android.views.ExpandableTextView;
+
 public class IPhonePinkActivity extends AppCompatActivity {
     private boolean isExpanded = false;
     private ViewPager viewPager;
@@ -101,6 +103,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         TextView titleTextView3 = findViewById(R.id.subproductTitle3);
         TextView titleTextView4 = findViewById(R.id.subproductTitle4);
         TextView titleTextView5 = findViewById(R.id.subproductTitle5);
+        ExpandableTextView descriptionView = findViewById(R.id.expandableTextView);
 
 
         TextView scoreTextView = findViewById(R.id.productScore);
@@ -111,6 +114,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         TextView bigwFeeTextView = findViewById(R.id.bigw_fee);
         TextView brandFeeTextView = findViewById(R.id.brand_fee);
 
+        descriptionView.setText(description);
         titleTextView.setText(productTitle);
         titleTextView1.setText(productTitle);
         titleTextView2.setText(productTitle);
@@ -357,6 +361,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         recyclerView.setAdapter(adapterProduct);
 
         ImageView brandLogo = findViewById(R.id.brand_retailer_logo);
+        assert productBrand != null;
         int brandImageId = getBrandImageId(this, productBrand);
         brandLogo.setImageResource(brandImageId);
 
@@ -475,7 +480,8 @@ public class IPhonePinkActivity extends AppCompatActivity {
     }
 
     private void toggleTextExpansion() {
-
+        ExpandableTextView expandableTextView = findViewById(R.id.expandableTextView);
+        expandableTextView.toggle();
         Button toggleButton = findViewById(R.id.button_toggle);
         if (isExpanded) {
             toggleButton.setText(R.string.more_details);
