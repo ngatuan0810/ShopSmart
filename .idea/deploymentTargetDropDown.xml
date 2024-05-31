@@ -5,25 +5,16 @@
       <entry key="FacebookLoginTest">
         <State />
       </entry>
-      <entry key="FavouriteProductListTestUI">
+      <entry key="LoginAActivityTest">
         <State />
       </entry>
       <entry key="Nav_Instrumented_Test">
         <State />
       </entry>
-      <entry key="PriceSeekBarUITest">
-        <State />
-      </entry>
-      <entry key="LoginAActivityTest">
-        <State />
-      </entry>
-      <entry key="UserProfileActivityTest">
-        <State />
-      </entry>
       <entry key="ProductActivity1Test">
         <State />
       </entry>
-      <entry key="ScreenActivityTest">
+      <entry key="UserProfileActivityTest">
         <State />
       </entry>
       <entry key="app">
@@ -41,9 +32,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-05-17T04:37:18.534651200Z" />
         </State>
-      </entry>
-      <entry key="testHandleGoogleLogin()">
-        <State />
       </entry>
     </value>
   </component>
