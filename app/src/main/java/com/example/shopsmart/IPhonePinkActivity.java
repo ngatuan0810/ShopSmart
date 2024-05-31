@@ -52,7 +52,7 @@ import com.example.shopsmart.Domain.Product;
 import at.blogc.android.views.ExpandableTextView;
 
 public class IPhonePinkActivity extends AppCompatActivity {
-    private boolean isExpanded = false;
+    boolean isExpanded = false;
     private ViewPager viewPager;
     private ImageView imageView;
     private List<Uri> imageUris = new ArrayList<>();
@@ -332,11 +332,6 @@ public class IPhonePinkActivity extends AppCompatActivity {
             }
         });
 
-        // Lưu sản phẩm đã xem vào Firebase
-//        saveWatchedProduct(new Product(
-//                productId, productTitle, productScore, productBrand, productType, jbhifiFee, officeworkFee, goodguysFee, bigwFee, brandFee,
-//                releaseDate, jbhifiLink, goodguysLink, officeworkLink, bigwLink, brandLink, description, specs
-//        ));
         // Lưu ID sản phẩm đã xem vào mảng
         UserProfileActivity.watchedProductIds.add(productId);
 
@@ -380,7 +375,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         return context.getResources().getIdentifier(resourceName, null, context.getPackageName());
     }
 
-    private List<Product> filterAndSortSimilarProducts(List<Product> products, String brand, String type) {
+    List<Product> filterAndSortSimilarProducts(List<Product> products, String brand, String type) {
         List<Product> similarProducts = new ArrayList<>();
 
         // Thêm sản phẩm cùng brand trước
@@ -439,7 +434,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         });
     }
 
-    private void gotoUrl(String s) {
+    void gotoUrl(String s) {
         Uri uri = Uri.parse(s);
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
@@ -479,7 +474,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         }
     }
 
-    private void toggleTextExpansion() {
+    void toggleTextExpansion() {
         ExpandableTextView expandableTextView = findViewById(R.id.expandableTextView);
         expandableTextView.toggle();
         Button toggleButton = findViewById(R.id.button_toggle);
@@ -517,10 +512,10 @@ public class IPhonePinkActivity extends AppCompatActivity {
         isExpanded = false; // Update flag
     }
 
-    private TextView lastClickedTextView;
-    private View lastClickedUnderlineView;
+    TextView lastClickedTextView;
+    View lastClickedUnderlineView;
 
-    private void setupTextClickListener(final TextView textView, final View targetView, final View underlineView) {
+    void setupTextClickListener(final TextView textView, final View targetView, final View underlineView) {
         textView.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -530,7 +525,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         });
     }
 
-    private void toggleUnderlineVisibility(TextView textView, View underlineView) {
+    void toggleUnderlineVisibility(TextView textView, View underlineView) {
         if (lastClickedTextView != null && lastClickedUnderlineView != null) {
             lastClickedUnderlineView.setVisibility(View.INVISIBLE);
         }
@@ -539,7 +534,7 @@ public class IPhonePinkActivity extends AppCompatActivity {
         lastClickedUnderlineView = underlineView;
     }
 
-    private void scrollToTarget(View targetView) {
+    void scrollToTarget(View targetView) {
         ScrollView scrollView = findViewById(R.id.scrollView);
         scrollView.smoothScrollTo(0, targetView.getTop());
     }

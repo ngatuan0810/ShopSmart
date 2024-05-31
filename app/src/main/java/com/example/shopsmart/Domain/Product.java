@@ -55,6 +55,9 @@ public class Product implements Serializable {
         this.specs = specs;
     }
 
+    public Product(String iPhone, String apple, String phone) {
+    }
+
     // Getters and setters
     public boolean isFavourite() {
         return isFavourite;

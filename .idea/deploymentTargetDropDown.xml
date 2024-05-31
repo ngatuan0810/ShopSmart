@@ -15,7 +15,48 @@
               </deviceKey>
             </Target>
           </targetSelectedWithDropDown>
-          <timeTargetWasSelectedWithDropDown value="2024-05-17T04:37:18.534651200Z" />
+          <timeTargetWasSelectedWithDropDown value="2024-05-30T03:38:09.046189400Z" />
+        </State>
+      </entry>
+      <entry key="testCreateIndicators()">
+        <State />
+      </entry>
+      <entry key="testGotoUrl()">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\cherc\.android\avd\Pixel_7_API_27.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-31T02:59:37.489606800Z" />
+        </State>
+      </entry>
+      <entry key="testHandleAccessToken_FacebookSuccess() (1)">
+        <State />
+      </entry>
+      <entry key="testHandleGoogleLogin()">
+        <State />
+      </entry>
+      <entry key="testUpdateIndicators()">
+        <State>
+          <targetSelectedWithDropDown>
+            <Target>
+              <type value="QUICK_BOOT_TARGET" />
+              <deviceKey>
+                <Key>
+                  <type value="VIRTUAL_DEVICE_PATH" />
+                  <value value="C:\Users\cherc\.android\avd\Pixel_7_API_27.avd" />
+                </Key>
+              </deviceKey>
+            </Target>
+          </targetSelectedWithDropDown>
+          <timeTargetWasSelectedWithDropDown value="2024-05-30T11:20:09.306492Z" />
         </State>
       </entry>
     </value>

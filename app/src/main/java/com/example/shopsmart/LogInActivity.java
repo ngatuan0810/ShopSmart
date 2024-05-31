@@ -43,7 +43,7 @@ import com.google.firebase.auth.GoogleAuthProvider;
 
 import java.util.Arrays;
 
-public abstract class LogInActivity extends AppCompatActivity {
+public class LogInActivity extends AppCompatActivity {
     FirebaseAuth firebaseAuth;
     String TAG = "SUCCESS";
     String FAIL = "FAILED";
@@ -52,8 +52,8 @@ public abstract class LogInActivity extends AppCompatActivity {
     CallbackManager callBackManager;
     GoogleSignInOptions gso;
     GoogleSignInClient client;
-    final int FACEBOOK = 0;
-    final int GOOGLE = 1;
+    static final int FACEBOOK = 0;
+    static final int GOOGLE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -248,6 +248,4 @@ public abstract class LogInActivity extends AppCompatActivity {
         });
     }
 
-
-    public abstract FirebaseAuth getFirebaseAuthInstance();
 }
