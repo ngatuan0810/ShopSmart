@@ -2,6 +2,15 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
+      <entry key="LogInActivityTest">
+        <State />
+      </entry>
+      <entry key="LoginAActivityTest">
+        <State />
+      </entry>
+      <entry key="UserProfileActivityTest">
+        <State />
+      </entry>
       <entry key="app">
         <State>
           <targetSelectedWithDropDown>
@@ -17,6 +26,9 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-05-17T04:37:18.534651200Z" />
         </State>
+      </entry>
+      <entry key="testHandleGoogleLogin()">
+        <State />
       </entry>
     </value>
   </component>

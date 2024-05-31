@@ -52,7 +52,7 @@ public class LogInActivity extends AppCompatActivity {
     CallbackManager callBackManager;
     GoogleSignInOptions gso;
     GoogleSignInClient client;
-    final int FACEBOOK = 0;
+    static final int FACEBOOK = 0;
     final int GOOGLE = 1;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
