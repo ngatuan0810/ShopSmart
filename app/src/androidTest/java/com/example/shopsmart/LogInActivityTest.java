@@ -23,4 +23,12 @@ public class LogInActivityTest {
             assertNotNull(activity.client);
         });
     }
+    @Test
+    public void testHandleFacebookLogin() {
+
+        loginActivityRule.getScenario().onActivity(activity -> {
+            activity.handleFacebookLogin();
+            assertNotNull(activity.callBackManager);
+        });
+    }
 }

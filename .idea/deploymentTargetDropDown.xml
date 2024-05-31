@@ -5,16 +5,10 @@
       <entry key="FavouriteProductListTestUI">
         <State />
       </entry>
-      <entry key="Nav_Instrumented_Test">
+      <entry key="LogInActivityTest">
         <State />
       </entry>
-      <entry key="PriceSeekBarUITest">
-        <State />
-      </entry>
-      <entry key="UserProfileActivityTest">
-        <State />
-      </entry>
-      <entry key="WatchedProductListTestUI">
+      <entry key="ScreenActivity2InstrumentedTest">
         <State />
       </entry>
       <entry key="app">
