@@ -36,7 +36,7 @@ public class ScreenActivity2 extends AppCompatActivity {
     private RecyclerView recyclerView;
     private ProductAdapter adapter;
     private List<Product> filteredList;
-    private List<Product> productList;
+    List<Product> productList;
     private LinearLayout linear;
     int images[] = {R.drawable.image_3, R.drawable.image_2, R.drawable.image_1};
     int currentPage = 0;
@@ -211,7 +211,7 @@ public class ScreenActivity2 extends AppCompatActivity {
         recyclerView.setAdapter(adapter);
     }
 
-    private void gotoUrl(String s) {
+    void gotoUrl(String s) {
         Uri uri = Uri.parse(s);
         startActivity(new Intent(Intent.ACTION_VIEW, uri));
     }
@@ -225,7 +225,7 @@ public class ScreenActivity2 extends AppCompatActivity {
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void createIndicators() {
+    void createIndicators() {
         for (int i = 0; i < images.length; i++) {
             ImageView indicator = new ImageView(this);
             indicator.setImageDrawable(getResources().getDrawable(R.drawable.indicator_inactive));
@@ -241,7 +241,7 @@ public class ScreenActivity2 extends AppCompatActivity {
     }
 
     @SuppressLint("UseCompatLoadingForDrawables")
-    private void updateIndicators(int position) {
+    void updateIndicators(int position) {
         for (int i = 0; i < indicatorContainer.getChildCount(); i++) {
             ImageView indicator = (ImageView) indicatorContainer.getChildAt(i);
             indicator.setImageDrawable(getResources().getDrawable(

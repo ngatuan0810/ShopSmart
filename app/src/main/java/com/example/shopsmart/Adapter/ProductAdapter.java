@@ -37,6 +37,7 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public ProductAdapter(List<Product> productList) {
         this.productList = productList;
     }
+
     public void setFavoriteProducts(List<Product> products) {
         favoriteProducts = products;
     }
@@ -57,10 +58,15 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
     public int getItemCount() {
         return productList.size();
     }
-
+    public Product getProduct(int position) {
+        return productList.get(position);
+    }
     public static class ProductViewHolder extends RecyclerView.ViewHolder {
+        private Product product;
         private TextView titleTxt;
         private TextView feeTxt;
+        private TextView releaseDateTxt;
+        private TextView brandNameTxt;
         private TextView retailersTxt;
         private TextView scoreTxt;
         private ImageView brandImg;
@@ -71,6 +77,8 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             super(itemView);
             titleTxt = itemView.findViewById(R.id.titleTxt);
             feeTxt = itemView.findViewById(R.id.feeTxt);
+            releaseDateTxt = itemView.findViewById(R.id.releaseDateTxt);
+            brandNameTxt = itemView.findViewById(R.id.brand_name_txt);
             retailersTxt = itemView.findViewById(R.id.number_retailer);
             scoreTxt = itemView.findViewById(R.id.scoreTxt);
             brandImg = itemView.findViewById(R.id.brand_img);
@@ -80,10 +88,13 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
         }
 
         public void bind(Product product) {
+            this.product = product;
             titleTxt.setText(product.getTitle());
             retailersTxt.setText(String.valueOf(product.getNumber_retailers()));
             scoreTxt.setText(String.valueOf(product.getScore_rating()));
             feeTxt.setText(formatPrice(product.getMinFee()));
+            releaseDateTxt.setText(product.getReleaseDate());
+            brandNameTxt.setText(product.getBrand());
             int brandImageId = getBrandImageId(itemView.getContext(), product.getBrand());
             brandImg.setImageResource(brandImageId);
 
@@ -136,6 +147,9 @@ public class ProductAdapter extends RecyclerView.Adapter<ProductAdapter.ProductV
             });
 
             loadFirstImageFromFirebase(product.getImageFolder(), pic);
+        }
+        public Product getProduct() {
+            return product;
         }
 
         private void loadFirstImageFromFirebase(String folderPath, ImageView imageView) {

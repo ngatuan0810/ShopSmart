@@ -19,7 +19,6 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import com.facebook.CallbackManager;
 import com.facebook.FacebookCallback;
 import com.facebook.FacebookException;
@@ -54,20 +53,19 @@ public class LogInActivity extends AppCompatActivity {
     GoogleSignInClient client;
     static final int FACEBOOK = 0;
     final int GOOGLE = 1;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         EdgeToEdge.enable(this);
-        setContentView(R.layout.activity_log_in); // Assuming the layout file for LogInActivity is activity_login.xml
+        setContentView(R.layout.activity_log_in);
         firebaseAuth = FirebaseAuth.getInstance();
-        // Call the method to set up login content
         setupLoginContent();
         handleAppLogin();
         handleFacebookLogin();
         handleGoogleLogin();
     }
 
-    // Method to set up login content
     void setupLoginContent() {
         TextView text = findViewById(R.id.textView);
         text.setText(getResources().getString(R.string.text_t));
@@ -81,54 +79,44 @@ public class LogInActivity extends AppCompatActivity {
                 }, null, Shader.TileMode.CLAMP);
         text.getPaint().setShader(textShader);
         TextView signUpOption = findViewById(R.id.textView10);
-        // If the user has not registered
-        signUpOption.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
-                startActivity(intent);
-            }
+        signUpOption.setOnClickListener(v -> {
+            Intent intent = new Intent(LogInActivity.this, SignUpActivity.class);
+            startActivity(intent);
         });
         TextView resetPass = findViewById(R.id.textView4);
-        resetPass.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = new Intent(LogInActivity.this, ResetPasswordActivity.class);
-                startActivity(intent);
-            }
+        resetPass.setOnClickListener(v -> {
+            Intent intent = new Intent(LogInActivity.this, ResetPasswordActivity.class);
+            startActivity(intent);
         });
     }
+
     void handleGoogleLogin() {
         gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                 .requestIdToken(getString(R.string.web_client_id)).requestEmail().build();
         client = GoogleSignIn.getClient(this, gso);
         TextView loginButton = findViewById(R.id.textView6);
-        loginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                Intent intent = client.getSignInIntent();
-                startActivityForResult(intent, 100);
-            }
+        loginButton.setOnClickListener(v -> {
+            Intent intent = client.getSignInIntent();
+            startActivityForResult(intent, 100);
         });
     }
+
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        // Pass the activity result back to the Facebook SDK
         if (requestCode == 100) {
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             try {
                 GoogleSignInAccount account = task.getResult(ApiException.class);
                 handleAccessToken(account.getIdToken(), GOOGLE);
-            }
-            catch(Exception e) {
+            } catch (Exception e) {
                 Toast.makeText(this, e.getMessage(), Toast.LENGTH_SHORT).show();
             }
-        }
-        else {
+        } else {
             callBackManager.onActivityResult(requestCode, resultCode, data);
         }
     }
+
     void handleFacebookLogin() {
         callBackManager = CallbackManager.Factory.create();
         LoginManager loginManager = LoginManager.getInstance();
@@ -150,106 +138,82 @@ public class LogInActivity extends AppCompatActivity {
             }
         });
         TextView fbLoginButton = findViewById(R.id.textView7);
-        fbLoginButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                loginManager.logInWithReadPermissions(LogInActivity.this, Arrays.asList("public_profile", "email"));
-            }
-        });
+        fbLoginButton.setOnClickListener(v -> loginManager.logInWithReadPermissions(LogInActivity.this, Arrays.asList("public_profile", "email")));
     }
+
     void handleAccessToken(String token, int provider) {
         Log.d(TAG, "handleAccessToken:" + token);
         AuthCredential credential;
         if (provider == FACEBOOK) {
             credential = FacebookAuthProvider.getCredential(token);
-        }
-        else {
+        } else {
             credential = GoogleAuthProvider.getCredential(token, null);
         }
-        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(TAG, "signInWithCredential:Success");
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    Intent intent = new Intent(LogInActivity.this, ScreenActivity2.class);
-                    startActivity(intent);
-                }
-                else {
-                    Log.w(FAIL, "signInWithCredential:Failure", task.getException());
-                    Toast.makeText(LogInActivity.this, "Authentication failed.",
-                            Toast.LENGTH_SHORT).show();
-                }
+        firebaseAuth.signInWithCredential(credential).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d(TAG, "signInWithCredential:Success");
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                Intent intent = new Intent(LogInActivity.this, ScreenActivity2.class);
+                startActivity(intent);
+            } else {
+                Log.w(FAIL, "signInWithCredential:Failure", task.getException());
+                Toast.makeText(LogInActivity.this, "Authentication failed.", Toast.LENGTH_SHORT).show();
             }
         });
-
     }
 
     boolean handleFormValidation(String textValue) {
-        if (textValue.length() < 6) {
-            return false;
-        }
-        return true;
+        return textValue.length() >= 6;
     }
+
     void authenticateUser(String email, String password) {
-        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-            @Override
-            public void onComplete(@NonNull Task<AuthResult> task) {
-                if (task.isSuccessful()) {
-                    Log.d(TAG, "signInWithEmail:success");
-                    FirebaseUser user = firebaseAuth.getCurrentUser();
-                    Intent intent = new Intent(LogInActivity.this, ScreenActivity2.class);
-                    startActivity(intent);
-                }
-                else {
-                    Log.w(FAIL, "signInWithEmail:failure", task.getException());
-                    Toast.makeText(LogInActivity.this, "Email or password is incorrect", Toast.LENGTH_LONG);
-                    LinearLayout parent = findViewById(R.id.parent);
-                    if (noWarning) {
-                        TextView error = new TextView(LogInActivity.this);
-                        error.setText("Email or password is incorrect");
-                        error.setPadding(31, 0, 0, 20);
-                        error.setTextSize(18);
-                        error.setTextColor(Color.parseColor("#F4491F"));
-                        parent.addView(error, 2);
-                        noWarning = false;
-                    }
+        firebaseAuth.signInWithEmailAndPassword(email, password).addOnCompleteListener(task -> {
+            if (task.isSuccessful()) {
+                Log.d(TAG, "signInWithEmail:success");
+                FirebaseUser user = firebaseAuth.getCurrentUser();
+                Intent intent = new Intent(LogInActivity.this, ScreenActivity2.class);
+                startActivity(intent);
+            } else {
+                Log.w(FAIL, "signInWithEmail:failure", task.getException());
+                Toast.makeText(LogInActivity.this, "Email or password is incorrect", Toast.LENGTH_LONG).show();
+                LinearLayout parent = findViewById(R.id.parent);
+                if (noWarning) {
+                    TextView error = new TextView(LogInActivity.this);
+                    error.setText("Email or password is incorrect");
+                    error.setPadding(31, 0, 0, 20);
+                    error.setTextSize(18);
+                    error.setTextColor(Color.parseColor("#F4491F"));
+                    parent.addView(error, 2);
+                    noWarning = false;
                 }
             }
         });
     }
+
     void handleAppLogin() {
         TextInputEditText email = findViewById(R.id.email);
         TextInputEditText password = findViewById(R.id.editTextText5);
         Button signInButton = findViewById(R.id.button2);
-        signInButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                String inputEmail = email.getText().toString();
-                boolean isValidEmail = handleFormValidation(inputEmail) && inputEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+");
-                boolean isValidPassWord = handleFormValidation(password.getText().toString());
-                Drawable drawable = getDrawable(R.drawable.remove);
-                drawable.setBounds(0, 0, 50, 50);
-                boolean hasError = false;
-                if (!isValidEmail) {
-                    email.setError("Email invalid", drawable);
-                    hasError = true;
-                }
-                if (!isValidPassWord) {
-                    password.setError("Password must be at least 6 characters", drawable);
-                    hasError = true;
-                }
-                if (!hasError) {
-                    Log.d("email", inputEmail);
-                    Log.d("password", password.getText().toString());
-                    authenticateUser(inputEmail, password.getText().toString());
-                }
+        signInButton.setOnClickListener(v -> {
+            String inputEmail = email.getText().toString();
+            boolean isValidEmail = handleFormValidation(inputEmail) && inputEmail.matches("[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+");
+            boolean isValidPassWord = handleFormValidation(password.getText().toString());
+            Drawable drawable = getDrawable(R.drawable.remove);
+            drawable.setBounds(0, 0, 50, 50);
+            boolean hasError = false;
+            if (!isValidEmail) {
+                email.setError("Email invalid", drawable);
+                hasError = true;
+            }
+            if (!isValidPassWord) {
+                password.setError("Password must be at least 6 characters", drawable);
+                hasError = true;
+            }
+            if (!hasError) {
+                Log.d("email", inputEmail);
+                Log.d("password", password.getText().toString());
+                authenticateUser(inputEmail, password.getText().toString());
             }
         });
     }
-
-
-
-
-
 }

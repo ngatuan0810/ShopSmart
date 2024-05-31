@@ -2,13 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="LogInActivityTest">
+      <entry key="FavouriteProductListTestUI">
         <State />
       </entry>
-      <entry key="LoginAActivityTest">
+      <entry key="Nav_Instrumented_Test">
         <State />
       </entry>
-      <entry key="UserProfileActivityTest">
+      <entry key="PriceSeekBarUITest">
+        <State />
+      </entry>
+      <entry key="ProductActivity1Test">
+        <State />
+      </entry>
+      <entry key="ScreenActivityTest">
         <State />
       </entry>
       <entry key="app">
@@ -26,9 +32,6 @@
           </targetSelectedWithDropDown>
           <timeTargetWasSelectedWithDropDown value="2024-05-17T04:37:18.534651200Z" />
         </State>
-      </entry>
-      <entry key="testHandleGoogleLogin()">
-        <State />
       </entry>
     </value>
   </component>
