@@ -28,6 +28,8 @@ import com.example.shopsmart.Domain.Product;
 
 import java.io.InputStream;
 import java.io.Serializable;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.Comparator;
@@ -59,7 +61,7 @@ public class ProductActivity1 extends AppCompatActivity {
     private RecyclerView recyclerViewBrand;
     private ProductAdapter adapter;
     private List<Product> productList;
-    private List<Product> filteredList;
+    static List<Product> filteredList;
     private TextView results_found;
     private boolean isAscending = true;
     private FilterType currentFilter = FilterType.RELEVANT;
@@ -360,6 +362,7 @@ public class ProductActivity1 extends AppCompatActivity {
             }
             adapter.notifyDataSetChanged();
         }
+
     }
 
     private void clearFilters() {
@@ -408,13 +411,20 @@ public class ProductActivity1 extends AppCompatActivity {
         Collections.sort(filteredList, new Comparator<Product>() {
             @Override
             public int compare(Product p1, Product p2) {
-                return Objects.requireNonNull(p2.getReleaseDate()).compareTo(p1.getReleaseDate());
+                SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
+                try {
+                    return dateFormat.parse(p2.getReleaseDate()).compareTo(dateFormat.parse(p1.getReleaseDate()));
+                } catch (ParseException e) {
+                    e.printStackTrace();
+                    return 0;
+                }
             }
         });
         adapter.notifyDataSetChanged();
         String searchResultText = filteredList.size() + " Results - Latest";
         results_found.setText(searchResultText);
     }
+
 
     private void sortProductsByPrice() {
         // Sắp xếp danh sách sản phẩm theo giá
@@ -530,6 +540,10 @@ public class ProductActivity1 extends AppCompatActivity {
         for (Product product : productList) {
             myRef.child(product.getId()).setValue(product);
         }
+    }
+
+    public static int getFilteredListSize() {
+        return filteredList.size();
     }
 
 

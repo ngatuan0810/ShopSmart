@@ -5,13 +5,25 @@
       <entry key="FacebookLoginTest">
         <State />
       </entry>
-      <entry key="LogInActivityTest">
+      <entry key="FavouriteProductListTestUI">
+        <State />
+      </entry>
+      <entry key="Nav_Instrumented_Test">
+        <State />
+      </entry>
+      <entry key="PriceSeekBarUITest">
         <State />
       </entry>
       <entry key="LoginAActivityTest">
         <State />
       </entry>
       <entry key="UserProfileActivityTest">
+        <State />
+      </entry>
+      <entry key="ProductActivity1Test">
+        <State />
+      </entry>
+      <entry key="ScreenActivityTest">
         <State />
       </entry>
       <entry key="app">
