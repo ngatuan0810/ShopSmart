@@ -58,8 +58,9 @@ dependencies {
     androidTestImplementation("androidx.test.ext:junit:1.1.5")
     androidTestImplementation("androidx.test.espresso:espresso-core:3.5.1")
     androidTestImplementation("androidx.test.espresso:espresso-intents:3.5.1")
-    androidTestImplementation("androidx.test:rules:1.2.0")
+    androidTestImplementation("androidx.test:rules:1.5.0")
     androidTestImplementation("androidx.test.espresso:espresso-contrib:3.3.0")
+    implementation("androidx.test:monitor:1.6.1")
     implementation ("at.blogc:expandabletextview:1.0.5")
     implementation("com.google.firebase:firebase-analytics:22.0.0")
 }

@@ -2,19 +2,19 @@
 <project version="4">
   <component name="deploymentTargetDropDown">
     <value>
-      <entry key="FacebookLoginTest">
-        <State />
-      </entry>
-      <entry key="LoginAActivityTest">
+      <entry key="FavouriteProductListTestUI">
         <State />
       </entry>
       <entry key="Nav_Instrumented_Test">
         <State />
       </entry>
-      <entry key="ProductActivity1Test">
+      <entry key="PriceSeekBarUITest">
         <State />
       </entry>
       <entry key="UserProfileActivityTest">
+        <State />
+      </entry>
+      <entry key="WatchedProductListTestUI">
         <State />
       </entry>
       <entry key="app">
